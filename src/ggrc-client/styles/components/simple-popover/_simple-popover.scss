@@ -22,5 +22,14 @@
      background-color: #F8F8F8;
      padding: 6px 0px;
      box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+     top: 108%;
+     transform: none;
+   }
+
+   &.simple-popover__placement-top {
+    .simple-popover__content {
+      top: -8%;
+      transform: translateY(-100%);
+    }
    }
  }

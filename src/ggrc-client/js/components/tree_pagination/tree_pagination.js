@@ -8,6 +8,7 @@ import template from './tree_pagination.mustache';
 /**
  * A component that renders a tree pagination widget
  * Usage: <tree-pagination paging="paging"></tree-pagination>
+ * Optional parameter: placement="top" - to display popovers above the control
  */
 (function (GGRC, can) {
   GGRC.Components('treePagination', {
@@ -31,24 +32,9 @@ import template from './tree_pagination.mustache';
       }
     },
     viewModel: {
-      /**
-       * Gets value from input and after validation set it to paging.current
-       * @param {Object} object - paging object
-       * @param {Object} input - DOM element
-       * @param {Object} event - DOM event
-       */
-      setCurrentPage: function (object, input, event) {
-        let _value;
-        let _page;
-        event.stopPropagation();
-        if (!this.paging.attr('disabled') && input.val() !== '') {
-          _value = parseInt(input.val(), 10);
-          _page = Math.min(Math.max(_value, 1) || 1, this.paging.count);
-
-          this.paging.attr('current', _page);
-        }
-        input.val('');
-        input.blur();
+      placement: '@',
+      setCurrentPage: function (pageNumber) {
+        this.paging.attr('current', pageNumber);
       },
       setLastPage: function () {
         this.paging.attr('current', this.paging.count);
@@ -86,6 +72,29 @@ import template from './tree_pagination.mustache';
         }
 
         return 'Wrong value';
+      },
+      setPageSize: function (pageSize) {
+        if (parseInt(pageSize)) {
+          this.paging.attr('pageSize', pageSize);
+        }
+      },
+      pagesList: function () {
+        let pagesList = [];
+
+        for (let i = 1; i <= this.paging.attr('count'); i++) {
+          pagesList.push(i);
+        }
+        
+        return pagesList;
+      },
+      getPageTitle: function (pageNumber) {
+        let _size = this.attr('paging.pageSize');
+        let _total = this.attr('paging.total');
+
+        let _first = (pageNumber - 1) * _size + 1;
+        let _last = pageNumber * _size < _total ? pageNumber * _size : _total;
+
+        return 'Page ' + pageNumber + ': ' + _first + '-' + _last;
       },
     },
   });

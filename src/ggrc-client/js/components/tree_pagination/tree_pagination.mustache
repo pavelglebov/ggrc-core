@@ -4,22 +4,20 @@
 }}
 
 <div class="tree-pagination flex-box">
-  <div class="tree-pagination__count">
-    <div class="tree-view-pagination__count__title">
-      {{getPaginationInfo}}
-    </div>
-  </div>
   <div class="pagination dropdown-container">
-    <select class="pagination-dropdown"
-            can-value="paging.pageSize"
-            {{#if paging.disabled}}disabled{{/if}}>
-      {{#paging.pageSizeSelect}}
-      <option value="{{.}}">{{.}}</option>
-      {{/paging.pageSizeSelect}}
-    </select>
-  </div>
-  <div class="tree-pagination__count per-page">
-    <div class="tree-view-pagination__count__title">per page</div>
+    <simple-popover {button-text}="paging.pageSize" extra-css-class="dropdown-container__simple-popover" placement="{{placement}}">
+      <div>Items per page:</div>
+      <div class="dropdown-container__items-list flex-box flex-row">
+        {{#paging.pageSizeSelect}}
+        <div
+          class="
+            dropdown-container__item
+            {{#if_equals paging.pageSize .}} dropdown-container__item-selected{{/if_equals}}
+            flex-size-1"
+          ($click)="setPageSize(.)">{{.}}</div>
+        {{/paging.pageSizeSelect}}
+      </div>
+    </simple-popover>
   </div>
   <div class="pagination">
     <div class="pagination-item {{#if_equals paging.current 1}} disabled{{/if_equals}}">
@@ -33,8 +31,18 @@
       </a>
     </div>
     <div class="pagination-item">
-      <input type="text" can-change="setCurrentPage" class="input"
-               placeholder="{{getPaginationPlaceholder}}" >
+      <simple-popover {button-text}="getPaginationInfo" extra-css-class="pagination-item__simple-popover" placement="{{placement}}">
+          {{#pagesList}}
+          <div
+            class="
+              pagination-item__popover-item
+              {{#if_equals paging.current .}} pagination-item__popover-item-selected{{/if_equals}}
+              single-line"
+            title="{{getPageTitle}}"
+            ($click)="setCurrentPage(.)">{{getPageTitle}}</div>
+          {{/pagesList}}
+        </div>
+      </simple-popover>
     </div>
     <div class="pagination-item {{#if_equals paging.current paging.count}} disabled{{/if_equals}}">
       <a can-click="setNextPage">
