@@ -115,7 +115,7 @@ _DEFAULT_COLUMN_HANDLERS_DICT = {
     # Mapping column handlers
     "__mapping__:person": handlers.PersonMappingColumnHandler,
     "__unmapping__:person": handlers.PersonUnmappingColumnHandler,
-    "directive": handlers.SectionDirectiveColumnHandler,
+    "directive": handlers.RequirementDirectiveColumnHandler,
 
     # Prefix column handlers:
     # If a column handler does not match any full key, the key will be split on

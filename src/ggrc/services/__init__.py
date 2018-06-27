@@ -57,7 +57,7 @@ def contributed_services():
       service('programs', models.Program),
       service('relationships', models.Relationship, RelationshipResource),
       service('revisions', models.Revision, ReadOnlyResource),
-      service('sections', models.Section),
+      service('requirements', models.Requirement),
       service('clauses', models.Clause),
       service(
           'systems_or_processes', models.SystemOrProcess, ReadOnlyResource),

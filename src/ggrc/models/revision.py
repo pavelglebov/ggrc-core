@@ -148,7 +148,7 @@ class Revision(base.ContextRBAC, Base, db.Model):
                           action=self.action)
     elif 'mapped_directive' in self._content:
       # then this is a special case of combined map/creation
-      # should happen only for Section and Control
+      # should happen only for Requirement and Control
       mapped_directive = self._content['mapped_directive']
       if self.action == 'created':
         result = u"New {0}, {1}, created and mapped to {2}".format(
@@ -325,7 +325,7 @@ class Revision(base.ContextRBAC, Base, db.Model):
         "Product",
         "Program",
         "Project",
-        "Section",
+        "Requirement",
         "System",
         "Vendor",
 
