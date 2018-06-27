@@ -655,7 +655,7 @@ class ProgramColumnHandler(ParentColumnHandler):
       super(ProgramColumnHandler, self).set_obj_attr()
 
 
-class SectionDirectiveColumnHandler(MappingColumnHandler):
+class RequirementDirectiveColumnHandler(MappingColumnHandler):
 
   def get_directive_from_slug(self, directive_class, slug):
     if slug in self.new_objects[directive_class]:

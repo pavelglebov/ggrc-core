@@ -25,7 +25,7 @@ class Types(object):
       "Process",
       "Product",
       "Regulation",
-      "Section",
+      "Requirement",
       "Standard",
       "System",
       "Vendor",

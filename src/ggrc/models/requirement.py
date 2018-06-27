@@ -1,7 +1,7 @@
 # Copyright (C) 2018 Google Inc.
 # Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 
-"""Module with Section model."""
+"""Module with Requirement model."""
 
 from ggrc import db
 from ggrc.access_control.roleable import Roleable
@@ -19,27 +19,27 @@ from ggrc.models.relationship import Relationship
 from ggrc.models.track_object_state import HasObjectState
 
 
-class Section(Roleable,
-              HasObjectState,
-              mixins.CustomAttributable,
-              mixins.WithStartDate,
-              mixins.WithLastDeprecatedDate,
-              Personable,
-              Relatable,
-              Indexed,
-              Commentable,
-              mixins.TestPlanned,
-              PublicDocumentable,
-              base.ContextRBAC,
-              mixins.BusinessObject,
-              db.Model):
-  """Section model."""
+class Requirement(Roleable,
+                  HasObjectState,
+                  mixins.CustomAttributable,
+                  mixins.WithStartDate,
+                  mixins.WithLastDeprecatedDate,
+                  Personable,
+                  Relatable,
+                  Indexed,
+                  Commentable,
+                  mixins.TestPlanned,
+                  PublicDocumentable,
+                  base.ContextRBAC,
+                  mixins.BusinessObject,
+                  db.Model):
+  """Requirement model."""
 
-  __tablename__ = 'sections'
-  _table_plural = 'sections'
+  __tablename__ = 'requirements'
+  _table_plural = 'requirements'
   _aliases = {
       "documents_file": None,
-      "description": "Text of Section",
+      "description": "Text of Requirement",
       "directive": {
           "display_name": "Policy / Regulation / Standard / Contract",
           "type": reflection.AttributeInfo.Type.MAPPING,
@@ -47,7 +47,8 @@ class Section(Roleable,
       }
   }
 
-  notes = deferred(db.Column(db.Text, nullable=False, default=u""), 'Section')
+  notes = deferred(db.Column(db.Text, nullable=False, default=u""),
+                   'Requirements')
 
   _api_attrs = reflection.ApiAttributes('notes')
   _sanitize_html = ['notes']

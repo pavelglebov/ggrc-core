@@ -643,7 +643,7 @@ def contributed_object_views():
       object_view(models.Program),
       object_view(models.Project),
       object_view(models.Regulation),
-      object_view(models.Section),
+      object_view(models.Requirement),
       object_view(models.Snapshot),
       object_view(models.Standard),
       object_view(models.System),

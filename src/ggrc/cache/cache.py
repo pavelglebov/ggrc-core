@@ -51,7 +51,7 @@ def all_cache_entries():
       resource('projects', 'Project'),
       resource('programs', 'Program'),
       resource('relationships', 'Relationship'),
-      resource('sections', 'Section'),
+      resource('requirements', 'Requirement'),
       resource('clauses', 'Clause'),
       resource('systems_or_processes', 'SystemOrProcess'),
       resource('systems', 'System'),
@@ -107,7 +107,7 @@ def all_mapping_entries():
       mapping('CustomAttributeValue', 'attributable', True),
       mapping('ObjectPerson', 'person'),
       mapping('ObjectPerson', 'personable', True),
-      mapping('Section', 'directive'),  # this goes out?
+      mapping('Requirement', 'directive'),  # this goes out?
       mapping('Relationship', 'source', True),
       mapping('Relationship', 'destination', True),
       mapping('UserRole', 'context'),

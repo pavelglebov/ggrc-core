@@ -45,9 +45,9 @@ class Directive(HasObjectState, LastDeprecatedTimeboxed,
   kind = deferred(db.Column(db.String), 'Directive')
 
   # TODO: FIX jost!
-  # sections = db.relationship(
-  #     'Section', backref='directive',
-  #     order_by='Section.slug', cascade='all, delete-orphan')
+  # requirements = db.relationship(
+  #     'Requirement', backref='directive',
+  #     order_by='Requirement.slug', cascade='all, delete-orphan')
   controls = db.relationship(
       'Control', backref='directive', order_by='Control.slug')
   audit_frequency = db.relationship(

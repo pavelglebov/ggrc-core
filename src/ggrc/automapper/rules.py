@@ -13,7 +13,7 @@ class AutomappingRuleConfigError(ValueError):
 
 TYPE_ORDERING = [['Program'],
                  ['Regulation', 'Policy', 'Standard', 'Contract'],
-                 ['Section', 'Clause'], ['Objective'], ['Control']]
+                 ['Requirement', 'Clause'], ['Objective'], ['Control']]
 
 TYPE_ORDERING += [["Issue"], ["Assessment"], ["Audit", "Snapshot"]]
 
@@ -102,7 +102,7 @@ rules = make_rule_set(rule_list=[  # pylint: disable=invalid-name
         # mapping directive to a program
         {'Program'},
         Types.directives,
-        {'Section', 'Clause'}
+        {'Requirement', 'Clause'}
     ),
     Rule(
         # mappings for 'raise an issue' on assessment page

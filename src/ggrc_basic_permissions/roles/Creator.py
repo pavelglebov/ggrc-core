@@ -171,7 +171,7 @@ permissions = {
             },
             "condition": "relationship",
         },
-        "Section",
+        "Requirement",
         "Clause",
         "SystemOrProcess",
         "System",

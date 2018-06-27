@@ -151,7 +151,7 @@ def _all_rules():
                 'CycleTaskGroupObjectTask', 'DataAsset', 'Facility', 'Issue',
                 'Market', 'Objective', 'OrgGroup', 'Person',
                 'Policy', 'Process', 'Product', 'Program', 'Project',
-                'Regulation', 'Risk', 'Section', 'Standard',
+                'Regulation', 'Risk', 'Requirement', 'Standard',
                 'System', 'Threat', 'Vendor', 'Metric', 'ProductGroup',
                 'TechnologyEnvironment'}
 
@@ -180,7 +180,7 @@ def _all_rules():
       "Regulation": all_models - {'Policy', 'Regulation',
                                   'Contract', 'Standard'},
       "Risk": all_models - {'Risk'},
-      "Section": all_models,
+      "Requirement": all_models,
       "Standard": all_models - {'Policy', 'Regulation',
                                 'Contract', 'Standard'},
       "System": all_models,
