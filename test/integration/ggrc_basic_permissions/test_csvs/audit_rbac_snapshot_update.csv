@@ -34,7 +34,7 @@ adminauditor@test.com"
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 Object type,,,,,,,,,,,,,,,
-Person,Name,Email*,Company,Role,map:clause,map:contract,map:control,map:objective,map:policy,map:program,map:regulation,map:section,map:standard,,
+Person,Name,Email*,Company,Role,map:clause,map:contract,map:control,map:objective,map:policy,map:program,map:regulation,map:requirement,map:standard,,
 ,user@example.com,user@example.com,,Administrator,PMRBACCLAUSE-1,PMRBACCONTRACT-1,PMRBACCONTROL-1,PMRBACOBJECTIVE-1,PMRBACPOLICY-1,PMRBACPROGRAM-1,PMRBACREGULATION-1,PMRBACSECTION-1,PMRBACSTANDARD-1,,
 ,Admin,admin@test.com,,Administrator,,,,,,,,,,,
 ,Creator PM,creatorpm@test.com,,Creator,,,,,,PMRBACPROGRAM-1,,,,,
@@ -247,8 +247,8 @@ Launched
 Not Launched
 In Scope
 Not in Scope
-Deprecated",,,,,,"either of the mappings (policy, regulation, standard) is mandatory for a section to be imported",,,,
-Section,code*,title*,text of section,admin,state,notes,,,reference url,Policy / Regulation / Standard / Contract,map:program,,,,
+Deprecated",,,,,,"either of the mappings (policy, regulation, standard) is mandatory for a requirement to be imported",,,,
+Requirement,code*,title*,text of requirement,admin,state,notes,,,reference url,Policy / Regulation / Standard / Contract,map:program,,,,
 ,Pmrbacsection-1,sec-1 EDIT,test,user@example.com,Draft,this is a note,,,google.com,Pmrbacpolicy-1,PMRBACPROGRAM-1,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,

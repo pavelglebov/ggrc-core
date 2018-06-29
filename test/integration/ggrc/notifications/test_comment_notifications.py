@@ -167,7 +167,7 @@ class TestCommentNotification(TestCase):
       factories.SystemFactory,
       factories.ProcessFactory,
       factories.ProductFactory,
-      factories.SectionFactory,
+      factories.RequirementFactory,
       factories.VendorFactory,
       factories.IssueFactory,
       factories.PolicyFactory,

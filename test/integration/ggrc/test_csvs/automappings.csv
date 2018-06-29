@@ -7,7 +7,7 @@ program,code*,title*,Program Managers,,
 ,prog-5,program 5,user@example.com,,
 ,,,,,
 Object type,,,,,
-section,code*,title*,admin,,
+requirement,code*,title*,admin,,
 ,section-1,section-1,user@example.com,,
 ,section-2,section-2,user@example.com,,
 ,section-3,section-3,user@example.com,,
@@ -17,7 +17,7 @@ section,code*,title*,admin,,
 ,section-7,section-7,user@example.com,,
 ,,,,,
 Object type,,,,,
-Regulation,code*,title*,admin,Map: program,Map: section
+Regulation,code*,title*,admin,Map: program,Map: requirement
 ,reg-1,reg 1,user@example.com,"prog-1
 prog-2
 prog-3",section-1

@@ -131,8 +131,8 @@ class TestAutomappings(TestCase):
         lambda: self.create_object(models.Regulation, {
             'title': make_name('Test PD Regulation')
         }),
-        lambda: self.create_object(models.Section, {
-            'title': make_name('Section')
+        lambda: self.create_object(models.Requirement, {
+            'title': make_name('Requirement')
         }),
     )
     program = self.create_object(models.Program, {
@@ -149,19 +149,19 @@ class TestAutomappings(TestCase):
         implied=[],
     )
 
-  def test_mapping_to_sections(self):
-    """Test mapping to section"""
+  def test_mapping_to_requirements(self):
+    """Test mapping to requirement"""
     regulation = self.create_object(models.Regulation, {
         'title': make_name('Test Regulation')
     })
-    section = self.create_object(models.Section, {
-        'title': make_name('Test section'),
+    requirement = self.create_object(models.Requirement, {
+        'title': make_name('Test requirement'),
     })
     objective = self.create_object(models.Objective, {
         'title': make_name('Objective')
     })
     self.assert_mapping_implication(
-        to_create=[(regulation, section), (objective, section)],
+        to_create=[(regulation, requirement), (objective, requirement)],
         implied=[],
     )
     program = self.create_object(models.Program, {
@@ -169,8 +169,8 @@ class TestAutomappings(TestCase):
     })
     self.assert_mapping_implication(
         to_create=[(objective, program)],
-        implied=[(regulation, section), (objective, section)],
-        relevant=[regulation, section, objective]
+        implied=[(regulation, requirement), (objective, requirement)],
+        relevant=[regulation, requirement, objective]
     )
 
   def test_automapping_limit(self):
@@ -179,14 +179,14 @@ class TestAutomappings(TestCase):
       regulation = self.create_object(models.Regulation, {
           'title': make_name('Test Regulation')
       })
-      section = self.create_object(models.Section, {
-          'title': make_name('Test section'),
+      requirement = self.create_object(models.Requirement, {
+          'title': make_name('Test requirement'),
       })
       objective = self.create_object(models.Objective, {
           'title': make_name('Objective')
       })
       self.assert_mapping_implication(
-          to_create=[(regulation, section), (objective, section)],
+          to_create=[(regulation, requirement), (objective, requirement)],
           implied=[],
       )
 
@@ -195,8 +195,8 @@ class TestAutomappings(TestCase):
     regulation = self.create_object(models.Regulation, {
         'title': make_name('Test PD Regulation')
     })
-    section = self.create_object(models.Section, {
-        'title': make_name('Test section'),
+    requirement = self.create_object(models.Requirement, {
+        'title': make_name('Test requirement'),
         'directive': {'id': regulation.id},
     })
     control = self.create_object(models.Control, {
@@ -206,8 +206,8 @@ class TestAutomappings(TestCase):
         'title': make_name('Test control')
     })
     self.assert_mapping_implication(
-        to_create=[(regulation, section),
-                   (section, objective),
+        to_create=[(regulation, requirement),
+                   (requirement, objective),
                    (objective, control)],
         implied=[]
     )
@@ -217,8 +217,8 @@ class TestAutomappings(TestCase):
     })
     self.assert_mapping_implication(
         to_create=[(control, program)],
-        implied=[(regulation, section)],
-        relevant=[regulation, section]
+        implied=[(regulation, requirement)],
+        relevant=[regulation, requirement]
     )
 
   def test_mapping_between_objectives(self):
@@ -226,8 +226,8 @@ class TestAutomappings(TestCase):
     regulation = self.create_object(models.Regulation, {
         'title': make_name('Test PD Regulation')
     })
-    section = self.create_object(models.Section, {
-        'title': make_name('Test section'),
+    requirement = self.create_object(models.Requirement, {
+        'title': make_name('Test requirement'),
         'directive': {'id': regulation.id},
     })
     objective1 = self.create_object(models.Objective, {
@@ -237,8 +237,8 @@ class TestAutomappings(TestCase):
         'title': make_name('Test Objective')
     })
     self.assert_mapping_implication(
-        to_create=[(regulation, section),
-                   (section, objective1),
+        to_create=[(regulation, requirement),
+                   (requirement, objective1),
                    (objective1, objective2)],
         implied=[]
     )
@@ -281,16 +281,16 @@ class TestAutomappings(TestCase):
     self.create_ac_roles(regulation, creator.id)
     regulation = regulation.query.get(regulation.id)
 
-    section = self.create_object(models.Section, {
-        'title': make_name('Section'),
+    requirement = self.create_object(models.Requirement, {
+        'title': make_name('Requirement'),
     })
-    self.create_ac_roles(section, creator.id)
-    section = section.query.get(section.id)
+    self.create_ac_roles(requirement, creator.id)
+    requirement = requirement.query.get(requirement.id)
 
     self.api.set_user(creator)
     self.assert_mapping_implication(
-        to_create=[(program, regulation), (regulation, section)],
-        implied=[(program, section)]
+        to_create=[(program, regulation), (regulation, requirement)],
+        implied=[(program, requirement)]
     )
 
   def test_program_role_propagation(self):
@@ -327,9 +327,9 @@ class TestAutomappings(TestCase):
     regulation = self.create_object(models.Regulation, {
         'title': make_name('Regulation'),
     })
-    # Section is automapped to the program through destination
-    destination_obj = self.create_object(models.Section, {
-        'title': make_name('Section'),
+    # Requirement is automapped to the program through destination
+    destination_obj = self.create_object(models.Requirement, {
+        'title': make_name('Requirement'),
     })
     # Objective is automapped to the program through source
     source_obj = self.create_object(models.Objective, {
@@ -364,11 +364,11 @@ class TestAutomappings(TestCase):
     regulation = self.create_object(models.Regulation, {
         'title': make_name('Regulation')
     })
-    section = self.create_object(models.Section, {
-        'title': make_name('Section')
+    requirement = self.create_object(models.Requirement, {
+        'title': make_name('Requirement')
     })
     self.create_mapping(program, regulation)
-    rel1 = self.create_mapping(regulation, section)
+    rel1 = self.create_mapping(regulation, requirement)
 
     # Check if the correct automapping row is inserted:
     auto = Automapping.query.filter_by(

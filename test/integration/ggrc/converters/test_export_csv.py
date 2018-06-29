@@ -201,12 +201,12 @@ class TestExportSingleObject(TestCase):
       else:
         self.assertNotIn(",Audit {},".format(i), response.data)
 
-  def test_section_policy_relevant_query(self):
-    """Test section policy relevant query"""
+  def test_requirement_policy_relevant_query(self):
+    """Test requirement policy relevant query"""
     response = self._import_file("data_for_export_testing_directives.csv")
     self._check_csv_response(response, {})
     data = [{  # sec-1
-        "object_name": "Section",
+        "object_name": "Requirement",
         "filters": {
             "expression": {
                 "op": {"name": "relevant"},
@@ -220,13 +220,13 @@ class TestExportSingleObject(TestCase):
         "filters": {
             "expression": {
                 "op": {"name": "relevant"},
-                "object_name": "Section",
+                "object_name": "Requirement",
                 "slugs": ["sec-3"],
             },
         },
         "fields": "all",
     }, {  # sec-8
-        "object_name": "Section",
+        "object_name": "Requirement",
         "filters": {
             "expression": {
                 "op": {"name": "relevant"},
@@ -240,13 +240,13 @@ class TestExportSingleObject(TestCase):
         "filters": {
             "expression": {
                 "op": {"name": "relevant"},
-                "object_name": "Section",
+                "object_name": "Requirement",
                 "slugs": ["sec-10"],
             },
         },
         "fields": "all",
     }, {  # sec-5
-        "object_name": "Section",
+        "object_name": "Requirement",
         "filters": {
             "expression": {
                 "op": {"name": "relevant"},
@@ -260,7 +260,7 @@ class TestExportSingleObject(TestCase):
         "filters": {
             "expression": {
                 "op": {"name": "relevant"},
-                "object_name": "Section",
+                "object_name": "Requirement",
                 "slugs": ["sec-4"],
             },
         },
@@ -520,7 +520,7 @@ class TestExportMultipleObjects(TestCase):
       "Standard",
       "Contract",
       "Control",
-      "Section",
+      "Requirement",
       "Objective",
       "Product",
       "System",

@@ -24,7 +24,7 @@ COMMENTABLE_MODELS = [
     "System",
     "Process",
     "Product",
-    "Section",
+    "Requirement",
     "Vendor",
     "Issue",
     "Policy",

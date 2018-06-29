@@ -206,12 +206,12 @@ class TestCreator(TestCase):
     """Check if creator can access the right revision objects."""
 
     def gen(title, extra_data=None):
-      """Generates section."""
-      section_content = {"title": title, "context": None}
+      """Generates requirement."""
+      requirement_content = {"title": title, "context": None}
       if extra_data:
-        section_content.update(**extra_data)
-      return self.generator.generate(all_models.Section, "section", {
-          "section": section_content
+        requirement_content.update(**extra_data)
+      return self.generator.generate(all_models.Requirement, "requirement", {
+          "requirement": requirement_content
       })[1]
 
     def check(obj, expected):
@@ -227,11 +227,11 @@ class TestCreator(TestCase):
       )
 
     self.api.set_user(self.users["admin"])
-    obj_1 = gen("Test Section 1")
+    obj_1 = gen("Test Requirement 1")
 
     self.api.set_user(self.users["creator"])
     acr_id = all_models.AccessControlRole.query.filter_by(
-        object_type="Section",
+        object_type="Requirement",
         name="Admin"
     ).first().id
     linked_acl = {
@@ -239,7 +239,7 @@ class TestCreator(TestCase):
             acl_helper.get_acl_json(acr_id, self.users["creator"].id)],
     }
     check(obj_1, 0)
-    obj_2 = gen("Test Section 2", linked_acl)
+    obj_2 = gen("Test Requirement 2", linked_acl)
     obj2_acl = obj_2.access_control_list[0]
     check(obj_2, 1)
     check(obj2_acl, 1)
@@ -252,7 +252,7 @@ class TestCreator(TestCase):
         "/search?"
         "q=&types=Program%2CWorkflow_All%2C"
         "Audit%2CAssessment%2CIssue%2CRegulation%2C"
-        "Policy%2CStandard%2CContract%2CClause%2CSection%2CControl%2C"
+        "Policy%2CStandard%2CContract%2CClause%2CRequirement%2CControl%2C"
         "Objective%2CPerson%2COrgGroup%2CVendor%2CAccessGroup%2CSystem%2C"
         "Process%2CDataAsset%2CProduct%2CProject%2CFacility%2C"
         "Market%2CRisk%2CThreat&counts_only=true&"

@@ -89,7 +89,7 @@ Regulation,code*,title*,description,admin,state,notes,effective date,reference u
 ,Pmrbacregulation-1,reg 1,test,user@example.com,Draft,this is a note,7/1/2015,google.com,PMRBACPROGRAM-1,
 ,,,,,,,,,,
 Object type,,,,,,,,,,
-Section,code*,title*,text of section,admin,state,notes,reference url,Policy / Regulation / Standard / Contract,map:program,
+Requirement,code*,title*,text of requirement,admin,state,notes,reference url,Policy / Regulation / Standard / Contract,map:program,
 ,Pmrbacsection-1,sec-1,test,user@example.com,Draft,this is a note,google.com,Pmrbacpolicy-1,PMRBACPROGRAM-1,
 ,,,,,,,,,,
 Object type,,,,,,,MM/DD/YYYY,,,

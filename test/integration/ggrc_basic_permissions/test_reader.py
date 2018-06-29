@@ -39,7 +39,7 @@ class TestReader(TestCase):
       self.users[name] = user
 
   def test_admin_page_access(self):
-    """Only admin can use admin section"""
+    """Only admin can use admin requirement"""
     for role, code in (("reader", 403), ("admin", 200)):
       self.api.set_user(self.users[role])
       self.assertEqual(self.api.client.get("/admin").status_code, code)

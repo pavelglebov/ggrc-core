@@ -20,7 +20,7 @@ class TestStates(unittest.TestCase):
       'AccessGroup', 'Clause', 'Contract',
       'Control', 'DataAsset', 'Directive', 'Facility', 'Market',
       'Objective', 'OrgGroup', 'Policy', 'Process', 'Product', 'Program',
-      'Project', 'Regulation', 'Risk', 'Section', 'Standard', 'System',
+      'Project', 'Regulation', 'Risk', 'Requirement', 'Standard', 'System',
       'SystemOrProcess', 'Threat', 'Vendor', 'Metric', 'ProductGroup',
       'TechnologyEnvironment')
 
