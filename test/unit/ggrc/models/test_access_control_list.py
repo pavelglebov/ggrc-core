@@ -18,7 +18,7 @@ class TestAccessControlList(unittest.TestCase):
       'AccessGroup', 'Assessment', 'Clause', 'Contract',
       'Control', 'DataAsset', 'Facility', 'Issue', 'Market',
       'Objective', 'OrgGroup', 'Policy', 'Process', 'Product', 'Project',
-      'Program', 'Regulation', 'Risk', 'Section', 'Standard', 'System',
+      'Program', 'Regulation', 'Risk', 'Requirement', 'Standard', 'System',
       'System', 'Process', 'Threat', 'Vendor', 'Metric', 'ProductGroup',
       'TechnologyEnvironment')
 

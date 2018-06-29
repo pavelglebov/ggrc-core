@@ -34,7 +34,7 @@ class TestImportLastDeprecatedDate(TestCase):
         },
     }
 
-  @ddt.data("Audit", "Section", "Objective")
+  @ddt.data("Audit", "Requirement", "Objective")
   def test_import_last_deprecated_date(self, model_name):
     """Last Deprecated Date on {} should be not importable."""
     with freeze_time("2017-01-25"):
@@ -53,7 +53,7 @@ class TestImportLastDeprecatedDate(TestCase):
     self.assertEqual(updated_obj.last_deprecated_date,
                      datetime.date(2017, 1, 25))
 
-  @ddt.data("Audit", "Section", "Objective")
+  @ddt.data("Audit", "Requirement", "Objective")
   def test_import_deprecated_status(self, model_name):
     """If import {} with Deprecated status, set Last Deprecated Date to now."""
     obj = factories.get_model_factory(model_name)()
@@ -70,7 +70,7 @@ class TestImportLastDeprecatedDate(TestCase):
     self.assertEqual(updated_obj.last_deprecated_date,
                      datetime.date(2017, 1, 25))
 
-  @ddt.data("Audit", "Section", "Objective")
+  @ddt.data("Audit", "Requirement", "Objective")
   def test_import_deprecated_status_again(self, model_name):
     """Last Deprecated Date on {} isn't changed when status not changed."""
     with freeze_time("2017-01-25"):
@@ -87,7 +87,7 @@ class TestImportLastDeprecatedDate(TestCase):
     self.assertEqual(updated_obj.last_deprecated_date,
                      datetime.date(2017, 1, 25))
 
-  @ddt.data("Audit", "Section", "Objective")
+  @ddt.data("Audit", "Requirement", "Objective")
   def test_import_deprecated_date_with_state(self, model_name):
     """Last Deprecated Date on {} is set to now, not what user imports."""
     with freeze_time("2017-01-25"):
@@ -109,7 +109,7 @@ class TestImportLastDeprecatedDate(TestCase):
                      datetime.date(2017, 1, 27))
 
   @ddt.data(*itertools.product(
-      ["Audit", "Section", "Objective"],
+      ["Audit", "Requirement", "Objective"],
       [(True, True), (False, True), (True, False), (False, False)],
   ))
   @ddt.unpack
@@ -154,7 +154,7 @@ class TestImportLastDeprecatedDate(TestCase):
       self._check_csv_response(resp, expected_errors)
 
   @ddt.data(*itertools.product(
-      ["Audit", "Section", "Objective"],
+      ["Audit", "Requirement", "Objective"],
       ["01/25/2017", "2017-01-25"],
   ))
   @ddt.unpack
@@ -177,7 +177,7 @@ class TestImportLastDeprecatedDate(TestCase):
 
     self._check_csv_response(resp, {})
 
-  @ddt.data("Audit", "Section", "Objective")
+  @ddt.data("Audit", "Requirement", "Objective")
   def test_import_invalid_date(self, model_name):
     """Invalid date in Last Deprecated Date is ignored in {} import."""
     with freeze_time("2017-01-25"):

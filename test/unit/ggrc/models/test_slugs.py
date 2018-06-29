@@ -42,7 +42,7 @@ class TestSlugPrefix(unittest.TestCase):
       'Regulation': 'REGULATION',
       'Risk': 'RISK',
       'RiskAssessment': 'RISKASSESSMENT',
-      'Section': 'SECTION',
+      'Requirement': 'REQUIREMENT',
       'Standard': 'STANDARD',
       'System': 'SYSTEM',
       'SystemOrProcess': 'SYSTEMORPROCESS',  # unused but has slug prefix

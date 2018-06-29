@@ -11,7 +11,7 @@ from integration.ggrc import TestCase
 class TestSpecialObjects(TestCase):
 
   """
-  testing all object with special columns such as workflows, audits, sections
+  testing object with special columns such as workflows, audits, requirements
 
   """
 

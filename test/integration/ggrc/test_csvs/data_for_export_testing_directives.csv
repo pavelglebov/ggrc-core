@@ -39,7 +39,7 @@ Policy,code*,title*,description ,admin,
 ,p10,mapped policy 10,test,user@example.com,
 ,,,,,
 Object type,,,,,
-Section,code*,title*,,admin,Policy / Regulation / Standard / Contract
+Requirement,code*,title*,,admin,Policy / Regulation / Standard / Contract
 ,sec-1,mapped section 1,,user@example.com,p1
 ,sec-2,mapped section 2,,user@example.com,p2
 ,sec-3,mapped section 3,,user@example.com,p3

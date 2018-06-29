@@ -193,8 +193,8 @@ Launched
 Not Launched
 In Scope
 Not in Scope
-Deprecated",,,,,,,,"either of the mappings (policy, regulation, standard) is mandatory for a section to be imported"
-Section,code*,title*,text of section,admin,state,notes,primary contacts,secondary contacts,,,reference url,Policy / Regulation / Standard / Contract,map:program
+Deprecated",,,,,,,,"either of the mappings (policy, regulation, standard) is mandatory for a requirement to be imported"
+Requirement,code*,title*,text of requirement,admin,state,notes,primary contacts,secondary contacts,,,reference url,Policy / Regulation / Standard / Contract,map:program
 ,sec-1,sec-1,test,user@example.com,Draft,this is a note,user@example.com,user@example.com,,,google.com,p1,Prog-13211
 ,sec-2,sec-2,test,user@example.com,Active,this is a note,user@example.com,user@example.com,,,google.com,p2,Prog-13211
 ,sec-3,sec-3,test,user@example.com,Active,this is a note,user@example.com,user@example.com,,,google.com,p3,Prog-13211

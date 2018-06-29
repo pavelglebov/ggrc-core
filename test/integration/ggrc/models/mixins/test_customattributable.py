@@ -240,7 +240,7 @@ class TestCustomAttributableMixin(TestCase):
     with factories.single_commit():
       prog = factories.ProgramFactory()
       cad1 = factories.CustomAttributeDefinitionFactory(
-          definition_type="section",
+          definition_type="requirement",
           title="CA 1",
       )
 

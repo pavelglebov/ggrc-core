@@ -115,7 +115,7 @@ class TestSnapshotQueryApi(TestCase):
         "facility",
         "control",
         "market",
-        "section",
+        "requirement",
         "threat",
         "access_group",
         "data_asset"
