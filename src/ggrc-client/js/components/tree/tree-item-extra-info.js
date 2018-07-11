@@ -23,7 +23,7 @@ import template from './templates/tree-item-extra-info.mustache';
           return this.attr('drawStatuses') ||
             this.attr('isDirective') ||
             this.attr('isCycleTasks') ||
-            this.attr('isSection');
+            this.attr('isRequirement');
         },
       },
       isDirective: {
@@ -32,10 +32,10 @@ import template from './templates/tree-item-extra-info.mustache';
           return this.attr('instance') instanceof CMS.Models.Directive;
         },
       },
-      isSection: {
+      isRequirement: {
         type: 'boolean',
         get: function () {
-          return this.attr('instance') instanceof CMS.Models.Section;
+          return this.attr('instance') instanceof CMS.Models.Requirement;
         },
       },
       isCycleTaskGroupObjectTask: {

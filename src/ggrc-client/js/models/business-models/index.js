@@ -33,7 +33,7 @@ import './project';
 import './regulation';
 import './risk';
 import './risk-assessment';
-import './section';
+import './requirement';
 import './standard';
 import './system';
 import './system-or-process';

@@ -41,7 +41,7 @@ export default can.Model.Cacheable('CMS.Models.SystemOrProcess', {
     people: 'CMS.Models.Person.stubs',
     objectives: 'CMS.Models.Objective.stubs',
     controls: 'CMS.Models.Control.stubs',
-    sections: 'CMS.Models.get_stubs',
+    requirements: 'CMS.Models.get_stubs',
     network_zone: 'CMS.Models.Option.stub',
   },
   tree_view_options: {

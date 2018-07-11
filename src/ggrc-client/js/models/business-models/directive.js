@@ -64,7 +64,7 @@ export default can.Model.Cacheable('CMS.Models.Directive', {
     people: 'CMS.Models.Person.stubs',
     objectives: 'CMS.Models.Objective.stubs',
     programs: 'CMS.Models.Program.stubs',
-    sections: 'CMS.Models.get_stubs',
+    requirements: 'CMS.Models.get_stubs',
     controls: 'CMS.Models.Control.stubs',
   },
   init: function () {

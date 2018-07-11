@@ -32,7 +32,7 @@ GGRC.config = {
     'Facility',
     'Process',
     'Clause',
-    'Section',
+    'Requirement',
     'DataAsset',
     'AccessGroup',
     'System',
@@ -122,8 +122,8 @@ GGRC.Bootstrap = {
     title_plural: 'Risk Assessments',
     model_singular: 'RiskAssessment',
   }, {
-    title_plural: 'Sections',
-    model_singular: 'Section',
+    title_plural: 'Requirements',
+    model_singular: 'Requirement',
   }, {
     title_plural: 'Standards',
     model_singular: 'Standard',
@@ -213,8 +213,8 @@ GGRC.Bootstrap = {
     title_plural: 'Risk Assessments',
     model_singular: 'RiskAssessment',
   }, {
-    title_plural: 'Sections',
-    model_singular: 'Section',
+    title_plural: 'Requirements',
+    model_singular: 'Requirement',
   }, {
     title_plural: 'Standards',
     model_singular: 'Standard',

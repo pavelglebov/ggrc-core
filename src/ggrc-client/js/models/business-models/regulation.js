@@ -26,7 +26,7 @@ export default Directive('CMS.Models.Regulation', {
   meta_kinds: [ 'Regulation' ],
   cache: can.getObject('cache', CMS.Models.Directive, true),
   sub_tree_view_options: {
-    default_filter: ['Section'],
+    default_filter: ['Requirement'],
   },
   defaults: {
     status: 'Draft',

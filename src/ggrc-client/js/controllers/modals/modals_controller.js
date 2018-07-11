@@ -1020,13 +1020,13 @@ export default can.Control({
           }
         }
 
-        // If this was an Objective created directly from a Section, create a join
+        // If this was an Objective created directly from a Requirement, create a join
         params = that.options.object_params;
         if (obj instanceof CMS.Models.Objective &&
           params && params.section) {
           new CMS.Models.Relationship({
             source: obj,
-            destination: CMS.Models.Section
+            destination: CMS.Models.Requirement
               .findInCacheById(params.section.id),
             context: {id: null},
           }).save()

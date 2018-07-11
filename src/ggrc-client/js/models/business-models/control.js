@@ -34,7 +34,7 @@ export default can.Model.Cacheable('CMS.Models.Control', {
     people: 'CMS.Models.Person.stubs',
     objectives: 'CMS.Models.Objective.stubs',
     directive: 'CMS.Models.Directive.stub',
-    sections: 'CMS.Models.get_stubs',
+    requirements: 'CMS.Models.get_stubs',
     programs: 'CMS.Models.Program.stubs',
     kind: 'CMS.Models.Option.stub',
     means: 'CMS.Models.Option.stub',

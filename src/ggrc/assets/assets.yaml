@@ -138,8 +138,8 @@ dashboard-js-template-files:
   - projects/modal_content.mustache
   - regulations/modal_content.mustache
   - roles/object_list.mustache
-  - sections/modal_content.mustache
-  - sections/tree-item-attr.mustache
+  - requirements/modal_content.mustache
+  - requirements/tree-item-attr.mustache
   - selectors/active_column.mustache
   - selectors/base_modal.mustache
   - selectors/option_column.mustache

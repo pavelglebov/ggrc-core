@@ -183,7 +183,7 @@ describe('StateUtils', function () {
 
     it('returns "Status" for non-CycleTaskGroupObjectTask models',
       function () {
-        let models = ['Standard', 'Regulation', 'Section', 'Objective',
+        let models = ['Standard', 'Regulation', 'Requirement', 'Objective',
           'Control', 'Product', 'System', 'Process', 'AccessGroup',
           'Assessment', 'Clause', 'Contract', 'DataAsset', 'Facility',
           'Issue', 'Market', 'OrgGroup', 'Policy', 'Program', 'Project',
@@ -220,7 +220,7 @@ describe('StateUtils', function () {
     it('returns an empty array for non-CycleTaskGroupObjectTask models',
       function () {
         let expected = [];
-        let models = ['Standard', 'Regulation', 'Section', 'Objective',
+        let models = ['Standard', 'Regulation', 'Requirement', 'Objective',
           'Control', 'Product', 'System', 'Process', 'AccessGroup',
           'Assessment', 'Clause', 'Contract', 'DataAsset', 'Facility',
           'Issue', 'Market', 'OrgGroup', 'Policy', 'Program', 'Project',

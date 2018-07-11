@@ -30,7 +30,7 @@ export default can.Model.Cacheable('CMS.Models.Program', {
     object_people: 'CMS.Models.ObjectPerson.stubs',
     people: 'CMS.Models.Person.stubs',
     objectives: 'CMS.Models.Objective.stubs',
-    sections: 'CMS.Models.get_stubs',
+    requirements: 'CMS.Models.get_stubs',
     directives: 'CMS.Models.Directive.stubs',
     controls: 'CMS.Models.Control.stubs',
     audits: 'CMS.Models.Audit.stubs',

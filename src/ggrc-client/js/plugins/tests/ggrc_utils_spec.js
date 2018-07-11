@@ -84,7 +84,7 @@ describe('getMappableTypes() method', function () {
     let OBJECT_TYPES = [
       'DataAsset', 'Facility', 'Market', 'OrgGroup', 'Vendor', 'Process',
       'Product', 'Project', 'System', 'Regulation', 'Policy', 'Contract',
-      'Standard', 'Program', 'Issue', 'Control', 'Section', 'Clause',
+      'Standard', 'Program', 'Issue', 'Control', 'Requirement', 'Clause',
       'Objective', 'Audit', 'Assessment', 'AccessGroup',
       'Document', 'Risk', 'Threat',
     ];

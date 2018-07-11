@@ -133,7 +133,7 @@ describe('CMS.Controllers.InnerNav', function () {
       options = {
         widget_list: new can.Observe.List([
           {selector: '#control', model: CMS.Models.Control},
-          {selector: '#section', model: CMS.Models.Section},
+          {selector: '#requirement', model: CMS.Models.Requirement},
           {selector: '#assessment', model: CMS.Models.Assessment},
           {selector: '#super'},
           {selector: '#objective', model: CMS.Models.Objective},
