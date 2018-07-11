@@ -7,7 +7,7 @@ describe('Model states test', function () {
   let basicStateObjects = ['AccessGroup', 'Clause', 'Contract',
     'Control', 'DataAsset', 'Facility', 'Market',
     'Objective', 'OrgGroup', 'Policy', 'Process', 'Product', 'Program',
-    'Project', 'Regulation', 'Risk', 'Section', 'Standard', 'System',
+    'Project', 'Regulation', 'Risk', 'Requirement', 'Standard', 'System',
     'Threat', 'Vendor'];
 
   basicStateObjects.forEach(function (object) {
@@ -38,7 +38,7 @@ describe('Model review state test', function () {
   let reviewObjects = ['AccessGroup', 'Assessment', 'Audit', 'Clause',
     'Contract', 'Control', 'DataAsset', 'Facility', 'Issue', 'Market',
     'Objective', 'OrgGroup', 'Policy', 'Process', 'Product', 'Program',
-    'Project', 'Regulation', 'Risk', 'Section', 'Standard', 'System',
+    'Project', 'Regulation', 'Risk', 'Requirement', 'Standard', 'System',
     'Threat', 'Vendor'];
   reviewObjects.forEach(function (object) {
     it('checks if ' + object + ' has os state in attr_list', function () {

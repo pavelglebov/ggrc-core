@@ -30,7 +30,7 @@ export default can.Model.Cacheable('CMS.Models.Threat', {
     object_controls: 'CMS.Models.ObjectControl.stubs',
     controls: 'CMS.Models.Control.stubs',
     object_sections: 'CMS.Models.ObjectSection.stubs',
-    sections: 'CMS.Models.get_stubs',
+    requirements: 'CMS.Models.get_stubs',
   },
   tree_view_options: {
     add_item_view: GGRC.mustache_path +

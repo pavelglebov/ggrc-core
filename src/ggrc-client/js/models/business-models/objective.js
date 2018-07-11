@@ -26,7 +26,7 @@ export default can.Model.Cacheable('CMS.Models.Objective', {
   attributes: {
     context: 'CMS.Models.Context.stub',
     modified_by: 'CMS.Models.Person.stub',
-    sections: 'CMS.Models.get_stubs',
+    requirements: 'CMS.Models.get_stubs',
     controls: 'CMS.Models.Control.stubs',
     object_people: 'CMS.Models.ObjectPerson.stubs',
     objective_objects: 'CMS.Models.ObjectObjective.stubs',

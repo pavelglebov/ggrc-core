@@ -3,22 +3,22 @@
     Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 */
 
-export default can.Model.Cacheable('CMS.Models.Section', {
-  root_object: 'section',
-  root_collection: 'sections',
-  model_plural: 'Sections',
-  table_plural: 'sections',
-  title_plural: 'Sections',
-  model_singular: 'Section',
-  title_singular: 'Section',
-  table_singular: 'section',
+export default can.Model.Cacheable('CMS.Models.Requirement', {
+  root_object: 'requirement',
+  root_collection: 'requirements',
+  model_plural: 'Requirements',
+  table_plural: 'requirements',
+  title_plural: 'Requirements',
+  model_singular: 'Requirement',
+  title_singular: 'Requirement',
+  table_singular: 'requirement',
   category: 'governance',
-  root_model: 'Section',
-  findAll: 'GET /api/sections',
-  findOne: 'GET /api/sections/{id}',
-  create: 'POST /api/sections',
-  update: 'PUT /api/sections/{id}',
-  destroy: 'DELETE /api/sections/{id}',
+  root_model: 'Requirement',
+  findAll: 'GET /api/requirements',
+  findOne: 'GET /api/requirements/{id}',
+  create: 'POST /api/requirements',
+  update: 'PUT /api/requirements/{id}',
+  destroy: 'DELETE /api/requirements/{id}',
   is_custom_attributable: true,
   isRoleable: true,
   mixins: [
@@ -34,12 +34,12 @@ export default can.Model.Cacheable('CMS.Models.Section', {
     people: 'CMS.Models.Person.stubs',
     directive: 'CMS.Models.get_stub',
     children: 'CMS.Models.get_stubs',
-    directive_sections: 'CMS.Models.DirectiveSection.stubs',
+    directive_requirements: 'CMS.Models.DirectiveRequirement.stubs',
     directives: 'CMS.Models.get_stubs',
     objectives: 'CMS.Models.Objective.stubs',
   },
   tree_view_options: {
-    attr_view: '/static/mustache/sections/tree-item-attr.mustache',
+    attr_view: '/static/mustache/requirements/tree-item-attr.mustache',
     attr_list: can.Model.Cacheable.attr_list.concat([
       {attr_title: 'Reference URL', attr_name: 'reference_url'},
       {attr_title: 'Effective Date', attr_name: 'start_date'},

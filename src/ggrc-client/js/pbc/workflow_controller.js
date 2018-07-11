@@ -29,10 +29,10 @@
         instance.delay_resolving_save_until($.when.apply($, dfd));
       }.bind(this));
     },
-    '{CMS.Models.Section} created': function (model, ev, instance) {
+    '{CMS.Models.Requirement} created': function (model, ev, instance) {
       let directiveDfd;
 
-      if (!(instance instanceof CMS.Models.Section)) {
+      if (!(instance instanceof CMS.Models.Requirement)) {
         return;
       }
 
