@@ -39,7 +39,7 @@ export default can.Model.Cacheable('CMS.Models.Clause', {
     objectives: 'CMS.Models.Objective.stubs',
   },
   tree_view_options: {
-    attr_view: '/static/mustache/sections/tree-item-attr.mustache',
+    attr_view: '/static/mustache/requirements/tree-item-attr.mustache',
     attr_list: can.Model.Cacheable.attr_list.concat([
       {attr_title: 'Reference URL', attr_name: 'reference_url'},
       {attr_title: 'Last Deprecated Date', attr_name: 'end_date'},

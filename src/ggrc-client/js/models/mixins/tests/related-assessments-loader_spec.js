@@ -65,14 +65,14 @@ describe('relatedAssessmentsLoader mixin', () => {
       const reg = makeFakeInstance({model: CMS.Models.Regulation})({});
       const system = makeFakeInstance({model: CMS.Models.System})({});
       const issue = makeFakeInstance({model: CMS.Models.Issue})({});
-      const section = makeFakeInstance({model: CMS.Models.Section})({});
+      const requirement = makeFakeInstance({model: CMS.Models.Requirement})({});
 
       expect(audit.getRelatedAssessments).toBeFalsy();
       expect(program.getRelatedAssessments).toBeFalsy();
       expect(reg.getRelatedAssessments).toBeFalsy();
       expect(system.getRelatedAssessments).toBeFalsy();
       expect(issue.getRelatedAssessments).toBeFalsy();
-      expect(section.getRelatedAssessments).toBeFalsy();
+      expect(requirement.getRelatedAssessments).toBeFalsy();
     });
   });
 

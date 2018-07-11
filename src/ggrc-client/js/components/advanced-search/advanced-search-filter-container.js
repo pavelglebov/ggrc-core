@@ -55,7 +55,7 @@ let viewModel = AdvancedSearchContainer.extend({
    * Contains specific model name.
    * @type {string}
    * @example
-   * Section
+   * Requirement
    * Regulation
    */
   modelName: null,

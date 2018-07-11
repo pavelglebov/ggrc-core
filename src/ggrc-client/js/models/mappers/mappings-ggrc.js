@@ -45,14 +45,14 @@ import Mappings from './mappings';
       _mixins: ['related_object', 'personable'],
       related_and_able_objects: Multi([
         'controls', 'objectives', 'related_objects', 'people',
-        'sections', 'clauses',
+        'requirements', 'clauses',
       ]),
       orphaned_objects: Multi([
         'related_objects', 'clauses', 'contracts', 'controls', 'objectives',
-        'people', 'policies', 'programs', 'regulations', 'sections', 'standards',
+        'people', 'policies', 'programs', 'regulations', 'requirements', 'standards',
       ]),
     },
-    Section: {
+    Requirement: {
       _mixins: ['related_object', 'personable'],
     },
     Clause: {
@@ -87,7 +87,7 @@ import Mappings from './mappings';
           'DataAsset', 'Facility', 'Market', 'OrgGroup', 'Vendor', 'Process',
           'Product', 'ProductGroup', 'Project', 'System', 'Regulation',
           'Policy', 'Contract', 'Standard', 'Program', 'Issue', 'Control',
-          'Section', 'Clause', 'Objective', 'Audit', 'Assessment',
+          'Requirement', 'Clause', 'Objective', 'Audit', 'Assessment',
           'AssessmentTemplate', 'AccessGroup', 'Risk', 'Threat', 'Document',
           'Metric', 'TechnologyEnvironment',
         ],
@@ -127,7 +127,7 @@ import Mappings from './mappings';
       standards: TypeFilter('related_objects', 'Standard'),
       programs: TypeFilter('related_objects', 'Program'),
       controls: TypeFilter('related_objects', 'Control'),
-      sections: TypeFilter('related_objects', 'Section'),
+      requirements: TypeFilter('related_objects', 'Requirement'),
       clauses: TypeFilter('related_objects', 'Clause'),
       objectives: TypeFilter('related_objects', 'Objective'),
       risks: TypeFilter('related_objects', 'Risk'),
@@ -202,7 +202,7 @@ import Mappings from './mappings';
         'related_object', 'personable',
       ],
       orphaned_objects: Multi([
-        'related_objects', 'people', 'controls', 'objectives', 'sections',
+        'related_objects', 'people', 'controls', 'objectives', 'requirements',
         'clauses',
       ]),
     },
@@ -249,7 +249,7 @@ import Mappings from './mappings';
       _canonical: {
         related_objects: [
           'Program', 'Regulation', 'Contract', 'Policy', 'Standard',
-          'AccessGroup', 'Objective', 'Control', 'Section', 'Clause',
+          'AccessGroup', 'Objective', 'Control', 'Requirement', 'Clause',
           'DataAsset', 'Facility', 'Market', 'Metric', 'OrgGroup', 'Vendor',
           'Process', 'Product', 'ProductGroup', 'Project', 'System', 'Issue',
           'Risk', 'Threat', 'TechnologyEnvironment'],
@@ -262,7 +262,7 @@ import Mappings from './mappings';
       owned_standards: Indirect('Standard', 'contact'),
       owned_objectives: Indirect('Objective', 'contact'),
       owned_controls: Indirect('Control', 'contact'),
-      owned_sections: Indirect('Section', 'contact'),
+      owned_requirements: Indirect('Requirement', 'contact'),
       owned_clauses: Indirect('Clause', 'contact'),
       owned_access_groups: Indirect('AccessGroup', 'contact'),
       owned_data_assets: Indirect('DataAsset', 'contact'),
@@ -289,7 +289,7 @@ import Mappings from './mappings';
       related_standards: TypeFilter('related_objects', 'Standard'),
       related_objectives: TypeFilter('related_objects', 'Objective'),
       related_controls: TypeFilter('related_objects', 'Control'),
-      related_sections: TypeFilter('related_objects', 'Section'),
+      related_requirements: TypeFilter('related_objects', 'Requirement'),
       related_clauses: TypeFilter('related_objects', 'Clause'),
       related_access_groups: TypeFilter('related_objects', 'AccessGroup'),
       related_data_assets: TypeFilter('related_objects', 'DataAsset'),
@@ -321,7 +321,7 @@ import Mappings from './mappings';
       extended_related_objectives:
         Multi(['related_objectives', 'owned_objectives']),
       extended_related_controls: Multi(['related_controls', 'owned_controls']),
-      extended_related_sections: Multi(['related_sections', 'owned_sections']),
+      extended_related_requirements: Multi(['related_requirements', 'owned_requirements']),
       extended_related_clauses: Multi(['related_clauses', 'owned_clauses']),
       extended_related_data_assets:
         Multi(['related_data_assets', 'owned_data_assets']),
@@ -357,7 +357,7 @@ import Mappings from './mappings';
         }).pipe(function (mappings) {
           return mappings.entries;
         });
-      }, 'Program,Regulation,Contract,Policy,Standard,Section,Clause,' +
+      }, 'Program,Regulation,Contract,Policy,Standard,Requirement,Clause,' +
         'Objective,Control,System,Process,DataAsset,AccessGroup,Product,' +
         'ProductGroup,Project,Facility,Market,Metric,OrgGroup,Vendor,' +
         'Audit,Assessment,Issue,Risk,Threat,TechnologyEnvironment'),
@@ -375,8 +375,8 @@ import Mappings from './mappings';
         TypeFilter('related_objects_via_search', 'Objective'),
       extended_related_controls_via_search:
         TypeFilter('related_objects_via_search', 'Control'),
-      extended_related_sections_via_search:
-        TypeFilter('related_objects_via_search', 'Section'),
+      extended_related_requirements_via_search:
+        TypeFilter('related_objects_via_search', 'Requirement'),
       extended_related_clauses_via_search:
         TypeFilter('related_objects_via_search', 'Clause'),
       extended_related_access_groups_via_search:

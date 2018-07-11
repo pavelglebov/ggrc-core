@@ -24,7 +24,7 @@ describe('advanced-search-filter-state component', function () {
           .and.returnValue(states);
         spyOn(StateUtils, 'getStatesForModel')
           .and.returnValue(states);
-        viewModel.attr('modelName', 'Section');
+        viewModel.attr('modelName', 'Requirement');
 
         viewModel.attr('stateModel', new can.Map());
 
@@ -36,7 +36,7 @@ describe('advanced-search-filter-state component', function () {
     it('initializes all "filterStates" unchecked ' +
        'if "stateModel.items" is empty',
     function () {
-      viewModel.attr('modelName', 'Section');
+      viewModel.attr('modelName', 'Requirement');
 
       viewModel.attr('stateModel', new can.Map({
         items: [],
@@ -50,7 +50,7 @@ describe('advanced-search-filter-state component', function () {
     it('initializes "filterStates" checked with items from "stateModel"',
       function () {
         let selectedItems;
-        viewModel.attr('modelName', 'Section');
+        viewModel.attr('modelName', 'Requirement');
         viewModel.attr('stateModel', new can.Map({
           items: ['Active'],
         }));

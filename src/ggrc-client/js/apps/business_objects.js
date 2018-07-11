@@ -52,7 +52,7 @@ import Mappings from '../models/mappers/mappings';
         assessment_template: CMS.Models.AssessmentTemplate,
         issue: CMS.Models.Issue,
         objective: CMS.Models.Objective,
-        section: CMS.Models.Section,
+        requirement: CMS.Models.Requirement,
         clause: CMS.Models.Clause,
         person: CMS.Models.Person,
         product_group: CMS.Models.ProductGroup,
@@ -417,8 +417,8 @@ import Mappings from '../models/mappers/mappings';
             mapping: 'objectives',
             draw_children: true,
           },
-          Section: {
-            mapping: 'sections',
+          Requirement: {
+            mapping: 'requirements',
             draw_children: true,
           },
           Clause: {
@@ -455,8 +455,8 @@ import Mappings from '../models/mappers/mappings';
             allow_mapping: false,
             allow_creating: false,
           },
-          Section: {
-            mapping: 'sections',
+          Requirement: {
+            mapping: 'requirements',
             draw_children: true,
           },
           Clause: {
@@ -501,8 +501,8 @@ import Mappings from '../models/mappers/mappings';
           _mixins: [
             'objectives', 'controls', 'business_objects',
           ],
-          Section: {
-            mapping: 'sections',
+          Requirement: {
+            mapping: 'requirements',
             draw_children: true,
           },
           Clause: {
@@ -533,7 +533,7 @@ import Mappings from '../models/mappers/mappings';
             draw_children: true,
           },
         },
-        Section: {
+        Requirement: {
           _mixins: ['governance_objects', 'business_objects', 'issues'],
           Audit: {
             mapping: 'related_audits',
@@ -562,8 +562,8 @@ import Mappings from '../models/mappers/mappings';
             allow_mapping: true,
             add_item_view: path + '/audits/tree_add_item.mustache',
           },
-          Section: {
-            mapping: 'sections',
+          Requirement: {
+            mapping: 'requirements',
             draw_children: true,
           },
           Clause: {
@@ -670,7 +670,7 @@ import Mappings from '../models/mappers/mappings';
           Audit: {
             draw_children: true,
           },
-          Section: {
+          Requirement: {
             add_item_view:
               GGRC.mustache_path + '/base_objects/tree_add_item.mustache',
             draw_children: true,
