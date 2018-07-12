@@ -23,7 +23,7 @@ export default Directive('CMS.Models.Regulation', {
   isRoleable: true,
   attributes: {},
   mixins: ['accessControlList'],
-  meta_kinds: [ 'Regulation' ],
+  meta_kinds: ['Regulation'],
   cache: can.getObject('cache', CMS.Models.Directive, true),
   sub_tree_view_options: {
     default_filter: ['Requirement'],

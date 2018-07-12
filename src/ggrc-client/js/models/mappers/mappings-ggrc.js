@@ -48,8 +48,9 @@ import Mappings from './mappings';
         'requirements', 'clauses',
       ]),
       orphaned_objects: Multi([
-        'related_objects', 'clauses', 'contracts', 'controls', 'objectives',
-        'people', 'policies', 'programs', 'regulations', 'requirements', 'standards',
+        'related_objects', 'clauses', 'contracts', 'controls',
+        'objectives', 'people', 'policies', 'programs', 'regulations',
+        'requirements', 'standards',
       ]),
     },
     Requirement: {
@@ -321,7 +322,8 @@ import Mappings from './mappings';
       extended_related_objectives:
         Multi(['related_objectives', 'owned_objectives']),
       extended_related_controls: Multi(['related_controls', 'owned_controls']),
-      extended_related_requirements: Multi(['related_requirements', 'owned_requirements']),
+      extended_related_requirements:
+        Multi(['related_requirements', 'owned_requirements']),
       extended_related_clauses: Multi(['related_clauses', 'owned_clauses']),
       extended_related_data_assets:
         Multi(['related_data_assets', 'owned_data_assets']),
