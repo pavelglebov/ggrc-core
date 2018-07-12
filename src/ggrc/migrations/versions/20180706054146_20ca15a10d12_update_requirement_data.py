@@ -62,11 +62,6 @@ MODELS_FIELDS = [
     ("proposals", "instance_type"),
     ("snapshots", "child_type"),
     ("snapshots", "parent_type"),
-    # ("snapshots_revisions", "parent_type"),
-    # ("snapshots_revisions", "child_type"),
-    # ("snapshots_revisions", "object_type"),
-    # ("snapshots_revisions_acl", "object_type"),
-    # ("task_group_objects", "object_type"),
 ]
 
 
