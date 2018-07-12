@@ -202,8 +202,9 @@ import Mappings from '../models/mappers/mappings';
 
         can.each(definitions, function (definition, name) {
           // Only output the mappings if it's a model, e.g., uppercase first letter
-          if (name[0] === name[0].toUpperCase())
+          if (name[0] === name[0].toUpperCase()) {
             mappings[name] = reify_mixins(definition);
+          }
         });
 
         return mappings;
@@ -777,9 +778,9 @@ import Mappings from '../models/mappers/mappings';
         let widgetConfig = getWidgetConfig(model_name);
         model_name = widgetConfig.name;
 
-        let sources = [],
-          far_model, descriptor = {},
-          widget_id;
+        let far_model;
+        let descriptor = {};
+        let widget_id;
 
         far_model = CMS.Models[model_name];
         if (far_model) {

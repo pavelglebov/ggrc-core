@@ -9,7 +9,13 @@ describe('GGRC.Components.treeItemExtraInfo', function () {
   'use strict';
 
   let viewModel;
-  let activeModel = ['Regulation', 'Contract', 'Policy', 'Standard', 'Requirement'];
+  let activeModel = [
+    'Regulation',
+    'Contract',
+    'Policy',
+    'Standard',
+    'Requirement',
+  ];
 
   beforeEach(function () {
     viewModel = GGRC.Components.getViewModel('treeItemExtraInfo');
