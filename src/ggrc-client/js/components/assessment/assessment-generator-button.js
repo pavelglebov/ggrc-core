@@ -67,19 +67,22 @@ export default can.Component.extend({
       if (count >= wait.length) {
         count = wait.length - 1;
       }
-      CMS.Models.BackgroundTask.findAll({
-        id__in: ids.join(','),
-      }).then(function (tasks) {
-        let statuses = _.countBy(tasks, function (task) {
-          return task.status;
-        });
-        this.showFlash(statuses);
-        if (statuses.Pending || statuses.Running) {
-          setTimeout(function () {
-            this.updateStatus(ids, ++count);
-          }.bind(this), wait[count] * 1000);
-        }
-      }.bind(this));
+
+      let isSingle = ids.length == 1;
+      let handler = isSingle ? 'findOne' : 'findAll';
+      let param = isSingle ? {id: ids[0]} : {id__in: ids.join(',')};
+      CMS.Models.BackgroundTask[handler](param)
+        .then(function (tasks) {
+          let statuses = _.countBy(tasks, function (task) {
+            return task.status;
+          });
+          this.showFlash(statuses);
+          if (statuses.Pending || statuses.Running) {
+            setTimeout(function () {
+              this.updateStatus(ids, ++count);
+            }.bind(this), wait[count] * 1000);
+          }
+        }.bind(this));
     },
     generateAssessments: function (list, options) {
       let que = new RefreshQueue();
