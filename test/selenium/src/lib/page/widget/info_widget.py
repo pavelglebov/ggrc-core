@@ -612,12 +612,12 @@ class Clauses(InfoWidget):
     super(Clauses, self).__init__(driver)
 
 
-class Sections(InfoWidget):
-  """Model for Section object Info pages and Info panels."""
-  _locators = locator.WidgetInfoSection
+class Requirements(InfoWidget):
+  """Model for Requirement object Info pages and Info panels."""
+  _locators = locator.WidgetInfoRequirement
 
   def __init__(self, driver):
-    super(Sections, self).__init__(driver)
+    super(Requirements, self).__init__(driver)
 
 
 class Controls(InfoWidget):

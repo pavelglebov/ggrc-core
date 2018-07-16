@@ -224,8 +224,8 @@ class Clauses(_ObjectWidgetBar):
   """Widget bar of Clause objects."""
 
 
-class Sections(_ObjectWidgetBar):
-  """Widget bar of Section objects."""
+class Reuirements(_ObjectWidgetBar):
+  """Widget bar of Requirements objects."""
 
 
 class Controls(_ObjectWidgetBar):

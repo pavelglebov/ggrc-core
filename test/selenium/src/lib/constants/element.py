@@ -21,7 +21,7 @@ class Lhn(object):
           cls.STANDARDS,
           cls.CONTRACTS,
           cls.CLAUSES,
-          cls.SECTIONS)
+          cls.REQUIREMENTS)
       cls.CONTROLS_OR_OBJECTIVES_MEMBERS = (
           cls.CONTROLS,
           cls.OBJECTIVES)

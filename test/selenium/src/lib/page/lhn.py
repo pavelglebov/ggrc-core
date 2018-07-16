@@ -72,9 +72,9 @@ class _Directives(lhn.DropdownStatic):
     self.toggle_clauses = lhn.Toggle(
         self._driver, locator.LhnMenu.CLAUSES,
         locator.LhnMenu.CLAUSES_COUNT)
-    self.toggle_sections = lhn.Toggle(
-        self._driver, locator.LhnMenu.SECTIONS,
-        locator.LhnMenu.SECTIONS_COUNT)
+    self.toggle_requirements = lhn.Toggle(
+        self._driver, locator.LhnMenu.REQUIREMENTS,
+        locator.LhnMenu.REQUIREMENTS_COUNT)
 
   def select_regulations(self):
     """
@@ -111,12 +111,12 @@ class _Directives(lhn.DropdownStatic):
     self.toggle_clauses.toggle()
     return _Clauses(self._driver)
 
-  def select_sections(self):
+  def select_requirements(self):
     """
-    Return: _Sections
+    Return: _Requirements
     """
-    self.toggle_sections.toggle()
-    return _Sections(self._driver)
+    self.toggle_requirements.toggle()
+    return _Requirements(self._driver)
 
 
 class _Regulations(lhn.AccordionGroup):
@@ -149,10 +149,10 @@ class _Clauses(lhn.AccordionGroup):
   _locator_spinny = locator.LhnMenu.SPINNY_CLAUSES
 
 
-class _Sections(lhn.AccordionGroup):
-  """Sections dropdown in LHN."""
-  _locator_button_create_new = locator.LhnMenu.BUTTON_CREATE_NEW_SECTIONS
-  _locator_spinny = locator.LhnMenu.SPINNY_SECTIONS
+class _Requirements(lhn.AccordionGroup):
+  """Reguirements dropdown in LHN."""
+  _locator_button_create_new = locator.LhnMenu.BUTTON_CREATE_NEW_REQUIREMENTS
+  _locator_spinny = locator.LhnMenu.SPINNY_REQUIREMENTS
 
 
 class _ControlsOrObjectives(lhn.DropdownStatic):
