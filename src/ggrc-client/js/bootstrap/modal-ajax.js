@@ -249,11 +249,11 @@ import modalModels from '../models/modal-models';
         }
       });
 
-      $target.on('modal:discard', () => {
-        if ( instance ) {
+      if (instance) {
+        can.bind.call(instance, 'modal:discard', function() {
           instance.restore(true);
-        }
-      });
+        });
+      }
     },
 
     archiveform: function ($target, $trigger, option) {

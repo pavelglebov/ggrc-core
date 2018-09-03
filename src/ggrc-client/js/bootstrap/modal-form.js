@@ -209,7 +209,6 @@ import {navigate} from '../plugins/utils/current-page-utils';
           }, function () {
             can.trigger(instance, 'modal:dismiss');
             can.trigger(instance, 'modal:discard');
-            this.$element.trigger('modal:discard');
             this.$trigger.trigger('modal:dismiss');
             this.$element
               .find("[data-dismiss='modal'], [data-dismiss='modal-reset']")
