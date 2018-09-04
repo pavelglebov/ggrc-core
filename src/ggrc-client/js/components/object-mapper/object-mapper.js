@@ -330,9 +330,11 @@ export default can.Component.extend({
           })
           .always(() => {
             this.viewModel.attr('is_saving', false);
-            this.closeModal();
           })
           .done(() => {
+            // moving closeModal() from 'always' to 'done' because
+            // in case of error, 'always' will be triggered multiple times
+            this.closeModal();
             if (instance && instance.dispatch) {
               instance.dispatch('refreshInstance');
               instance.dispatch({
