@@ -44,8 +44,10 @@ const ObjectMapper = can.Control.extend({
       $trigger: $trigger,
     }, options));
 
-    $target.on('modal:dismiss', function () {
-      $(this).remove();
+    $target.on('modal:dismiss', function (e) {
+      if (e.target === this) {
+        $(this).remove();
+      }
     });
 
     $target.on('hideModal', function (e) {
