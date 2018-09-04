@@ -177,12 +177,8 @@ export default can.Component.extend({
     '.create-control click': function () {
       // reset new entries
       this.viewModel.attr('newEntries', []);
-      this.element.trigger('hideModal');
     },
-    '.create-control modal:dismiss'() {
-      this.closeModal();
-    },
-    '{window} modal:dismiss': function (el, ev, options) {
+    'modal:dismiss': function (el, ev, options) {
       let joinObjectId = this.viewModel.attr('join_object_id');
 
       // mapper sets uniqueId for modal-ajax.
@@ -191,8 +187,6 @@ export default can.Component.extend({
         joinObjectId === options.uniqueId &&
         this.viewModel.attr('newEntries').length > 0) {
         this.mapObjects(this.viewModel.attr('newEntries'));
-      } else {
-        this.element.trigger('showModal');
       }
     },
     inserted: function () {
