@@ -112,5 +112,8 @@ export default can.Component.extend({
         viewModel.save();
       }
     },
+    '{window} simple-modal:dismiss': function (el, event) {
+      this.viewModel.attr('editableMode', false);
+    },
   },
 });
