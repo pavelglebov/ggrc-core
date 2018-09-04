@@ -5,6 +5,7 @@
 
 import {gapiClient} from '../ggrc-gapi-client';
 import {getPickerElement} from '../ggrc_utils';
+import escStack from './esc-stack-utils';
 
 export const GDRIVE_PICKER_ERR_CANCEL = 'GDRIVE_PICKER_ERR_CANCEL';
 
@@ -73,11 +74,10 @@ export function uploadFiles(opts = {}) {
     let CANCEL = google.picker.Action.CANCEL;
     let PICKED = google.picker.Action.PICKED;
     let DOCUMENTS = google.picker.Response.DOCUMENTS;
+    let LOADED = 'loaded';
 
-    // sometimes pickerCallback is called with data == { action: 'loaded' }
-    // which is not described in the Picker API Docs
-    if ( data[ACTION] === PICKED || data[ACTION] === CANCEL ) {
-      picker.dispose();
+    if (data[ACTION] === LOADED) {
+      escStack.setGdriveState(true);
     }
 
     if (data[ACTION] === PICKED) {
@@ -104,6 +104,7 @@ export function uploadFiles(opts = {}) {
     // which is not described in the Picker API Docs
     if ( data[ACTION] === PICKED || data[ACTION] === CANCEL ) {
       picker.dispose();
+      escStack.setGdriveState(false);
     }
   }
   return dfd.promise();

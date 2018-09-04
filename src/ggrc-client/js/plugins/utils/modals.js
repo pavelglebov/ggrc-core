@@ -112,7 +112,6 @@ function confirm (options, success, dismiss) {
           }
         })
         .on('click.modal-form.close', '[data-dismiss="modal"]', function () {
-          $target.modal('hide').remove();
           if (dismiss) {
             dismiss();
           }

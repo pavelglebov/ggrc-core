@@ -53,6 +53,7 @@ export default can.Component.extend({
             button_view: BUTTON_VIEW_SAVE_CANCEL,
           }).on('modal:success', (e, clonedTg) => {
             refreshTGRelatedItems(clonedTg);
+            $target.modal_form('hide');
           });
         });
     },

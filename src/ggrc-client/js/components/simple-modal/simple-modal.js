@@ -4,6 +4,7 @@
  */
 
 import template from './simple-modal.mustache';
+import escStack from '../../plugins/utils/esc-stack-utils';
 
 /**
  * Simple Modal Component is a general abstraction to visualize
@@ -25,19 +26,36 @@ export default can.Component.extend({
     state: {
       open: false,
     },
+    // 'performHide' doesn't know it was called from Esc
+    // or other way, thus we need to point it
+    processingEsc: false,
     hide: function () {
       this.attr('state.open', false);
     },
-    show: function () {
-      this.attr('state.open', true);
+    toggle(show) {
+      show ? this.performShow() : this.performHide();
     },
-    showHideModal(showModal) {
-      const $modalWrapper = this.attr('modalWrapper');
-      if (showModal) {
-        $modalWrapper.modal().on('hidden.bs.modal', this.hide.bind(this));
-      } else {
-        $modalWrapper.modal('hide').off('hidden.bs.modal');
+    performShow: function () {
+      this.attr('modalWrapper').modal('showWithEsc');
+      escStack.add(this.escHandler.bind(this));
+    },
+    // as we extended work with .modal(...),
+    // 'performHide' needs to call different methods
+    performHide() {
+      let modalMethod = 'hide';
+
+      if (this.attr('processingEsc')) {
+        modalMethod = 'hideByEsc';
+        this.attr('processingEsc', false);
       }
+
+      this.attr('modalWrapper').modal(modalMethod);
+      can.trigger(this.attr('modalWrapper'), 'simple-modal:dismiss');
+    },
+    escHandler: function () {
+      this.attr('processingEsc', true);
+      this.attr('state.open', false);
+      return true;
     },
   },
   events: {
@@ -46,10 +64,13 @@ export default can.Component.extend({
       const modalWrapper = this.element
         .find('[data-modal-wrapper-target="true"]');
       viewModel.attr('modalWrapper', modalWrapper);
-      viewModel.showHideModal(viewModel.attr('state.open'));
+
+      if (viewModel.attr('state.open')) {
+        viewModel.show();
+      }
     },
     '{viewModel.state} open'(state, ev, newValue) {
-      this.viewModel.showHideModal(newValue);
+      this.viewModel.toggle(newValue);
     },
   },
 });

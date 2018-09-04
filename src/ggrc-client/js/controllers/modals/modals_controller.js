@@ -1021,8 +1021,7 @@ export default can.Control({
             }
             that.new_instance();
           } else {
-            that.element.trigger('modal:success', [obj])
-              .modal_form('hide');
+            that.element.trigger('modal:success', [obj]);
             that.update_hash_fragment();
           }
         }

@@ -19,6 +19,7 @@ import {
   navigate,
 } from '../plugins/utils/current-page-utils';
 import modalModels from '../models/modal-models';
+import escStack from '../plugins/utils/esc-stack-utils';
 
 (function (can, $, GGRC) {
   'use strict';
@@ -181,6 +182,7 @@ import modalModels from '../models/modal-models';
           $trigger.trigger(
             'modal:success', Array.prototype.slice.call(args, 1)
           );
+          $target.modal_form('hide');
           return;
         } else if (formTarget === 'refresh') {
           refreshPage();
@@ -410,15 +412,19 @@ import modalModels from '../models/modal-models';
     arrangeBackgroundModals(modals, this.$element);
   }
 
-  $.fn.modal.Constructor.prototype.show = function () {
+/**
+ * @param {Boolean} customEscHandlerProvided - If true,
+ * no need to add default esc-stack handler
+ */
+  $.fn.modal.Constructor.prototype.show = function (customEscHandlerProvided) {
     let that = this;
     let $el = this.$element;
-    let shownevents;
-    let keyevents;
-    if (!(shownevents = $._data($el[0], 'events').shown) ||
-      $(shownevents).filter(function () {
-        return $.inArray('arrange', this.namespace.split('.')) > -1;
-      }).length < 1) {
+
+    let shownevents = $._data($el[0], 'events').shown;
+    let hasArrange = $(shownevents).filter(function () {
+      return $.inArray('arrange', this.namespace.split('.')) > -1;
+    }).length;
+    if (!shownevents || !hasArrange) {
       $el.on('shown.arrange, loaded.arrange', function (ev) {
         if (ev.target === ev.currentTarget)
           reconfigureModals.call(that);
@@ -431,10 +437,11 @@ import modalModels from '../models/modal-models';
     }
 
     // prevent form submissions when descendant elements are also modals.
-    if (!(keyevents = $._data($el[0], 'events').keypress) ||
-      $(keyevents).filter(function () {
-        return $.inArray('preventdoublesubmit', this.namespace.split('.')) > -1;
-      }).length < 1) {
+    let keyevents = $._data($el[0], 'events').keypress;
+    let hasPreventDblSubmit = $(keyevents).filter(function () {
+      return $.inArray('preventdoublesubmit', this.namespace.split('.')) > -1;
+    }).length;
+    if (!keyevents || !hasPreventDblSubmit) {
       $el.on('keypress.preventdoublesubmit', function (ev) {
         if (ev.which === 13 &&
           !$(document.activeElement).hasClass('create-form__input') &&
@@ -448,21 +455,12 @@ import modalModels from '../models/modal-models';
         }
       });
     }
-    if (!(keyevents = $._data($el[0], 'events').keyup) ||
-      $(keyevents).filter(function () {
-        return $.inArray('preventdoubleescape', this.namespace.split('.')) > -1;
-      }).length < 1) {
-      $el.on('keyup.preventdoubleescape', function (ev) {
-        if (ev.which === 27 && $(ev.target).closest('.modal').length) {
-          $(ev.target).closest('.modal').attr('tabindex', -1).focus();
-          ev.stopPropagation();
-          if (ev.originalEvent) {
-            ev.originalEvent.stopPropagation();
-          }
-          // perform additional check before simple hide
-          that.hide(ev, true);
-        }
-      });
+
+    keyevents = $._data($el[0], 'events').keyup;
+    let hasPreventDblEscape = $(keyevents).filter(function () {
+      return $.inArray('preventdoubleescape', this.namespace.split('.')) > -1;
+    }).length;
+    if (!keyevents || !hasPreventDblEscape) {
       if (!$el.attr('tabindex')) {
         $el.attr('tabindex', -1);
       }
@@ -470,15 +468,34 @@ import modalModels from '../models/modal-models';
         $el.focus();
       }, 1);
     }
-    // This is a hack to stop propagation for
-    // modals when we dismiss modal
-    $(document).on('keyup.dismiss.modal', (e) => {
-      e.stopPropagation();
-    });
+
     originalModalShow.apply(this, arguments);
+
+    if (!customEscHandlerProvided) {
+      escStack.add(escCallback.bind(this));
+    }
   };
 
-  $.fn.modal.Constructor.prototype.hide = function (ev) {
+  /** Default esc-stack handler for modals
+   * @param {Event} ev
+   */
+  function escCallback(ev) {
+    let escKey = ev.keyCode === 27;
+    return this.hide(ev, true, escKey);
+  }
+
+  /** Wrapper on 'show', to provide custom esc-stack handler
+   */
+  $.fn.modal.Constructor.prototype.showWithEsc = function () {
+    this.show(true);
+  }
+
+  /** Default esc-stack handler for modals
+   * @param {Event} ev
+   * @param {Boolean} escKey - is triggered by Esc key
+   * @return {Boolean} - Approved for esc-stack to proceed, or not
+   */
+  $.fn.modal.Constructor.prototype.hide = function (ev, escKey) {
     let modals;
     let lastModal;
     let animated;
@@ -502,7 +519,7 @@ import modalModels from '../models/modal-models';
 
     modals = $('.modal:visible');
     lastModal = modals.last();
-    lastModal.css({height: '', overflow: '', top: '', 'margin-top': ''});
+    lastModal.css({height: '', overflow: '', top: '', 'margin-top': ''})
     if (lastModal.length) {
       arrangeTopModal(lastModal);
 
@@ -518,7 +535,25 @@ import modalModels from '../models/modal-models';
     if (ev) {
       ev.modalHidden = true;
     }
+
+    // if triggered by Esc key, no need to make manual
+    // silentRemove from esc-stack, it will be done by
+    // esc-stack utils
+    if (!escKey) {
+      escStack.silentRemove();
+    }
+
+    // return value for esc-stack,
+    // true if callback can be removed from stack
+    return true;
   };
+
+  /** Wrapper on 'hide', to provide escKey param,
+   * meaning it was started by Esc key
+  */
+  $.fn.modal.Constructor.prototype.hideByEsc = function () {
+    this.hide(null, true);
+  }
 
   GGRC.register_modal_hook = function (toggle, launchFn) {
     $(function () {

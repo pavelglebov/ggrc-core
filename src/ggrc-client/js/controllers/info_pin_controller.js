@@ -30,6 +30,7 @@ import {
   getInstanceView
 } from '../plugins/utils/object-history-utils';
 import {getPageInstance} from '../plugins/utils/current-page-utils';
+import escStack from '../plugins/utils/esc-stack-utils';
 
 export const pinContentHiddenClass = 'pin-content--hidden';
 export const pinContentMaximizedClass = 'pin-content--maximized';
@@ -144,6 +145,8 @@ export default can.Control({
     else {
       this.element.addClass(pinContentMinimizedClass);
     }
+
+    escStack.add(this.escHandler.bind(this));
   },
   updateInstance: function (selector, instance) {
     let vm = this.element.find(selector).viewModel();
@@ -184,6 +187,12 @@ export default can.Control({
     }
   },
   close: function () {
+    if (this.isPinVisible()) {
+      this.deactivate();
+      escStack.silentRemove();
+    }
+  },
+  deactivate: function () {
     let visibleWidget = $('.widget-area .widget:visible');
     let element = visibleWidget.find('.cms_controllers_tree_view');
 
@@ -195,6 +204,20 @@ export default can.Control({
     }
 
     this.unsetInstance();
+  },
+  /** Handler for Esc key
+   * @param {Event} event
+   * @return {Boolean} - Approved for esc-stack to proceed, or not
+   */
+  escHandler: function (event) {
+    let allowed = this.isPinVisible() &&
+      !this.isEscapeKeyException($(event.target));
+
+    if (allowed) {
+      this.deactivate();
+      return true;
+    }
+    return false;
   },
   /**
    * Checks if there are modals on top of the info pane.
@@ -215,7 +238,8 @@ export default can.Control({
    *  otherwise false.
    */
   isEscapeKeyException($target) {
-    const insideInfoPane = $target.closest('.pin-content').length > 0;
+    const insideInfoPane = $target.closest('.pin-content') &&
+      $target.closest('.pin-content').length > 0;
     const excludeForEscapeKey = ['button', '[role=button]', '.btn', 'input',
       'textarea'];
     const isExcludingControl = _.some(excludeForEscapeKey, (typeName) =>
@@ -262,22 +286,5 @@ export default can.Control({
     }
 
     el.data('scrollTop', scrollTop);
-  },
-  '{window} keyup'(el, event) {
-    const ESCAPE_KEY_CODE = 27;
-    const $target = $(event.target);
-    const escapeKeyWasPressed = event.keyCode === ESCAPE_KEY_CODE;
-
-    const close = (
-      escapeKeyWasPressed &&
-      this.isPinVisible() &&
-      !this.existModals() &&
-      !this.isEscapeKeyException($target)
-    );
-
-    if (close) {
-      this.close();
-      event.stopPropagation();
-    }
   },
 });

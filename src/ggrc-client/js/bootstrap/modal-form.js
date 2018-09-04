@@ -168,7 +168,13 @@ import {navigate} from '../plugins/utils/current-page-utils';
       this.hide(e);
     },
 
-    hide: function (e, verifyChanges) {
+    /** Hide modal
+     * @param {Event} e
+     * @param {Boolean} verifyChanges
+     * @param {Boolean} escKey - is started by Esc key
+     * @return {Boolean} - Approved for esc-stack to proceed, or not
+     */
+    hide: function (e, verifyChanges, escKey) {
       let instance = this.instance;
       let pending;
       let hasPending;
@@ -209,14 +215,19 @@ import {navigate} from '../plugins/utils/current-page-utils';
           }, function () {
             can.trigger(instance, 'modal:dismiss');
             can.trigger(instance, 'modal:discard');
-            this.$trigger.trigger('modal:dismiss');
+
+            // this is only used by create-task-group-button
+            // as it doesn't have instance to be triggered
+            this.$trigger.trigger('modal:dismiss', this.options);
+
             this.$element
               .find("[data-dismiss='modal'], [data-dismiss='modal-reset']")
               .trigger('click');
-            $(window).trigger('modal:dismiss', this.options);
-            this.hide();
           }.bind(this));
-          return;
+
+          // Esc-stack can't proceed to remove CB from stack,
+          // ad validation was not passed yet
+          return false;
         }
 
         // trigger event if form is not dirty
@@ -231,9 +242,13 @@ import {navigate} from '../plugins/utils/current-page-utils';
         }
         can.trigger(instance, 'modal:dismiss');
       }
-      $.fn.modal.Constructor.prototype.hide.apply(this, [e]);
+      $.fn.modal.Constructor.prototype.hide.apply(this, [e, escKey]);
       this.$element.trigger('modal:dismiss');
       this.$element.off('modal_form');
+
+
+      // Esc-stack can proceed
+      return true;
     },
 
     silentHide: function () {
