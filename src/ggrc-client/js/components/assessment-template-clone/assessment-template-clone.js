@@ -31,14 +31,6 @@ export default can.Component.extend({
         this.element.find('.modal-dismiss').trigger('click');
       }
     },
-    '{window} preload': function (el, ev) {
-      let modal = $(ev.target).data('modal_form');
-      let options = modal && modal.options;
-
-      if (options && options.inCloner) {
-        this.closeModal();
-      }
-    },
     '.btn-cancel click': function () {
       this.closeModal();
     },
@@ -53,6 +45,11 @@ export default can.Component.extend({
           this.closeModal();
           this.viewModel.dispatch('refreshTreeView');
         });
+    },
+    // don't hide modal when we open Create New,
+    // but close it if a New one was created
+    '.create-new-object modal:success': function (e, ev) {
+      this.closeModal();
     },
     cloneObjects() {
       let sourceIds = _.map(this.viewModel.attr('selected'), (item) => item.id);
