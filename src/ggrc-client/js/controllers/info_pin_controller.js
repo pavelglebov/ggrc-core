@@ -185,14 +185,9 @@ export default can.Control({
   },
   close: function () {
     let visibleWidget = $('.widget-area .widget:visible');
-    let element = visibleWidget.find('.cms_controllers_tree_view');
 
-    if (element.length) {
-      element.control().deselect();
-    } else {
-      visibleWidget.find('.item-active')
-        .removeClass('item-active');
-    }
+    visibleWidget.find('.item-active')
+      .removeClass('item-active');
 
     this.unsetInstance();
   },

@@ -51,6 +51,7 @@ import Person from '../../models/business-models/person';
 import Assessment from '../../models/business-models/assessment';
 import Stub from '../../models/stub';
 import {getInstance} from '../../plugins/utils/models-utils';
+import {getUrlParams, changeHash} from '../../router';
 
 export default can.Control({
   pluginName: 'ggrc_controllers_modals',
@@ -1118,24 +1119,19 @@ export default can.Control({
   },
 
   update_hash_fragment: function () {
-    let hash;
+    let targetHash;
     if (!this.should_update_hash_fragment()) {
       return;
     }
 
+    targetHash = this.options.instance.hash_fragment();
+
     if (this.options.instance.getHashFragment) {
-      hash = this.options.instance.getHashFragment();
-      if (hash) {
-        window.location.hash = hash;
-        return;
-      }
+      let hash = this.options.instance.getHashFragment();
+      targetHash = hash ? hash : targetHash;
     }
 
-    let locationHash = window.location.hash.split('/')[0];
-    let instanceHashFragment = this.options.instance.hash_fragment();
-
-    hash = `${locationHash}/${instanceHashFragment}`;
-    window.location.hash = hash;
+    changeHash(getUrlParams(targetHash));
   },
 
   /**

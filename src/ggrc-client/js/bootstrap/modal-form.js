@@ -6,6 +6,7 @@
 import {confirm} from '../plugins/utils/modals';
 import {hasPending as hasPendingUtil} from '../plugins/ggrc_utils';
 import {navigate} from '../plugins/utils/current-page-utils';
+import {changeUrl} from '../router';
 
 (function ($) {
   'use strict';
@@ -450,7 +451,7 @@ import {navigate} from '../plugins/utils/current-page-utils';
                   $link.on('click', function () {
                     if (redirectLink) {
                       $('html').addClass('no-js');
-                      window.location.href = redirectLink;
+                      changeUrl(redirectLink);
                     }
                     window.location.reload();
                   });

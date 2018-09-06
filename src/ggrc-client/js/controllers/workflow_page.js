@@ -4,6 +4,7 @@
 */
 
 import TaskGroup from '../models/business-models/task-group';
+import {changeHash} from '../router';
 
 (function (CMS, GGRC, can, $) {
   can.Control('GGRC.Controllers.WorkflowPage', {
@@ -21,8 +22,10 @@ import TaskGroup from '../models/business-models/task-group';
           if (instance._no_redirect) {
             return;
           }
-          window.location.hash =
-            'task_group/task_group/' + instance.id;
+          changeHash({
+            infoPaneType: 'task_group',
+            infoPaneId: instance.id,
+          });
         }, 250);
       }
     },

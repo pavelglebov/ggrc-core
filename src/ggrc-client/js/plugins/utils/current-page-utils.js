@@ -21,6 +21,7 @@ import Mappings from '../../models/mappers/mappings';
 import {makeModelInstance} from './models-utils';
 import PersistentNotifier from '../persistent_notifier';
 import Person from '../../models/business-models/person';
+import {changeUrl, reloadPage} from '../../router';
 
 /**
  * Util methods for work with Current Page.
@@ -311,9 +312,9 @@ function navigate(url) {
 
 function _goToUrl(url) {
   if (!url) {
-    window.location.reload();
+    reloadPage();
   } else {
-    window.location.assign(url);
+    changeUrl(url);
   }
 }
 

@@ -18,6 +18,7 @@ import objectSearchTemplate from './object-search-modal.mustache';
 import objectBulkUpdateTemplate from './object-bulk-update-modal.mustache';
 import {notifier} from '../../plugins/utils/notifiers-utils';
 import * as businessModels from '../../models/business-models';
+import {changeUrl} from '../../router';
 
 const DATA_CORRUPTION_MESSAGE = 'Some Data is corrupted! ' +
             'Missing Scope Object';
@@ -123,7 +124,7 @@ const ObjectMapper = can.Control.extend({
         if (!scopeObject.id) {
           notifier('error', DATA_CORRUPTION_MESSAGE);
           setTimeout(function () {
-            window.location.assign(location.origin + '/dashboard');
+            changeUrl('/dashboard');
           }, 3000);
           return;
         }

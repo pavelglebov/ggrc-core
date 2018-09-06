@@ -7,6 +7,7 @@ import {confirm} from '../../plugins/utils/modals';
 import Permission from '../../permission';
 import Cycle from '../../models/business-models/cycle';
 import Stub from '../../models/stub';
+import {changeHash} from '../../router';
 
 /**
  * A set of properties which describe minimum information
@@ -41,7 +42,11 @@ function createCycle(workflow) {
  * @param {number} id - cycle id.
  */
 function redirectToCycle({id}) {
-  window.location.hash = `current/cycle/${id}`;
+  changeHash({
+    widget: 'current',
+    infoPaneType: 'cycle',
+    infoPaneId: id,
+  });
 }
 
 function generateCycle(workflow) {
