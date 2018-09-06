@@ -5,8 +5,9 @@
 
 import * as businessModels from '../../models/business-models';
 import template from './templates/export-panel.mustache';
+import {getUrlParams} from '../../router';
 
-let url = can.route.deparam(window.location.search.substr(1));
+let url = getUrlParams(window.location.search.substr(1));
 let filterModel = can.Map({
   model_name: 'Program',
   value: '',

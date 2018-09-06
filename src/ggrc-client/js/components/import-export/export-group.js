@@ -6,8 +6,9 @@
 import './export-panel';
 import template from './templates/export-group.mustache';
 import panelModel from './panel';
+import {getUrlParams} from '../../router';
 
-let url = can.route.deparam(window.location.search.substr(1));
+let url = getUrlParams(window.location.search.substr(1));
 
 export default can.Component.extend('exportGroup', {
   tag: 'export-group',
