@@ -28,8 +28,7 @@
   {{/case}}
 
   {{#default}}
-    {{#if_helpers '\
-    #if_equals' attr_name 'reference_url'}}
+    {{#if_equals attr_name 'reference_url'}}
       <related-documents instance={instance} kind="REFERENCE_URL">
         <div class="reference-urls-list">
           {{#each documents}}
@@ -41,6 +40,6 @@
       </related-documents>
     {{else}}
       {{get_default_attr_value attr_name instance}}
-    {{/if_helpers}}
+    {{/if_equals}}
   {{/default}}
 {{/switch}}
