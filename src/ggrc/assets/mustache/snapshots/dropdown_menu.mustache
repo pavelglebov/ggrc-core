@@ -6,29 +6,29 @@
 {{#instance}}
 
 <three-dots-menu>
-    {{#if_helpers '\
-    #if' canGetLatestRevision '\
-    and ^if' isMapperDetails}}
-        <li>
-            <snapshot-comparer-config
-                {instance}="instance"
-                {left-revision-id}="instance.snapshot.revision_id"
-                {right-revisions}="instance.snapshot.revisions">
-                <revisions-comparer
-                    {modal-title}="modalTitle"
-                    {modal-confirm}="modalConfirm"
-                    {button-view}="buttonView"
+    {{#if canGetLatestRevision}}
+        {{^if isMapperDetails}}
+            <li>
+                <snapshot-comparer-config
                     {instance}="instance"
-                    {left-revision-id}="leftRevisionId"
-                    {right-revision}="rightRevision">
-                    <a href="javascript://" can-click="compareIt">
-                        <i class="fa fa-refresh"></i>
-                        Get the latest version
-                    </a>
-                </revisions-comparer>
-            </snapshot-comparer-config>
-        </li>
-    {{/if_helpers}}
+                    {left-revision-id}="instance.snapshot.revision_id"
+                    {right-revisions}="instance.snapshot.revisions">
+                    <revisions-comparer
+                        {modal-title}="modalTitle"
+                        {modal-confirm}="modalConfirm"
+                        {button-view}="buttonView"
+                        {instance}="instance"
+                        {left-revision-id}="leftRevisionId"
+                        {right-revision}="rightRevision">
+                        <a href="javascript://" can-click="compareIt">
+                            <i class="fa fa-refresh"></i>
+                            Get the latest version
+                        </a>
+                    </revisions-comparer>
+                </snapshot-comparer-config>
+            </li>
+        {{/if}}
+    {{/if}}
 
     {{#if canRead}}
         <li>
@@ -47,10 +47,7 @@
     {{/if}}
 
     {{#is_info_pin}}
-        {{#if_helpers '\
-        #if_instance_of' page_instance 'Issue' '\
-        or ^if' instance.snapshot.archived '\
-        and #if_instance_of' page_instance 'Assessment'}}
+        {{#if_helpers '\n #if_instance_of' page_instance 'Issue' '\n or ^if' instance.snapshot.archived '\n and #if_instance_of' page_instance 'Assessment'}}
             {{#is_allowed_to_map page_instance instance.snapshot}}
             {{#using instance=instance.snapshot}}
                 {{> '/static/mustache/base_objects/unmap.mustache'}}

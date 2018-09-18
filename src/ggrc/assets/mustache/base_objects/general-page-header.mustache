@@ -22,9 +22,7 @@
               <span class="state-value {{addclass 'state' status}}">{{un_camel_case status}}</span>
             </span>
           {{/if}}
-          {{#if_helpers '\
-            #if' instance.archived '\
-            or #if' snapshot.archived}}
+          {{#if_helpers '\n #if' instance.archived '\n or #if' snapshot.archived}}
             <span class="state-value state-archived">Archived</span> 
           {{/if_helpers}}
           {{^if isSnapshot}}

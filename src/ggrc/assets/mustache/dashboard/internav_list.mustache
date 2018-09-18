@@ -6,9 +6,7 @@
 
 <div class="tabs priority {{^is instance.type 'Audit'}}single-set{{/is}}">
   <ul class="internav {{#if_equals instance.type 'Audit'}}audit{{/if_equals}}">
-    {{#if_helpers '\
-      ^is_empty' counts '\
-      or #is_admin_page' }}
+    {{#if_helpers '\n ^is_empty' counts '\n or #is_admin_page'}}
     {{#priorityTabs}}
       <li class="{{internav_icon}} {{widgetType}} {{#if_equals contexts.active_widget.selector selector}}active{{/if_equals}}">
         {{#displayWidgetTab . instance}}
@@ -51,9 +49,7 @@
 </div>
 
 
-{{#if_helpers '\
-  ^is_empty' counts '\
-  or #is_admin_page' }}
+{{#if_helpers '\n ^is_empty' counts '\n or #is_admin_page'}}
 {{#if_equals instance.type 'Audit'}}
 <div class="tabs not-priority">
   <div class="not-priority-hide {{#if isMenuVisible}}visible{{/if}}">

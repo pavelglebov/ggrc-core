@@ -50,17 +50,17 @@
             <div class="info-pane__sidebar">
               <comment-data-provider {instance}="instance" class="flex-box flex-col">
                 <div class="info-pane__section-title">Responses/Comments</div>
-                {{#if_helpers '\
-                  ^if' instance.archived '\
-                  and ^if' isEditDenied}}
-                <comment-add-form class="comment-add-form"
-                  {instance}="instance"
-                  {is-saving}="isLoading"
-                  {notifications-info}="'Notify Admins'"
-                  (before-create)="addComment(%event)"
-                  (after-create)="processComment(%event)">
-                </comment-add-form>
-                {{/if_helpers}}
+                {{^if instance.archived}}
+                  {{^if isEditDenied}}
+                    <comment-add-form class="comment-add-form"
+                      {instance}="instance"
+                      {is-saving}="isLoading"
+                      {notifications-info}="'Notify Admins'"
+                      (before-create)="addComment(%event)"
+                      (after-create)="processComment(%event)">
+                    </comment-add-form>
+                  {{/if}}
+                {{/if}}
                 <mapped-comments {mapped-items}="comments"></mapped-comments>
               </comment-data-provider>
             </div>

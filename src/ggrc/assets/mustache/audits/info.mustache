@@ -75,9 +75,7 @@
 
           <div class="row-fluid wrap-row">
             <div class="span6">
-                {{#if_helpers '\
-                  #if' instance.archived '\
-                  or ^is_allowed' "update" instance context="for"}}
+                {{#if_helpers '\n #if' instance.archived '\n or ^is_allowed' 'update' instance context='for'}}
                     <ggrc-gdrive-folder-picker
                       {hide-label}="true"
                       {readonly}="true"

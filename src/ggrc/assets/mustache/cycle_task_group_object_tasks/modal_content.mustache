@@ -17,7 +17,7 @@
   </div>
   <div class="row-fluid">
     <div class="span8">
-      {{#if_helpers '\\n #if_equals' instance.task_type 'text' '\\n or #if_equals' instance.task_type '' '\\n or #if_null' instance.task_type}}
+      {{#if_helpers '\n #if_equals' instance.task_type 'text' '\n or #if_equals' instance.task_type '' '\n or #if_null' instance.task_type}}
         <label class="form__label">Task Description</label>
         <div class="rich-text">
           <rich-text

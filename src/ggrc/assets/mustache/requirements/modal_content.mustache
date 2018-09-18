@@ -19,7 +19,7 @@
       <input data-id="title_txtbx" tabindex="1" id="requirement-title" class="input-block-level" placeholder="Enter Title" name="title" type="text" value="{{title}}" autofocus>
     </div>
     <div data-id="pol_reg_std" class="span6 hidable">
-      {{#if_helpers '\\n ^if' instance.id '\\n and ^if' object_params.directive}}
+      {{#if_helpers '\n ^if' instance.id '\n and ^if' object_params.directive}}
         {{#using directive=instance.directive}}
         <label>
           Policy / Regulation / Standard / Contract

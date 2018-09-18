@@ -10,8 +10,8 @@
     <form action="javascript://">
 
       {{^if new_object_form}}
-  {{#if_in instance.status "Completed,Verified,In Review"}}
-          {{#if_helpers '\\n #if' instance.isDirty '\\n or #if' mappedObjectsChanges.length '\\n or #if' referenceUrlChanged}}
+        {{#if_in instance.status 'Completed,Verified,In Review'}}
+          {{#if_helpers '\n #if' instance.isDirty '\n or #if' mappedObjectsChanges.length '\n or #if' referenceUrlChanged}}
           <div class="ggrc-form-item">
             <div class="alert width-100">
               <i class="fa fa-exclamation-triangle"></i>

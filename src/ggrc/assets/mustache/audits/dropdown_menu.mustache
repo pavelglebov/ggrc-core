@@ -49,27 +49,27 @@
   {{/using}}
 
   <li>
-    {{#if_helpers '\
-      #is_allowed' 'create' 'CycleTaskGroupObjectTask' context=null '\
-      and #is_allowed' 'update' instance context='for'}}
-        <a
-          rel="tooltip"
-          data-placement="left"
-          data-original-title="Create Cycle Task for object"
-          data-object-plural="cycle_task_group_object_tasks"
-          data-modal-class="modal-wide" href="javascript://"
-          data-object-singular="CycleTaskGroupObjectTask"
-          data-toggle="modal-ajax-form"
-          data-modal-reset="reset"
-          data-object-params='{
-            "pre_mapped_objects": [{
-              "type": "{{ instance.type }}",
-              "id": {{ instance.id }}
-            }],
-            "modal_title": "Create New Task"}'>
-          <i class="fa fa-calendar-check-o"></i> Create task
-        </a>
-    {{/if_helpers}}
+    {{#is_allowed 'create' 'CycleTaskGroupObjectTask' context=null}}
+      {{#is_allowed 'update' instance context='for'}}
+          <a
+            rel="tooltip"
+            data-placement="left"
+            data-original-title="Create Cycle Task for object"
+            data-object-plural="cycle_task_group_object_tasks"
+            data-modal-class="modal-wide" href="javascript://"
+            data-object-singular="CycleTaskGroupObjectTask"
+            data-toggle="modal-ajax-form"
+            data-modal-reset="reset"
+            data-object-params='{
+              "pre_mapped_objects": [{
+                "type": "{{ instance.type }}",
+                "id": {{ instance.id }}
+              }],
+              "modal_title": "Create New Task"}'>
+            <i class="fa fa-calendar-check-o"></i> Create task
+          </a>
+      {{/is_allowed}}
+    {{/is_allowed}}
   </li>
 
   <li>
@@ -104,9 +104,7 @@
 
   {{#using program=instance.program}}
   {{^if instance.archived}}
-    {{#if_helpers '\
-      #current_user_is_admin' '\
-      or #has_role' 'Program Managers' program}}
+    {{#if_helpers '\n #current_user_is_admin' '\n or #has_role' 'Program Managers' program}}
        <li>
           <a data-toggle="modal-ajax-archiveform"
              data-object-plural="{{model.table_plural}}"

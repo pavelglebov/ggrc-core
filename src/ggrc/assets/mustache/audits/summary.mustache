@@ -47,9 +47,7 @@
                 <div class="span6 {{#if charts.Assessment.none}}hidden{{/if}}" >
                     <div id="piechart_audit_assessments_chart"></div>
                 </div>
-                <div class="span6 legend {{#if_helpers '\
-                                            ^if' charts.Assessment.isLoaded '\
-                                            or #if' charts.Assessment.none}}hidden{{/if_helpers}}">
+                <div class="span6 legend {{#if_helpers '\n ^if' charts.Assessment.isLoaded '\n or #if' charts.Assessment.none}}hidden{{/if_helpers}}">
                   <table id="piechart_audit_assessments_chart-legend" class="piechart-legend">
                     <thead>
                       <tr>

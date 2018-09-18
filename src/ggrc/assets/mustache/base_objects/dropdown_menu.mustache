@@ -3,16 +3,8 @@
     Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 }}
 
-{{#if_helpers '\
-   #if' is_info_pin '\
-   and #is_allowed_to_map' page_instance instance '\
-   or #if' is_info_pin '\
-   and #if' instance.viewLink '\
-   or #is_allowed' 'update' instance '\
-   ' _4_context='for'}}
-   {{#if_helpers '\
-     ^if' instance.archived '\
-     or #if_equals' instance.type 'AssessmentTemplate'}}
+{{#if_helpers '\n #if' is_info_pin '\n and #is_allowed_to_map' page_instance instance '\n or #if' is_info_pin '\n and #if' instance.viewLink '\n or #is_allowed' 'update' instance '\n ' _4_context='for'}}
+   {{#if_helpers '\n ^if' instance.archived '\n or #if_equals' instance.type 'AssessmentTemplate'}}
         <div class="details-wrap">
           <a class="btn btn-3bbps dropdown-toggle" href="#" data-toggle="dropdown">
             <span class="bubble"></span>

@@ -149,9 +149,7 @@
                     <div class="span8">
                       <h6>Assertions <i class="fa fa-asterisk"></i></h6>
                       {{#if assertions}}
-                        {{#if_helpers '\
-                          #if' instance.snapshot '\
-                          or #if' instance.isRevision}}
+                        {{#if_helpers '\n #if' instance.snapshot '\n or #if' instance.isRevision}}
                             <ul>
                               <sort-by is-snapshot="true" {items}="assertions">
                                 {{#sortedItems}}
@@ -175,9 +173,7 @@
                     <div class="span4">
                       <h6>Categories</h6>
                       {{#if categories}}
-                        {{#if_helpers '\
-                          #if' instance.snapshot '\
-                          or #if' instance.isRevision}}
+                        {{#if_helpers '\n #if' instance.snapshot '\n or #if' instance.isRevision}}
                             <ul>
                               <sort-by is-snapshot="true" {items}="categories">
                                 {{#sortedItems}}
