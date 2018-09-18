@@ -179,7 +179,6 @@ dashboard-js-template-files:
   - threats/modal_content.mustache
   # ggrc_workflows
   - base_objects/task_group_subtree_footer.mustache
-  - base_objects/task_group_subtree_add_item.mustache
   - base_objects/task_group_subtree.mustache
   - cycles/info.mustache
   - cycle_task_entries/tree.mustache
@@ -200,7 +199,6 @@ dashboard-js-template-files:
   - task_groups/tree_add_item.mustache
   - task_group_tasks/modal_content.mustache
   - task_group_tasks/tree-item-attr.mustache
-  - task_group_tasks/task_group_subtree_add_item.mustache
   - task_group_tasks/task_group_subtree.mustache
   - workflows/confirm_start.mustache
   - workflows/confirm_start_buttons.mustache
