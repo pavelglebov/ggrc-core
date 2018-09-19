@@ -4,17 +4,6 @@
 }}
 
 {{#switch type}}
-  {{#case 'text'}}
-    {{> '/static/mustache/components/inline/simple-readonly-text.mustache'}}
-  {{/case}}
-
-  {{#case 'input'}}
-    {{> '/static/mustache/components/inline/simple-readonly-text.mustache'}}
-  {{/case}}
-
-  {{#case 'number'}}
-    {{> '/static/mustache/components/inline/simple-readonly-text.mustache'}}
-  {{/case}}
 
   {{#case 'dropdown'}}
     <dropdown-form-field
@@ -49,9 +38,23 @@
       <span class="empty-message">No person</span>
     {{/if}}
   {{/case}}
+  
   {{#case 'multi-select-label'}}
     <multi-select-label {labels}="value"
         {edit-mode}="false">
     </multi-select-label>
   {{/case}}
+
+  {{#default}}
+    {{#if withReadMore}}
+      <div class="inline-edit__text">
+        <read-more {text}="value"></read-more>
+      </div>
+    {{else}}
+      <div class="inline-edit__text">
+        {{{firstnonempty value '<span class="empty-message">None</span>'}}}
+      </div>
+    {{/if}}
+  {{/default}}
+  
 {{/switch}}

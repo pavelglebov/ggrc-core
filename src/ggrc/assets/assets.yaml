@@ -155,7 +155,6 @@ dashboard-js-template-files:
   - quick_form/confirm_buttons.mustache
   - snapshots/dropdown_menu.mustache
   - snapshots/tree_add_item.mustache
-  - components/inline/simple-readonly-text.mustache
   - partials/modal-ajax-test-plan.mustache
   - modals/create_proposal.mustache
   - modals/restore_revision.mustache
