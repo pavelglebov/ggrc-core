@@ -25,6 +25,7 @@ class AssessmentResource(common.ExtendedResource):
     command_map = {
         None: super(AssessmentResource, self).get,
         "related_objects": self.related_objects,
+        "snapshot_counts": self.snapshot_counts_query,
     }
     command = kwargs.pop("command", None)
     if command not in command_map:

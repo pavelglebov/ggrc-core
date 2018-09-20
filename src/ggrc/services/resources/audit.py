@@ -31,6 +31,7 @@ class AuditResource(common.ExtendedResource):
     command_map = {
         None: super(AuditResource, self).get,
         "summary": self.summary_query,
+        "snapshot_counts": self.snapshot_counts_query,
     }
     command = kwargs.pop("command", None)
     if command not in command_map:

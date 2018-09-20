@@ -1384,6 +1384,55 @@ class ExtendedResource(Resource):
         methods=['GET']
     )
 
+  def snapshot_counts_query(self, id):
+    """Get data for audit mapped objects counts grouped by child_type."""
+    # id name is used as a kw argument and can't be changed here
+    # pylint: disable=invalid-name,redefined-builtin
+    with benchmark("Check audit permissions"):
+      obj = self.model.query.get(id)
+      if not permissions.is_allowed_read_for(obj):
+        raise Forbidden()
+
+    model_name = self.model.__name__
+    with benchmark("Get spanshot counts for audit grouped by child type"):
+      snapshots_dest = db.session.query(
+          ggrc.models.Snapshot.child_type.label("child_type"),
+          ggrc.models.Snapshot.id.label("id")
+      ).join(
+          ggrc.models.Relationship,
+          ggrc.models.Relationship.destination_id == ggrc.models.Snapshot.id
+      ).filter(
+          ggrc.models.Relationship.destination_type == "Snapshot",
+          ggrc.models.Relationship.source_type == model_name,
+          ggrc.models.Relationship.source_id == id
+      )
+
+      snapshots_source = db.session.query(
+          ggrc.models.Snapshot.child_type.label("child_type"),
+          ggrc.models.Snapshot.id.label("id")
+      ).join(
+          ggrc.models.Relationship,
+          ggrc.models.Relationship.source_id == ggrc.models.Snapshot.id
+      ).filter(
+          ggrc.models.Relationship.source_type == "Snapshot",
+          ggrc.models.Relationship.destination_type == model_name,
+          ggrc.models.Relationship.destination_id == id
+      )
+
+      snapshot_counts = snapshots_dest.union(
+          snapshots_source
+      ).with_entities(
+          ggrc.models.Snapshot.child_type,
+          sa.func.count("*")
+      ).group_by(
+          ggrc.models.Snapshot.child_type
+      )
+
+      with benchmark("Make response"):
+        result = {child_type: count for child_type, count in snapshot_counts}
+
+    return self.json_success_response(result)
+
 
 def filter_resource(resource, depth=0, user_permissions=None):  # noqa
   """
