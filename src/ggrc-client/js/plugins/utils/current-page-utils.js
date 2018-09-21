@@ -40,6 +40,8 @@ let widgetsCounts = new can.Map({});
 let CUSTOM_COUNTERS = {
   MY_WORK: () => _getCurrentUser().getWidgetCountForMyWorkPage(),
   ALL_OBJECTS: () => _getCurrentUser().getWidgetCountForAllObjectPage(),
+  // Audit: () => _getCurrentUser().getSnapshotsCount(),
+  Audit: (widgets, type, id) => getAuditCounts(widgets, type, id),
 };
 
 function getPageInstance() {
@@ -188,7 +190,7 @@ function initWidgetCounts(widgets, type, id) {
   // custom endpoint we use only in order to initialize counts for all tabs.
   // In order to update counter for individual tab need to use Query API
   if (widgets.length !== 1 && CUSTOM_COUNTERS[getPageType()]) {
-    result = CUSTOM_COUNTERS[getPageType()]();
+    result = CUSTOM_COUNTERS[getPageType()](widgets, type, id);
   } else {
     result = _initWidgetCounts(widgets, type, id);
   }
@@ -198,6 +200,10 @@ function initWidgetCounts(widgets, type, id) {
   });
 }
 
+let separateSnapshots = false;
+
+let snapshotNames = [];
+
 /**
  * Update Page Counts
  * @param {Array|Object} widgets - list of widgets
@@ -206,6 +212,8 @@ function initWidgetCounts(widgets, type, id) {
  * @return {can.Deferred} - resolved deferred object
  */
 function _initWidgetCounts(widgets, type, id) {
+  snapshotNames = [];
+
   // Request params generation logic should be moved in
   // a separate place
   let widgetsObject = getWidgetConfigs(can.makeArray(widgets));
@@ -215,8 +223,10 @@ function _initWidgetCounts(widgets, type, id) {
     let expression = TreeViewUtils
       .makeRelevantExpression(widgetObject.name, type, id);
 
-    if (isSnapshotRelated(type, widgetObject.name) ||
-        widgetObject.isObjectVersion) {
+    let snapshot = isSnapshotRelated(type, widgetObject.name) ||
+      widgetObject.isObjectVersion;
+
+    if (!separateSnapshots && snapshot) {
       param = buildParam('Snapshot', {}, expression, null,
         GGRC.query_parser.parse('child_type = ' + widgetObject.name));
     } else {
@@ -228,9 +238,18 @@ function _initWidgetCounts(widgets, type, id) {
       );
     }
 
+    if (snapshot) {
+      snapshotNames.push(widgetObject.name);
+    }
+
     param.type = 'count';
-    return batchRequests(param);
+    if (!separateSnapshots || !snapshot) {
+      return batchRequests(param);
+    }
+    // return batchRequests(param);
   });
+
+  params = _.compact(params);
 
   // Perform requests only if params are defined
   if (!params.length) {
@@ -239,17 +258,41 @@ function _initWidgetCounts(widgets, type, id) {
 
   return $.when(...params).then((...data) => {
     let countsMap = {};
+    
     data.forEach(function (info, i) {
-      let widget = widgetsObject[i];
-      let name = widget.name;
+      let name;
+      let widget;
+
+      if (separateSnapshots) {
+        name = Object.keys(info)[0];
+        widget = _.find(widgetsObject, (obj) => {
+          return obj.name === name;
+        });
+      }
+      else {
+        widget = widgetsObject[i];
+        name = widget.name;
+      }
       let countsName = widget.countsName || widget.name;
 
-      if (isSnapshotRelated(type, name) || widget.isObjectVersion) {
-        name = 'Snapshot';
+      if (!separateSnapshots) {
+        if (isSnapshotRelated(type, name) || widget.isObjectVersion) {
+          name = 'Snapshot';
+        }
       }
+
       countsMap[countsName] = info[name].total;
     });
     return countsMap;
+  });
+}
+
+function getAuditCounts(widgets, type, id) {
+  let widgetCounts = _initWidgetCounts(widgets, type, id);
+  let snapshotCounts = _getCurrentUser().getSnapshotsCount(id, {snapshot_types: snapshotNames});
+
+  return Promise.all([widgetCounts, snapshotCounts]).then(function(values) {
+    return Object.assign(values[0], values[1]);
   });
 }
 

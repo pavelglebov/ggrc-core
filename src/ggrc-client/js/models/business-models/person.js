@@ -163,4 +163,21 @@ export default Cacheable('CMS.Models.Person', {
         console.warn(`Request on '${url}' failed!`);
       });
   },
+  getSnapshotsCount: function (id, data) {
+    let url = `/api/audits/${id}/snapshot_counts`;
+    const stopFn = tracker.start(
+      tracker.FOCUS_AREAS.COUNTS,
+      tracker.USER_JOURNEY_KEYS.API,
+      tracker.USER_ACTIONS.API.SNAPSHOTS_COUNT);
+
+    return $.post(url, data)
+      .then((counts) => {
+        stopFn();
+        return counts;
+      })
+      .fail(() => {
+        stopFn(true);
+        console.warn(`Request on '${url}' failed!`);
+      });
+  },
 });

@@ -41,6 +41,7 @@ export const USER_ACTIONS = {
     COUNTS_MY_WORK: 'Loading counts for My Work page',
     COUNTS_ALL_OBJECTS: 'Loading counts for All Objects page',
     TASKS_COUNT: 'Loading counts for Tasks',
+    SNAPSHOTS_COUNT: 'Loading snapshots count for Audit',
   },
   TREEVIEW: {
     FILTER: 'Tree view filter',
