@@ -5,7 +5,6 @@
 
 import './spec_setup';
 import './spec_helpers';
-import '../../ggrc/static/dashboard-templates';
 import '../js/entrypoints/vendor';
 import '../js/entrypoints/dashboard';
 

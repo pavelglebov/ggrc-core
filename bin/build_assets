@@ -6,6 +6,3 @@ SCRIPTPATH=$( cd "$(dirname "$0")" ; pwd -P )
 
 cd "${SCRIPTPATH}/.."
 npm run build
-
-cd "${SCRIPTPATH}/../src/ggrc"
-webassets -m ggrc.assets build

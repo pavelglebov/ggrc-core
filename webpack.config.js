@@ -180,9 +180,7 @@ module.exports = function (env) {
           },
         },
       }),
-      new CleanWebpackPlugin(['./src/ggrc/static/'], {
-        exclude: ['dashboard-templates*'],
-      }),
+      new CleanWebpackPlugin(['./src/ggrc/static/']),
     ];
   }
 

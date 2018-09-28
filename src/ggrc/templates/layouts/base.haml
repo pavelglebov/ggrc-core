@@ -49,10 +49,6 @@
       :javascript
         GGRC.GGRC_Q_INTEGRATION_URL='{{config.get("GGRC_Q_INTEGRATION_URL")}}';
 
-    -assets "dashboard-js-templates"
-      %script{ type:'text/javascript', src:"={ASSET_URL|with_static_subdomain}" }
-    -endassets
-
     -block extra_templates
 
     %script{ type:'text/javascript', src:'{{config.get("VENDOR_JS_PATH")}}' }

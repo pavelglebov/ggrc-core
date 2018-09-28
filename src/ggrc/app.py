@@ -117,13 +117,6 @@ def configure_flask_login(app_):
   ggrc.login.init_app(app_)
 
 
-def configure_webassets(app_):
-  """Add basic webassets configuration."""
-  from ggrc import assets
-  app_.jinja_env.add_extension('webassets.ext.jinja2.assets')
-  app_.jinja_env.assets_environment = assets.environment
-
-
 def configure_jinja(app_):
   """Add basic jinja configuration."""
   app_.jinja_env.add_extension('jinja2.ext.autoescape')
@@ -284,7 +277,6 @@ def _display_request_time():
 setup_error_handlers(app)
 init_models(app)
 configure_flask_login(app)
-configure_webassets(app)
 configure_jinja(app)
 init_services(app)
 init_views(app)

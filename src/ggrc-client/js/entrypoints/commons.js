@@ -32,3 +32,6 @@ import './user';
 
 // Common components
 import '../components/model-loader/model-loader';
+
+// Common templates
+import '../mustache-templates';
