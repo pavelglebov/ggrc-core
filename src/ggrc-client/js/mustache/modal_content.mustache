@@ -1,0 +1,79 @@
+{{!
+    Copyright (C) 2018 Google Inc.
+    Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
+}}
+
+{{#instance}}
+<form action="javascript://">
+
+  <input type="hidden" name="object_type" value="{{parent_type}}">
+
+  <div class="row-fluid">
+    <div class="span6 {{#instance.computed_errors.name}}field-failure{{/instance.computed_errors.name}}">
+      <label>Role name
+        <span class="required">*</span>
+        <i
+          class="fa fa-question-circle"
+          rel="tooltip"
+          title="Set a name for the {{class.title_singular}}."></i>
+      </label>
+      <input-filter
+        name="name"
+        {(value)}="name"
+        placeholder="Enter Name"
+        exclude-symbols="*"
+        {tabindex}="1"
+        {autofocus}="true">
+      </input-filter>
+    </div>
+
+    <div class="span2">
+      <label>
+        Read
+        <i class="fa fa-question-circle" rel="tooltip"
+          title="Check if this role allows Read permission on an object type."></i>
+      </label>
+      <input
+        type="checkbox"
+        name="read"
+        {{#if read}}checked="checked"{{/if}}
+        class="input-block-level"
+        tabindex="2">
+    </div>
+
+    <div class="span2">
+      <label>
+        Edit
+        <i class="fa fa-question-circle" rel="tooltip"
+          title="Check if this role allows Edit permission on an object type."></i>
+      </label>
+      <input
+        type="checkbox"
+        name="update"
+        {{#if update}}checked="checked"{{/if}}
+        class="input-block-level"
+        tabindex="3">
+    </div>
+
+    <div class="span2">
+      <label>
+        Delete
+        <i class="fa fa-question-circle" rel="tooltip"
+          title="Check if this role allows Delete permission on an object type."></i>
+      </label>
+      <input
+        type="checkbox"
+        name="delete"
+        {{^if_equals parent_type 'Evidence'}}
+        {{^if_equals parent_type 'Document'}}
+          {{#if delete}}checked="checked"{{/if}}
+        {{/if}}
+        {{/if}}
+        class="input-block-level"
+        tabindex="4"
+        {{#if_equals parent_type 'Evidence'}}disabled{{/if_equals}}
+        {{#if_equals parent_type 'Document'}}disabled{{/if_equals}}>
+    </div>
+  </div>
+</form>
+{{/instance}}

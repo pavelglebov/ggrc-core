@@ -5,7 +5,11 @@
         "transform-runtime",
         "syntax-dynamic-import",
         "transform-object-rest-spread",
-        "transform-strict-mode"
+        "transform-strict-mode",
+        // "import-directory",
+        // ["wildcard", {
+        //   "exts": ["js", "es6", "es", "jsx", "javascript", "mustache"]
+        // }]
       ],
       "presets": [
         [
@@ -29,7 +33,11 @@
         "transform-runtime",
         "syntax-dynamic-import",
         "transform-object-rest-spread",
-        "transform-strict-mode"
+        "transform-strict-mode",
+        // "import-directory",
+        // ["wildcard", {
+        //   "exts": ["js", "es6", "es", "jsx", "javascript", "mustache"]
+        // }]
       ],
       "presets": [
         [

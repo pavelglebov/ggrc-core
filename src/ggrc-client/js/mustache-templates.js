@@ -3,6 +3,14 @@
     Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 */
 
+// import modules from '../js/mustache';
+
+// for (let module in modules) {
+//   console.log(module);
+// }
+
+import * as modules from './mustache';
+
 import acrModalContent from
   './mustache/access_control_roles/modal_content.mustache';
 import acrSubTree from './mustache/access_control_roles/subtree.mustache';
