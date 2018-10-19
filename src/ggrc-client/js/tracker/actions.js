@@ -58,12 +58,19 @@ export const USER_ACTIONS = {
     SHOW_MORE: 'LHN: Show more items for the list',
     SEARCH: (area) => `LHN search in ${area}`,
   },
+  AUDIT: {
+    SNAPSHOTS_COUNT: 'Loading snapshots counts for Audit',
+  },
   ASSESSMENT: {
     OPEN_ASMT_GEN_MODAL: 'Open Assessment Generation modal',
     CHANGE_STATUS: 'Changing status of Assessment',
     EDIT_LCA: 'Editing Local CA',
     RELATED_ASSESSMENTS: 'Loading Related Assessments',
     RELATED_OBJECTS: 'Loading objects related to Assessment',
+    SNAPSHOTS_COUNT: 'Loading snapshots counts for Assessment',
+  },
+  ISSUE: {
+    SNAPSHOTS_COUNT: 'Loading snapshots counts for Issue',
   },
   CYCLE_TASK: {
     CHANGE_STATUS: 'Changing status of Task',

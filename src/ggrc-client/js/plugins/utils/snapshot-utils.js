@@ -12,6 +12,7 @@ import {getPageInstance} from '../utils/current-page-utils';
 import Person from '../../models/business-models/person';
 import Audit from '../../models/business-models/audit';
 import Stub from '../../models/stub';
+import tracker from '../../tracker';
 import * as businessModels from '../../models/business-models';
 
 /**
@@ -237,6 +238,30 @@ function getSnapshotItemQuery(instance, childId, childType) {
   return {data: [query]};
 }
 
+/**
+ * get snapshot counts
+ * @param {Object} instance - Object instance
+ * @param {Array} data - Array of snapshot names
+ * @return {Promise} Promise
+ */
+function getSnapshotsCounts(instance, data) {
+  let url = `${instance.selfLink}/snapshot_counts`;
+
+  const stopFn = tracker.start(
+    tracker.FOCUS_AREAS.COUNTS,
+    tracker.USER_JOURNEY_KEYS.API,
+    tracker.USER_ACTIONS[instance.type.toUpperCase()].SNAPSHOTS_COUNT);
+
+  return $.post(url, {snapshot_types: data})
+    .then((counts) => {
+      stopFn();
+      return counts;
+    })
+    .fail(() => {
+      stopFn(true);
+    });
+}
+
 export {
   getInScopeModels,
   outOfScopeModels,
@@ -253,4 +278,5 @@ export {
   getSnapshotItemQuery,
   isSnapshotType,
   getParentUrl,
+  getSnapshotsCounts,
 };
