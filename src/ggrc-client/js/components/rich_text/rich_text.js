@@ -47,45 +47,91 @@ export default can.Component.extend('richText', {
     maxLength: null,
     showAlert: false,
     length: 0,
+    // initEditor(container, toolbarContainer, countContainer) {
+    //   import(/* webpackChunkName: "quill" */'quill').then((Quill) => {
+    //     let editor = new Quill(container, {
+    //       theme: 'snow',
+    //       bounds: container,
+    //       placeholder: this.attr('placeholder'),
+    //       modules: {
+    //         toolbar: {
+    //           container: toolbarContainer,
+    //         },
+    //         history: {
+    //           delay: 0,
+    //         },
+    //         clipboard: {
+    //           matchers: [
+    //             [Node.TEXT_NODE, this.urlMatcher],
+    //           ],
+    //         },
+    //       },
+    //     });
+    //     this.setContentToEditor(editor, this.attr('content'));
+
+    //     if (this.attr('maxLength')) {
+    //       this.restrictPasteOperation(editor);
+    //       this.restrictMaxLength(editor);
+    //     }
+
+    //     if (this.attr('hiddenToolbar')) {
+    //       editor.on('selection-change', this.onSelectionChange.bind(this));
+    //     }
+
+    //     editor.on('text-change', this.onChange.bind(this));
+    //     this.attr('editor', editor);
+    //   });
+    // },
     initEditor(container, toolbarContainer, countContainer) {
-      import(/* webpackChunkName: "quill" */'quill').then((Quill) => {
-        let editor = new Quill(container, {
-          theme: 'snow',
-          bounds: container,
+      import(/* webpackChunkName: "simplemde" */'simplemde').then((SimpleMDE) => {
+        let editor = new SimpleMDE({
+          element: container,
           placeholder: this.attr('placeholder'),
-          modules: {
-            toolbar: {
-              container: toolbarContainer,
-            },
-            history: {
-              delay: 0,
-            },
-            clipboard: {
-              matchers: [
-                [Node.TEXT_NODE, this.urlMatcher],
-              ],
-            },
-          },
+          toolbar: 
+            ["bold", "italic", "heading", "|", "quote"],
+          status: false,
+          spellChecker: false,
         });
+        // let editor = new SimpleMDE(container, {
+        //   theme: 'snow',
+        //   bounds: container,
+        //   placeholder: this.attr('placeholder'),
+        //   modules: {
+        //     toolbar: {
+        //       container: toolbarContainer,
+        //     },
+        //     history: {
+        //       delay: 0,
+        //     },
+        //     clipboard: {
+        //       matchers: [
+        //         [Node.TEXT_NODE, this.urlMatcher],
+        //       ],
+        //     },
+        //   },
+        // });
         this.setContentToEditor(editor, this.attr('content'));
 
-        if (this.attr('maxLength')) {
-          this.restrictPasteOperation(editor);
-          this.restrictMaxLength(editor);
-        }
+        // if (this.attr('maxLength')) {
+        //   this.restrictPasteOperation(editor);
+        //   this.restrictMaxLength(editor);
+        // }
 
-        if (this.attr('hiddenToolbar')) {
-          editor.on('selection-change', this.onSelectionChange.bind(this));
-        }
+        // if (this.attr('hiddenToolbar')) {
+        //   editor.on('selection-change', this.onSelectionChange.bind(this));
+        // }
 
-        editor.on('text-change', this.onChange.bind(this));
+        editor.codemirror.on('change', this.onChange.bind(this));
+        // editor.on('text-change', this.onChange.bind(this));
         this.attr('editor', editor);
       });
     },
     setContentToEditor(editor, content) {
-      if (content !== editor.root.innerHTML) {
-        let delta = editor.clipboard.convert(content);
-        editor.setContents(delta);
+      // if (content !== editor.root.innerHTML) {
+      if (content !== editor.value()) {
+        // let delta = editor.clipboard.convert(content);
+        // editor.setContents(delta);
+        editor.value(content);
       }
     },
     restrictPasteOperation(editor) {
@@ -166,7 +212,8 @@ export default can.Component.extend('richText', {
         delta.ops[0].retain &&
         !delta.ops[1].delete &&
         !this.isWhitespace(delta.ops[1].insert)) {
-        let text = editor.getText();
+        // let text = editor.getText();
+        let text = editor.value();
         let startIdx = delta.ops[0].retain;
         while (!this.isWhitespace(text[startIdx - 1]) && startIdx > 0) {
           startIdx--;
@@ -207,7 +254,8 @@ export default can.Component.extend('richText', {
     },
     getLength(editor) {
       // Empty editor contains single service line-break symbol.
-      return editor.getLength() - 1;
+      // return editor.getLength() - 1;
+      return editor.value().length;
     },
   },
   events: {

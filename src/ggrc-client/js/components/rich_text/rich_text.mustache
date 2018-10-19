@@ -4,13 +4,14 @@
 }}
 
 <div class="rich-text__wrapper {{#if hidden}}rich-text__wrapper-hidden-toolbar{{/if}}">
-  <div class="rich-text__content {{#if maxLength}}rich-text__content--with-count{{/if}}"></div>
+  <!-- <div class="rich-text__content {{#if maxLength}}rich-text__content--with-count{{/if}}"></div> -->
+  <textarea class="rich-text__content {{#if maxLength}}rich-text__content--with-count{{/if}}"></textarea>
   {{#if maxLength}}
   <div class="rich-text__count {{#if showAlert}}rich-text__count--alert{{/if}}">
     <span>{{#if showAlert}}Maximum characters exceeded {{/if}}{{length}}/{{maxLength}}</span>
   </div>
   {{/if}}
-  <div class="rich-text__toolbar">
+  {{! <div class="rich-text__toolbar">
     <span class="ql-formats">
       <button type="button" class="ql-bold"></button>
       <button type="button" class="ql-italic"></button>
@@ -22,5 +23,5 @@
       <button type="button" class="ql-list" value="ordered"></button>
       <button type="button" class="ql-list" value="bullet"></button>
     </span>
-  </div>
+  </div> }}
 </div>

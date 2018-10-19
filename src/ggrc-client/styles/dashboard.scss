@@ -9,6 +9,7 @@
 $icon-font-path: "./src/ggrc/assets/vendor/bootstrap-sass/vendor/assets/stylesheets/bootstrap";
 @import "./src/ggrc/assets/vendor/bootstrap-sass/vendor/assets/stylesheets/bootstrap";
 @import "~compass-mixins/lib/compass";
+@import "~simplemde/dist/simplemde.min.css";
 
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome";
@@ -45,4 +46,10 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.CodeMirror {
+  max-height: 100px;
+  min-height: auto;
+  overflow: auto;
 }
