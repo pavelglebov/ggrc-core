@@ -57,6 +57,9 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
   }
   if (/^\/api\//.test(options.url) && (options.type.toUpperCase() === 'GET')) {
     options.cache = false;
+    if (etags[resourceUrl] && etags[resourceUrl][0]) {
+      jqXHR.setRequestHeader('If-None-Match', etags[resourceUrl][0]);
+    }
   }
   if (/^\/api\/\w+/.test(options.url)) {
     jqXHR.setRequestHeader('X-Requested-By', 'GGRC');
