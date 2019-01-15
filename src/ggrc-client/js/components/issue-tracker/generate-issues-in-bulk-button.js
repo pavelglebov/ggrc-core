@@ -15,6 +15,7 @@ const MAX_TIMEOUT = 60000;
 export default can.Component.extend({
   tag: 'generate-issues-in-bulk-button',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       isAllowedToGenerate: {

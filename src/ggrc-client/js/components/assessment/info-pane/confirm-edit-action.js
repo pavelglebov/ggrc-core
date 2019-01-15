@@ -8,6 +8,7 @@ import {confirm} from '../../../plugins/utils/modals';
 
 export default can.Component.extend({
   tag: 'confirm-edit-action',
+  leakScope: true,
   viewModel: {
     instance: {},
     setInProgress: null,

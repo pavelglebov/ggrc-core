@@ -12,6 +12,7 @@
  */
 export default can.Component.extend({
   tag: 'inline-autocomplete-wrapper',
+  leakScope: true,
   viewModel: {
     /**
      * Contains a model.

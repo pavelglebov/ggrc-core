@@ -8,6 +8,7 @@ import template from './templates/tree-no-results.mustache';
 export default can.Component.extend({
   tag: 'tree-no-results',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       text: {

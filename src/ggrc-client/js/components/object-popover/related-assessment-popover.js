@@ -21,6 +21,7 @@ import template from './related-assessment-popover.mustache';
 export default can.Component.extend({
   tag: 'related-assessment-popover',
   template,
+  leakScope: true,
   viewModel: {
     selectedAssessment: {},
     popoverTitleInfo: 'Assessment Title: ',

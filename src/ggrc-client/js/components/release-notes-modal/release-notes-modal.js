@@ -32,5 +32,6 @@ const viewModel = can.Map.extend({
 export default can.Component.extend({
   tag: 'release-notes-modal',
   template,
+  leakScope: true,
   viewModel,
 });

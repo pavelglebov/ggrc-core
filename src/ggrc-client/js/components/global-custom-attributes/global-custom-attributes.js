@@ -14,6 +14,7 @@ import {notifierXHR} from '../../plugins/utils/notifiers-utils';
  */
 export default can.Component.extend({
   tag: 'global-custom-attributes',
+  leakScope: true,
   viewModel: {
     isAttributesDisabled: false,
     define: {

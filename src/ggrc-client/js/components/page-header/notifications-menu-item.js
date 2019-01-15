@@ -13,6 +13,7 @@ const emailDigestType = 'Email_Digest';
 export default can.Component.extend({
   tag: 'notifications-menu-item',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       emailDigest: {

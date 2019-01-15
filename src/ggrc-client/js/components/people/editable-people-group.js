@@ -100,6 +100,7 @@ let viewModel = peopleGroupVM.extend({
 export default can.Component.extend({
   tag: 'editable-people-group',
   template,
+  leakScope: true,
   viewModel,
   events: {
     '{window} mousedown': function (el, ev) {

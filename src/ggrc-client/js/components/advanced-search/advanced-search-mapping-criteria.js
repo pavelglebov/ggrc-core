@@ -181,6 +181,6 @@ let viewModel = can.Map.extend({
 export default can.Component.extend({
   tag: 'advanced-search-mapping-criteria',
   template: template,
-  viewModel: viewModel,
   leakScope: false,
+  viewModel: viewModel,
 });

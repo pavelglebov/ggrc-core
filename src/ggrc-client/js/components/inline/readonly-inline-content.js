@@ -10,6 +10,7 @@ import template from './readonly-inline-content.mustache';
 export default can.Component.extend({
   tag: 'readonly-inline-content',
   template,
+  leakScope: true,
   viewModel: {
     withReadMore: false,
     value: '@',

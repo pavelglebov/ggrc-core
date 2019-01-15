@@ -9,6 +9,7 @@ import template from './effective-dates.mustache';
 export default can.Component.extend({
   tag: 'effective-dates',
   template: template,
+  leakScope: true,
   viewModel: {
     instance: null,
     configStartDate: {

@@ -9,6 +9,7 @@ import template from './rich-text-form-field.mustache';
 export default can.Component.extend({
   tag: 'rich-text-form-field',
   template,
+  leakScope: true,
   viewModel: {
     _value: '',
     _oldValue: null,

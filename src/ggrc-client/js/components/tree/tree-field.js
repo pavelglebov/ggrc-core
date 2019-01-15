@@ -9,6 +9,7 @@ import viewModel from '../aggregate-field-vm';
 export default can.Component.extend({
   tag: 'tree-field',
   template,
+  leakScope: true,
   viewModel,
   events: {
     '{viewModel} source': function () {

@@ -8,6 +8,7 @@ import template from './import-history.mustache';
 export default can.Component.extend({
   tag: 'import-history',
   template,
+  leakScope: true,
   viewModel: {
     history: [],
     remove(id) {

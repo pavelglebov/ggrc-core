@@ -140,6 +140,7 @@ const viewModel = can.Map.extend({
 export default can.Component.extend({
   tag: 'create-document-button',
   template,
+  leakScope: true,
   viewModel,
   events: {
     inserted() {

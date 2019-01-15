@@ -68,6 +68,7 @@ export default can.Component.extend({
   tag: 'csv-import',
   template: template,
   requestData: null,
+  leakScope: true,
   viewModel: {
     define: {
       isImportStopped: {

@@ -9,6 +9,7 @@ const tag = 'object-selection';
  */
 export default can.Component.extend({
   tag,
+  leakScope: true,
   viewModel: {
     selectedItems: [],
     items: [],

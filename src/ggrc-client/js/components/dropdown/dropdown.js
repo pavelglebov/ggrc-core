@@ -14,6 +14,7 @@ import template from './dropdown.mustache';
 export default can.Component.extend({
   tag: 'dropdown',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       options: {

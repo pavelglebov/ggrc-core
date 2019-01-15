@@ -17,6 +17,7 @@ import template from './show-more.mustache';
 export default can.Component.extend({
   tag: 'show-more',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       limit: {

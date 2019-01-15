@@ -12,6 +12,7 @@ export default can.Component.extend({
     '{repeat-every}="instance.repeat_every" ' +
     '{on-save-repeat}="@onSetRepeat">' +
     '</repeat-on-button>',
+  leakScope: true,
   viewModel: {
     define: {
       autoSave: {

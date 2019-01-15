@@ -18,6 +18,7 @@ const tag = 'related-proposals-item';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     define: {
       proposal: {

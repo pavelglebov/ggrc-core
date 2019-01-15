@@ -8,6 +8,7 @@ import template from './loading-status.mustache';
 export default can.Component.extend({
   tag: 'loading-status',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       showSpinner: {

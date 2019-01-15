@@ -29,6 +29,7 @@ const defaultOrderBy = [
 export default can.Component.extend({
   tag: 'related-assessments',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       unableToReuse: {

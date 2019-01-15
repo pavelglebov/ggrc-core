@@ -50,6 +50,7 @@ const events = {
 export default can.Component.extend({
   tag: 'release-notes-list',
   template,
+  leakScope: true,
   viewModel,
   events,
 });

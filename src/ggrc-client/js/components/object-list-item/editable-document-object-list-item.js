@@ -11,6 +11,7 @@ const tag = 'editable-document-object-list-item';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     document: {},
   },

@@ -14,6 +14,7 @@ let defaultOrderBy = 'created_at';
 
 export default can.Component.extend({
   tag: 'related-objects',
+  leakScope: true,
   viewModel: {
     define: {
       noRelatedObjectsMessage: {

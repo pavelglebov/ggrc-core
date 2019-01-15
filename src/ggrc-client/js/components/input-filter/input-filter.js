@@ -10,6 +10,7 @@ const tag = 'input-filter';
 export default can.Component.extend({
   template,
   tag,
+  leakScope: true,
   viewModel: {
     value: '',
     excludeSymbols: '@',

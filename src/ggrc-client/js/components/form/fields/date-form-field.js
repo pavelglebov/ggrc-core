@@ -9,6 +9,7 @@ import template from './date-form-field.mustache';
 export default can.Component.extend({
   tag: 'date-form-field',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       inputValue: {

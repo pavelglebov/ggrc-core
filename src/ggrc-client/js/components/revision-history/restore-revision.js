@@ -15,6 +15,7 @@ const tag = 'restore-revision';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     instance: {},
     restoredRevision: {},

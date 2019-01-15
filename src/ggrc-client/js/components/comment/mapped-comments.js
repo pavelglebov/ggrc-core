@@ -13,6 +13,7 @@ import template from './mapped-comments.mustache';
 export default can.Component.extend({
   tag: 'mapped-comments',
   template: template,
+  leakScope: true,
   viewModel: {
     define: {
       noItemsText: {

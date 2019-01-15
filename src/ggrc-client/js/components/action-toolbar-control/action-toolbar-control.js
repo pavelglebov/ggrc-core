@@ -8,6 +8,7 @@ export default can.Component.extend({
   template: '<div class="action-toolbar__controls-item {{disabledCss}}">' +
   '<content></content>' +
   '</div>',
+  leakScope: true,
   viewModel: {
     define: {
       disabled: {

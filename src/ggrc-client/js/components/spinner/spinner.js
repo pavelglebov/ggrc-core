@@ -8,6 +8,7 @@ import template from './spinner.mustache';
 export default can.Component.extend({
   tag: 'spinner',
   template,
+  leakScope: true,
   scope: {
     extraCssClass: '@',
     size: '@',

@@ -8,6 +8,7 @@ import template from './templates/ticket-id-checker.mustache';
 export default can.Component.extend({
   tag: 'ticket-id-checker',
   template,
+  leakScope: true,
   viewModel: {
     instance: null,
     ticketId: null,

@@ -94,6 +94,7 @@ let viewModel = can.Map.extend({
 export default can.Component.extend({
   tag: 'advanced-search-filter-attribute',
   template: template,
+  leakScope: true,
   viewModel: viewModel,
   events: {
     '{viewModel} availableAttributes': function (ev, desc, attributes) {

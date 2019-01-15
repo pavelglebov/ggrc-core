@@ -8,6 +8,7 @@ import template from './templates/mapper-results-item-status.mustache';
 export default can.Component.extend({
   tag: 'mapper-results-item-status',
   template,
+  leakScope: true,
   viewModel: {
     itemData: {},
   },

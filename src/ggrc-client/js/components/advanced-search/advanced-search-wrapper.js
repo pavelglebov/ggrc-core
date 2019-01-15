@@ -9,6 +9,7 @@ import * as AdvancedSearch from '../../plugins/utils/advanced-search-utils';
 
 export default can.Component.extend({
   tag: 'advanced-search-wrapper',
+  leakScope: true,
   viewModel: can.Map.extend({
     define: {
       hasStatusFilter: {

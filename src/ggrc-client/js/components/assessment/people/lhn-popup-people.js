@@ -12,6 +12,7 @@ import template from './templates/lhn-popup-people.mustache';
 export default can.Component.extend({
   tag: 'lhn-popup-people',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       instance: {

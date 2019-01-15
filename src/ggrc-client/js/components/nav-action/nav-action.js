@@ -53,5 +53,6 @@ const viewModel = can.Map.extend({
 
 export default can.Component.extend({
   tag: 'nav-actions',
+  leakScope: true,
   viewModel,
 });

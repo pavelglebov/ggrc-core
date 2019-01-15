@@ -7,6 +7,7 @@ const tag = 'map-button-using-assessment-type';
 
 export default can.Component.extend({
   tag,
+  leakScope: true,
   viewModel: {
     instance: {},
     deferredTo: {},

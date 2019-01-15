@@ -7,6 +7,7 @@ const tag = 'issue-tracker-switcher';
 
 export default can.Component.extend({
   tag,
+  leakScope: true,
   viewModel: {
     define: {
       isIntegrationEnabled: {

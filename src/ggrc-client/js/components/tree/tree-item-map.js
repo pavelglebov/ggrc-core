@@ -26,6 +26,7 @@ let viewModel = can.Map.extend({
 export default can.Component.extend({
   tag: 'tree-item-map',
   template,
+  leakScope: true,
   viewModel,
   events: {
     'a click': function (el, ev) {

@@ -9,6 +9,7 @@ const tag = 'create-proposal-button';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     define: {
       showProposalButton: {

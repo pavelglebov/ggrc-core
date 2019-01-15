@@ -12,6 +12,7 @@ const tag = 'collapsible-panel-header';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     titleIcon: null,
     expanded: null,

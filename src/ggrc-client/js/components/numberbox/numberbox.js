@@ -13,6 +13,7 @@ const NEGATIVE_NUMBER_PATTERN = '([-]{0,1})';
 export default can.Component.extend({
   template,
   tag,
+  leakScope: true,
   viewModel: {
     value: '',
     enableFloat: false,

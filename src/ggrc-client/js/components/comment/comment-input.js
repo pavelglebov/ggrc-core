@@ -8,6 +8,7 @@ import template from './comment-input.mustache';
 export default can.Component.extend({
   tag: 'comment-input',
   template: template,
+  leakScope: true,
   viewModel: {
     define: {
       disabled: {

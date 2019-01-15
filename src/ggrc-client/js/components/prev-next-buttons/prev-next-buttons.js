@@ -8,6 +8,7 @@ import template from './prev-next-buttons.mustache';
 export default can.Component.extend({
   tag: 'prev-next-buttons',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       currentIndex: {

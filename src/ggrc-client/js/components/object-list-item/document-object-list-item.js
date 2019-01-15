@@ -13,6 +13,7 @@ const tag = 'document-object-list-item';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     instance: {},
     define: {

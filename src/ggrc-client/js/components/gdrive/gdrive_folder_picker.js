@@ -15,6 +15,7 @@ import template from './templates/gdrive_folder.mustache';
 export default can.Component.extend({
   tag: 'ggrc-gdrive-folder-picker',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       readonly: {

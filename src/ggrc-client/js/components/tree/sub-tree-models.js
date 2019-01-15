@@ -106,6 +106,7 @@ let events = {
 export default can.Component.extend({
   tag: 'sub-tree-models',
   template: template,
+  leakScope: true,
   viewModel: viewModel,
   events: events,
 });

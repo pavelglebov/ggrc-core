@@ -14,6 +14,7 @@ const tag = 'object-list';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     define: {
       itemSelector: {

@@ -8,6 +8,7 @@ import {navigate} from '../../plugins/utils/current-page-utils';
 
 export default can.Component.extend({
   tag: 'object-cloner',
+  leakScope: true,
   viewModel: {
     instance: null,
     modalTitle: '@',

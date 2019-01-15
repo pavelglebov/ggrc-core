@@ -23,6 +23,7 @@ let events = {
 
 export default can.Component.extend({
   tag: 'object-change-state',
+  leakScope: true,
   viewModel,
   events,
 });

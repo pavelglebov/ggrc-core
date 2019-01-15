@@ -9,6 +9,7 @@ export default can.Component.extend({
     '<textarea class="{{className}}" placeholder="{{placeholder}}">' +
     '{{content}}' +
     '</textarea>',
+  leakScope: true,
   viewModel: {
     array: null,
     className: '@',

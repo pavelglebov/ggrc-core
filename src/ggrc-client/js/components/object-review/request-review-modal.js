@@ -11,6 +11,7 @@ const tag = 'request-review-modal';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     define: {
       isValidForm: {

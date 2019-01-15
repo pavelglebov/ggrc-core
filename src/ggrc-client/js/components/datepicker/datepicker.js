@@ -13,6 +13,7 @@ import template from './datepicker.mustache';
 export default can.Component.extend({
   tag: 'datepicker',
   template,
+  leakScope: true,
   viewModel: can.Map.extend({
     format: '@',
     helptext: '@',

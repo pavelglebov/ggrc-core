@@ -7,6 +7,7 @@ const tag = 'restored-revision-comparer-config';
 
 export default can.Component.extend({
   tag,
+  leakScope: true,
   viewModel: {
     instance: {},
     rightRevision: {},

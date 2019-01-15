@@ -8,6 +8,7 @@ import {getRolesForType} from '../../plugins/utils/acl-utils';
 
 export default can.Component.extend({
   tag: 'related-people-access-control',
+  leakScope: true,
   viewModel: {
     instance: {},
     deferredSave: null,

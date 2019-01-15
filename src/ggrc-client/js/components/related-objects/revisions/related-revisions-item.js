@@ -16,6 +16,7 @@ const tag = 'related-revisions-item';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     define: {
       revision: {

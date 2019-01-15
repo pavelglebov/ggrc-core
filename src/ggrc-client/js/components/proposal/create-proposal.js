@@ -15,6 +15,7 @@ const tag = 'create-proposal';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     define: {
       isDisabled: {

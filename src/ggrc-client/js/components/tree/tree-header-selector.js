@@ -5,6 +5,7 @@
 
 export default can.Component.extend({
   tag: 'tree-header-selector',
+  leakScope: true,
   viewModel: {},
   events: {
     init: function (element, options) {

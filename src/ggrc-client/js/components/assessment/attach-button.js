@@ -16,6 +16,7 @@ export default can.Component.extend({
   tag,
   template,
   confirmationCallback: '@',
+  leakScope: true,
   viewModel: {
     define: {
       hasPermissions: {

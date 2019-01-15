@@ -10,6 +10,7 @@ import * as businessModels from '../../models/business-models';
 export default can.Component.extend({
   tag: 'recently-viewed',
   template,
+  leakScope: true,
   viewModel: {
     items: [],
   },

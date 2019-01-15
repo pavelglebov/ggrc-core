@@ -8,6 +8,7 @@ import template from './base-inline-control-title.mustache';
 export default can.Component.extend({
   tag: 'base-inline-control-title',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       isEditIconAllowed: {

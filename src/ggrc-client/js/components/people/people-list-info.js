@@ -51,6 +51,7 @@ let viewModel = can.Map.extend({
 export default can.Component.extend({
   tag: 'people-list-info',
   template,
+  leakScope: true,
   viewModel,
   events: {
     ' open'() {

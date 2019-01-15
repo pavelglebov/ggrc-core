@@ -12,6 +12,7 @@ const tag = 'related-revisions';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     define: {
       paging: {

@@ -9,6 +9,7 @@ const tag = 'related-proposals';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     baseInstance: {},
     define: {

@@ -15,6 +15,7 @@ import template from './simple-modal.mustache';
 export default can.Component.extend({
   tag: 'simple-modal',
   template,
+  leakScope: true,
   viewModel: {
     extraCssClass: '@',
     instance: {},

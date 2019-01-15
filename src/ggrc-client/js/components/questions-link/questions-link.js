@@ -12,6 +12,7 @@ import template from './questions-link.mustache';
 export default can.Component.extend({
   tag: 'questions-link',
   template: template,
+  leakScope: true,
   viewModel: {
     define: {
       hasQuestions: {

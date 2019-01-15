@@ -21,5 +21,6 @@ let viewModel = can.Map.extend({
 export default can.Component.extend({
   tag: 'revision-log-data',
   template: template,
+  leakScope: true,
   viewModel: viewModel,
 });

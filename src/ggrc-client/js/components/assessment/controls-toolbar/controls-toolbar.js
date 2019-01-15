@@ -10,6 +10,7 @@ import template from './controls-toolbar.mustache';
 export default can.Component.extend({
   tag: 'assessment-controls-toolbar',
   template: template,
+  leakScope: true,
   viewModel: {
     instance: null,
     verifiers: [],

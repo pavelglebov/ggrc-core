@@ -59,6 +59,7 @@ let viewModel = BaseTreeItemVM.extend({
 export default can.Component.extend({
   tag: 'tree-item',
   template,
+  leakScope: true,
   viewModel,
   events: {
     inserted() {

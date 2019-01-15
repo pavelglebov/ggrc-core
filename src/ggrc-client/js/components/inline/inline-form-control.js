@@ -7,6 +7,7 @@ import {notifierXHR} from '../../plugins/utils/notifiers-utils';
 
 export default can.Component.extend({
   tag: 'inline-form-control',
+  leakScope: true,
   viewModel: {
     deferredSave: null,
     instance: null,

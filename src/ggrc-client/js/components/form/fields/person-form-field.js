@@ -9,6 +9,7 @@ import template from './person-form-field.mustache';
 export default can.Component.extend({
   tag: 'person-form-field',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       inputValue: {

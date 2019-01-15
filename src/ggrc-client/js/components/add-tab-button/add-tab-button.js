@@ -84,6 +84,7 @@ const viewModel = can.Map.extend({
 export default can.Component.extend({
   tag: 'add-tab-button',
   template,
+  leakScope: true,
   viewModel,
   events: {
     // top nav dropdown position

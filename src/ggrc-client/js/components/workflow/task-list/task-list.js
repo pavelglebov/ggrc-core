@@ -82,6 +82,7 @@ const events = {
 export default can.Component.extend({
   tag: 'task-list',
   template,
+  leakScope: true,
   viewModel,
   events,
 });

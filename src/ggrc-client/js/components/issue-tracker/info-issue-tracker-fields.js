@@ -10,6 +10,7 @@ const tag = 'info-issue-tracker-fields';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     instance: {},
     showTitle: false,

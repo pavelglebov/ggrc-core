@@ -8,6 +8,7 @@ import template from './paginate.mustache';
 export default can.Component.extend({
   tag: 'paginate',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       hasPrevPage: {

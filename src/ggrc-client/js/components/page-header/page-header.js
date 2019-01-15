@@ -155,6 +155,7 @@ let viewModel = can.Map.extend({
 export default can.Component.extend({
   tag: 'page-header',
   template,
+  leakScope: true,
   viewModel,
   events: {
     '{window} resize': _.debounce(function () {

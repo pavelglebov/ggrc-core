@@ -17,6 +17,7 @@ const textMap = {
 export default can.Component.extend({
   tag,
   template: '<p class="required">{{text}}</p>',
+  leakScope: true,
   viewModel: {
     define: {
       text: {

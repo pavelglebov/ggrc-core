@@ -74,6 +74,7 @@ const viewModel = DiffBaseVM.extend({
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: viewModel,
   events: {
     buildDiff() {

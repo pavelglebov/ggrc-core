@@ -8,6 +8,7 @@ import template from './model-loader.mustache';
 export default can.Component.extend({
   tag: 'model-loader',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       loadedModel: {

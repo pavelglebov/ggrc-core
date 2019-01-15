@@ -8,6 +8,7 @@ import template from './custom-attributes-actions.mustache';
 export default can.Component.extend({
   tag: 'custom-attributes-actions',
   template,
+  leakScope: true,
   viewModel: {
     instance: null,
     formEditMode: false,

@@ -12,9 +12,8 @@ import template from './autocomplete.mustache';
 // the component's configuration object (i.e. its constructor's prototype)
 let component = {
   tag: 'autocomplete',
-
   template: template,
-
+  leakScope: true,
   viewModel: {
     placeholder: '@',
     searchItemsType: '@',

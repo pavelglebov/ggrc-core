@@ -12,6 +12,7 @@ import Permission from '../../permission';
 export default can.Component.extend({
   tag: 'comments-section',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       notification: {

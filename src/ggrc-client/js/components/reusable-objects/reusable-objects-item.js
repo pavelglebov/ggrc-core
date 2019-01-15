@@ -8,6 +8,7 @@ import template from './reusable-objects-item.mustache';
 export default can.Component.extend({
   tag: 'reusable-objects-item',
   template: template,
+  leakScope: true,
   viewModel: {
     disabled: false,
     reuseAllowed: true,

@@ -13,6 +13,7 @@ import template from './access-control-list-roles-helper.mustache';
 export default can.Component.extend({
   tag: 'access-control-list-roles-helper',
   template,
+  leakScope: true,
   viewModel: {
     instance: {},
     isNewInstance: false,

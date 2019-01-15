@@ -9,6 +9,7 @@ import template from './info-pin-buttons.mustache';
 export default can.Component.extend({
   tag: 'info-pin-buttons',
   template,
+  leakScope: true,
   viewModel: {
     onChangeMaximizedState: null,
     onClose: null,

@@ -11,6 +11,7 @@ import template from './info-pane-footer.mustache';
 export default can.Component.extend({
   tag: 'info-pane-footer',
   template,
+  leakScope: true,
   viewModel: {
     createdAt: '',
     modifiedAt: '',

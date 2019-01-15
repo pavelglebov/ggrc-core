@@ -5,6 +5,7 @@
 
 export default can.Component.extend({
   tag: 'user-roles-selector-button',
+  leakScope: true,
   viewModel: {
     personId: null,
     async openModal(ev) {

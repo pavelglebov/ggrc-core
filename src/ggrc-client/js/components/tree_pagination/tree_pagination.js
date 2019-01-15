@@ -30,6 +30,7 @@ export default can.Component.extend({
       throw new Error('Paging object didn\'t init');
     }
   },
+  leakScope: true,
   viewModel: {
     placement: '@',
     setCurrentPage: function (pageNumber) {

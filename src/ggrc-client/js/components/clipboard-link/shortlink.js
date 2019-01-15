@@ -7,6 +7,7 @@ import './clipboard-link';
 
 export default can.Component.extend({
   tag: 'shortlink',
+  leakScope: true,
   viewModel: {
     instance: null,
     define: {

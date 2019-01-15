@@ -63,6 +63,7 @@ const TEXT_FORM_FIELD_VM = {
 export default can.Component.extend({
   template,
   tag: 'text-form-field',
+  leakScope: true,
   viewModel: TEXT_FORM_FIELD_VM,
   events: {
     inserted() {

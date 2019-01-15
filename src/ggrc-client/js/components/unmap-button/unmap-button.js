@@ -8,6 +8,7 @@ import Relationship from '../../models/service-models/relationship';
 
 export default can.Component.extend({
   tag: 'unmap-button',
+  leakScope: true,
   viewModel: {
     destination: {},
     source: {},

@@ -8,6 +8,7 @@ import template from './editable-people-group-header.mustache';
 export default can.Component.extend({
   tag: 'editable-people-group-header',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       peopleCount: {

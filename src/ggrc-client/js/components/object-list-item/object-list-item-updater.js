@@ -11,6 +11,7 @@ const tag = 'object-list-item-updater';
 
 export default can.Component.extend({
   tag,
+  leakScope: true,
   viewModel: {
     define: {
       targetInstance: {

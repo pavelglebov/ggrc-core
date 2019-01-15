@@ -9,6 +9,7 @@ import template from './dropdown-form-field.mustache';
 export default can.Component.extend({
   tag: 'dropdown-form-field',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       isNoneSelected: {

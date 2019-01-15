@@ -8,6 +8,7 @@ import {notifier} from '../../plugins/utils/notifiers-utils';
 
 export default can.Component.extend({
   tag: 'clipboard-link',
+  leakScope: true,
   viewModel: {
     text: '',
   },

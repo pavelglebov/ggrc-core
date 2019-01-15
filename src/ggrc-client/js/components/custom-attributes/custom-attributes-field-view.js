@@ -13,6 +13,7 @@ import template from './custom-attributes-field-view.mustache';
 export default can.Component.extend({
   tag: 'custom-attributes-field-view',
   template,
+  leakScope: true,
   viewModel: {
     type: null,
     value: null,

@@ -12,6 +12,7 @@ import * as businessModels from '../../models/business-models';
 export default can.Component.extend({
   tag: 'mapper-results-columns-configuration',
   template: tmpl,
+  leakScope: true,
   viewModel: {
     define: {
       selectedColumns: {

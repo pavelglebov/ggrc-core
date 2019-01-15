@@ -11,6 +11,7 @@ export default can.Component.extend({
   init: function (el) {
     this.viewModel.attr('element', el);
   },
+  leakScope: true,
   viewModel: can.Map.extend({
     extraCssClass: '@',
     placement: '@',

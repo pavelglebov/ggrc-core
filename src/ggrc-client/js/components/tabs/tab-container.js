@@ -10,6 +10,7 @@ import template from './tab-container.mustache';
 export default can.Component.extend({
   tag: 'tab-container',
   template,
+  leakScope: true,
   viewModel: {
     lastErrorTab: null,
     define: {

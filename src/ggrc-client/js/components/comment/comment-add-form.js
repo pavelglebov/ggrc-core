@@ -20,6 +20,7 @@ const tag = 'comment-add-form';
 export default can.Component.extend({
   tag: tag,
   template: template,
+  leakScope: true,
   viewModel: {
     define: {
       notificationsInfo: {

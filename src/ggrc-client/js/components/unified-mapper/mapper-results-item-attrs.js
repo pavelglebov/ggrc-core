@@ -11,6 +11,7 @@ import template from './templates/mapper-results-item-attrs.mustache';
 export default can.Component.extend({
   tag: 'mapper-results-item-attrs',
   template,
+  leakScope: true,
   viewModel: {
     instance: null,
     columns: [],

@@ -17,6 +17,7 @@ import template from './inline.mustache';
 export default can.Component.extend({
   tag: 'inline-edit-control',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       isValid: {

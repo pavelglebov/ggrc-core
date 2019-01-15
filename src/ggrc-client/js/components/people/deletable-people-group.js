@@ -10,5 +10,6 @@ import template from './deletable-people-group.mustache';
 export default can.Component.extend({
   tag: 'deletable-people-group',
   template,
+  leakScope: true,
   viewModel,
 });

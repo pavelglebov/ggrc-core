@@ -8,6 +8,7 @@ import template from './add-object-button.mustache';
 export default can.Component.extend({
   tag: 'add-object-button',
   template,
+  leakScope: true,
   viewModel: {
     instance: null,
     linkclass: '@',

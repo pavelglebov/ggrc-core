@@ -42,6 +42,7 @@ let _EMBED_MAPPINGS = {
 export default can.Component.extend({
   tag: 'revision-log',
   template,
+  leakScope: true,
   viewModel: {
     _LIST_FIELDS: _LIST_FIELDS,
     _DATE_FIELDS: _DATE_FIELDS,

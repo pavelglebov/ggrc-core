@@ -9,6 +9,7 @@ const IS_SAVING_TEXT = 'Saving...';
 
 export default can.Component.extend({
   tag: 'custom-attributes-status',
+  leakScope: true,
   viewModel: {
     define: {
       isDirty: {

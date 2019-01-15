@@ -8,6 +8,7 @@ import template from './object-selection-item.mustache';
 export default can.Component.extend({
   tag: 'object-selection-item',
   template,
+  leakScope: true,
   viewModel: {
     isSaving: false,
     item: null,

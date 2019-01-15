@@ -8,6 +8,7 @@
  */
 export default can.Component.extend({
   tag: 'related-comments',
+  leakScope: true,
   viewModel: {
     define: {
       parentInstance: {

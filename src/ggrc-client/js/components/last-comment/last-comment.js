@@ -13,6 +13,7 @@ import Comment from '../../models/service-models/comment';
 export default can.Component.extend({
   tag: 'last-comment',
   template: template,
+  leakScope: true,
   viewModel: can.Map.extend({
     define: {
       instance: {

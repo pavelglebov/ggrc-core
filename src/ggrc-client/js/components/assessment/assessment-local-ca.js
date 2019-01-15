@@ -17,6 +17,7 @@ import {getPlainText} from '../../plugins/ggrc_utils';
 
 export default can.Component.extend({
   tag: 'assessment-local-ca',
+  leakScope: true,
   viewModel: {
     instance: null,
     fields: [],

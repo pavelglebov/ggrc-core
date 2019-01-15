@@ -9,6 +9,7 @@ import {
 
 export default can.Component.extend({
   tag: 'assessment-modal',
+  leakScope: true,
   viewModel: {
     instance: null,
     isNewInstance: false,

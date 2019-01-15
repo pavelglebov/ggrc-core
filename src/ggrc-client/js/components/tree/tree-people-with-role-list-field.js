@@ -31,5 +31,6 @@ export default can.Component.extend('treePeopleWithRoleListField', {
       {type}="type"
       {field}="'email'"
     />`,
+  leakScope: true,
   viewModel,
 });

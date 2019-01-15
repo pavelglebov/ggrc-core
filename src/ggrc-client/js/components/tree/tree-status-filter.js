@@ -99,6 +99,7 @@ let viewModel = can.Map.extend({
 
 export default can.Component.extend({
   tag: 'tree-status-filter',
+  leakScope: true,
   viewModel: viewModel,
   events: {
     inserted() {

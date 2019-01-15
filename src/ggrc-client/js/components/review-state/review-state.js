@@ -5,6 +5,7 @@
 
 export default can.Component.extend({
   tag: 'review-state',
+  leakScope: true,
   viewModel: {
     define: {
       reviewState: {

@@ -9,6 +9,7 @@ import template from './templates/label-autocomplete-results.mustache';
 export default can.Component.extend({
   tag: 'label-autocomplete-results',
   template: template,
+  leakScope: true,
   viewModel: baseAutocompleteResults.extend({
     currentValue: '',
     showResults: false,

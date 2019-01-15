@@ -17,6 +17,7 @@ import template from './template-field.mustache';
 export default can.Component.extend({
   tag: 'template-field',
   template,
+  leakScope: true,
   viewModel: {
     types: [],
     field: null,

@@ -14,6 +14,7 @@ import tracker from '../../../tracker';
 export default can.Component.extend({
   tag: 'assessment-templates-dropdown',
   template,
+  leakScope: true,
   viewModel: {
     responses: [],
     instance: null,

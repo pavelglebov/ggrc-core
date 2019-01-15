@@ -11,6 +11,7 @@
  */
 export default can.Component.extend({
   tag: 'assessment-template-attributes',
+  leakScope: true,
   viewModel: {
     fields: [],
     types: [{

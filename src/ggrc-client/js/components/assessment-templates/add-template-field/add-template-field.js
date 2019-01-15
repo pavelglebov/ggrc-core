@@ -8,6 +8,7 @@ import template from './add-template-field.mustache';
 export default can.Component.extend({
   tag: 'add-template-field',
   template,
+  leakScope: true,
   viewModel: {
     selected: [],
     fields: [],

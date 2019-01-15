@@ -17,6 +17,7 @@ import Stub from '../../models/stub';
 */
 export default can.Component.extend({
   tag: 'ggrc-quick-update',
+  leakScope: true,
   viewModel: {
     instance: null,
     model: null,

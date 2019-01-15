@@ -20,6 +20,7 @@ import template from './folder-attachments-list.mustache';
 export default can.Component.extend({
   tag: 'folder-attachments-list',
   template: template,
+  leakScope: true,
   viewModel: {
     define: {
       showSpinner: {

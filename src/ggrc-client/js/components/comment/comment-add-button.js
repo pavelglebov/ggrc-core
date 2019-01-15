@@ -14,6 +14,7 @@ const template = `<button type="button" class="btn btn-small btn-gray"
 export default can.Component.extend({
   tag: tag,
   template: template,
+  leakScope: true,
   viewModel: {
     define: {
       disabled: {

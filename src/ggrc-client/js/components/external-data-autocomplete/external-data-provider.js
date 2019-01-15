@@ -10,6 +10,7 @@ import {notifier} from '../../plugins/utils/notifiers-utils';
  */
 export default can.Component.extend({
   tag: 'external-data-provider',
+  leakScope: true,
   viewModel: {
     /**
      * The search that should be used in request.

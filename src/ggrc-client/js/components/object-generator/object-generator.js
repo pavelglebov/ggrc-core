@@ -22,6 +22,7 @@ import template from './object-generator.mustache';
 export default can.Component.extend({
   tag: 'object-generator',
   template,
+  leakScope: true,
   viewModel: function (attrs, parentViewModel) {
     return ObjectOperationsBaseVM.extend({
       object: attrs.object,

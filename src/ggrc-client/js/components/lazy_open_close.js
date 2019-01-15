@@ -5,6 +5,7 @@
 
 export default can.Component.extend({
   tag: 'lazy-openclose',
+  leakScope: true,
   viewModel: {
     show: false,
   },

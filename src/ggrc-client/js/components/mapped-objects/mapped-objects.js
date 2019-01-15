@@ -20,6 +20,7 @@ const tag = 'mapped-objects';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     define: {
       emptyMessage: {

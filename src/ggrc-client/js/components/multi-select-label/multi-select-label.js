@@ -13,6 +13,7 @@ import './label-autocomplete-wrapper';
 export default can.Component.extend({
   tag: 'multi-select-label',
   template: template,
+  leakScope: true,
   viewModel: {
     define: {
       onlyEditMode: {

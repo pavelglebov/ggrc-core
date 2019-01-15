@@ -13,6 +13,7 @@ import Assessment from '../../models/business-models/assessment';
 export default can.Component.extend({
   tag: 'assessment-generator-button',
   template,
+  leakScope: true,
   viewModel: {
     audit: null,
     button: '@',

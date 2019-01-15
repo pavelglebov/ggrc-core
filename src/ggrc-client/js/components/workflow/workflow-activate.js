@@ -73,5 +73,6 @@ const viewModel = can.Map.extend({
 
 export default can.Component.extend({
   tag: 'workflow-activate',
+  leakScope: true,
   viewModel,
 });

@@ -35,6 +35,7 @@ import QueryParser from '../../generated/ggrc_filter_query_parser';
 export default can.Component.extend({
   tag: 'csv-export',
   template: csvExportTemplate,
+  leakScope: true,
   viewModel: {
     define: {
       exportAllowed: {

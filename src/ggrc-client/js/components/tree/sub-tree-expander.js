@@ -9,6 +9,7 @@ import {
 
 export default can.Component.extend({
   tag: 'sub-tree-expander',
+  leakScope: true,
   viewModel: {
     define: {
       contextName: {

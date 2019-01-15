@@ -17,6 +17,7 @@ import {notifier} from '../../plugins/utils/notifiers-utils';
 
 export default can.Component.extend({
   tag: 'snapshot-scope-update',
+  leakScope: true,
   viewModel: {
     instance: null,
     upsertIt: function (scope, el, ev) {

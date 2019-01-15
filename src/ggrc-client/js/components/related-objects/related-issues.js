@@ -10,6 +10,7 @@ import template from './related-issues.mustache';
 export default can.Component.extend({
   tag: 'related-issues',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       orderBy: {

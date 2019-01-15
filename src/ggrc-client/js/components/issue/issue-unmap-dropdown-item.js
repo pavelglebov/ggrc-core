@@ -9,6 +9,7 @@ import template from './issue-unmap-dropdown-item.mustache';
 export default can.Component.extend({
   tag: 'issue-unmap-dropdown-item',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       issueUnmap: {

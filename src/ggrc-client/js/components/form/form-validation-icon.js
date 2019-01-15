@@ -20,6 +20,7 @@ const icons = {
 export default can.Component.extend({
   tag,
   template: '<i class="fa form-validation-icon__body {{iconCls}}"></i>',
+  leakScope: true,
   viewModel: {
     define: {
       validation: {},

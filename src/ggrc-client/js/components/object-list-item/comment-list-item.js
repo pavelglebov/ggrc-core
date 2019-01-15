@@ -15,6 +15,7 @@ const tag = 'comment-list-item';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     instance: {},
     baseInstance: {},

@@ -8,6 +8,7 @@ import template from './checkbox-form-field.mustache';
 export default can.Component.extend({
   tag: 'checkbox-form-field',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       inputValue: {

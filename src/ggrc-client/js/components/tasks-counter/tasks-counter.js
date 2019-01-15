@@ -15,6 +15,7 @@ let baseCmpName = 'tasks-counter';
 export default can.Component.extend({
   tag: baseCmpName,
   template: '<div class="tasks-counter {{stateCss}}">{{tasksAmount}}</div>',
+  leakScope: true,
   viewModel: {
     define: {
       tasksAmount: {

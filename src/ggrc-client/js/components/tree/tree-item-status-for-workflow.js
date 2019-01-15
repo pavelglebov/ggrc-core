@@ -30,5 +30,6 @@ const viewModel = can.Map.extend({
 export default can.Component.extend({
   tag: 'tree-item-status-for-workflow',
   template,
+  leakScope: true,
   viewModel,
 });

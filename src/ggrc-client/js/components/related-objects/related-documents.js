@@ -29,6 +29,7 @@ let DOCUMENT_KIND_MAP = {
 
 export default can.Component.extend({
   tag: 'related-documents',
+  leakScope: true,
   viewModel: {
     instance: {},
     modelType: 'Document',

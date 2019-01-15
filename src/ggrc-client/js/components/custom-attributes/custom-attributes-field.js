@@ -14,6 +14,7 @@ import template from './custom-attributes-field.mustache';
 export default can.Component.extend({
   tag: 'custom-attributes-field',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       disabled: {

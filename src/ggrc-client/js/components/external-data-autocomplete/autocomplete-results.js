@@ -12,6 +12,7 @@ import template from './autocomplete-results.mustache';
 export default can.Component.extend({
   tag: 'autocomplete-results',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       /**

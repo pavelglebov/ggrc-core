@@ -74,6 +74,7 @@ const editableStatuses = ['Not Started', 'In Progress', 'Rework Needed'];
 export default can.Component.extend({
   tag: 'assessment-info-pane',
   template: template,
+  leakScope: true,
   viewModel: {
     define: {
       verifiers: {

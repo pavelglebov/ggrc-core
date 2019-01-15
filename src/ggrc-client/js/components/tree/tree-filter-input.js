@@ -76,6 +76,7 @@ let viewModel = can.Map.extend({
 export default can.Component.extend({
   tag: 'tree-filter-input',
   template,
+  leakScope: true,
   viewModel,
   events: {
     'input keyup': function (el, ev) {

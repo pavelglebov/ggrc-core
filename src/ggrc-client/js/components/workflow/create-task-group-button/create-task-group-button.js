@@ -49,6 +49,7 @@ const events = {
 
 export default can.Component.extend({
   tag: 'create-task-group-button',
+  leakScope: true,
   viewModel,
   events,
 });

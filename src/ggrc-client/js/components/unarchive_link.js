@@ -5,6 +5,7 @@
 
 export default can.Component.extend({
   tag: 'unarchive-link',
+  leakScope: true,
   viewModel: {
     notify: '@',
     instance: null,

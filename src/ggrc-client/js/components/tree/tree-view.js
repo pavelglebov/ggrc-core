@@ -29,5 +29,6 @@ let viewModel = can.Map.extend({
 export default can.Component.extend({
   tag: 'tree-view',
   template,
+  leakScope: true,
   viewModel,
 });

@@ -47,6 +47,7 @@ const events = {
 export default can.Component.extend({
   tag: 'release-notes-menu-item',
   template,
+  leakScope: true,
   viewModel,
   events,
 });

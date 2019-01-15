@@ -14,6 +14,7 @@ import {getAssigneeType} from '../../plugins/ggrc_utils';
 export default can.Component.extend({
   tag: 'ca-object-modal-content',
   template: template,
+  leakScope: true,
   viewModel: {
     define: {
       comment: {

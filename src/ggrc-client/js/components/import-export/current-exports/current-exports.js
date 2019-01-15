@@ -9,6 +9,7 @@ import {jobStatuses} from '../../../plugins/utils/import-export-utils';
 export default can.Component.extend({
   tag: 'current-exports',
   template,
+  leakScope: true,
   viewModel: {
     exports: [],
     disabled: {},

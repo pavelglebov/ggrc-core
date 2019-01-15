@@ -11,6 +11,7 @@ import template from './custom-attributes.mustache';
 export default can.Component.extend({
   tag: 'custom-attributes',
   template,
+  leakScope: true,
   viewModel: {
     fields: [],
     editMode: false,

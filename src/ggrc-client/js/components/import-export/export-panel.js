@@ -8,6 +8,7 @@ import template from './templates/export-panel.mustache';
 export default can.Component.extend({
   tag: 'export-panel',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       showAttributes: {

@@ -10,6 +10,7 @@ import template from './templates/mandatory-fields-modal.mustache';
 export default can.Component.extend({
   template,
   tag: 'mandatory-fields-modal',
+  leakScope: true,
   viewModel: {
     define: {
       showCAs: {

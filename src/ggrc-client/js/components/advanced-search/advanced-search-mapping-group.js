@@ -42,5 +42,6 @@ let viewModel = AdvancedSearchContainer.extend({
 export default can.Component.extend({
   tag: 'advanced-search-mapping-group',
   template: template,
+  leakScope: true,
   viewModel: viewModel,
 });

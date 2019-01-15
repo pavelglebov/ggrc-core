@@ -8,6 +8,7 @@ import template from './people-list.mustache';
 export default can.Component.extend({
   tag: 'people-list',
   template,
+  leakScope: true,
   viewModel: {
     peopleList: [],
     instance: null,

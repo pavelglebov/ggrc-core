@@ -15,6 +15,7 @@ const defaultRightPosition = 60;
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     expanded: false,
     direction: 'left',

@@ -48,5 +48,6 @@ const viewModel = can.Map.extend({
 
 export default can.Component.extend({
   tag: 'cycle-task-modal',
+  leakScope: true,
   viewModel,
 });

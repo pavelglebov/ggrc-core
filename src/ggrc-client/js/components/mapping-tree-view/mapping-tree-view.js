@@ -10,6 +10,7 @@ import Mappings from '../../models/mappers/mappings';
 export default can.Component.extend({
   tag: 'mapping-tree-view',
   template,
+  leakScope: true,
   viewModel: {
     treeViewClass: '@',
     expandable: '@',

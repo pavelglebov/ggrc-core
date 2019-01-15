@@ -66,6 +66,7 @@ const viewModel = {
 export default can.Component.extend({
   tag: 'read-more',
   template,
+  leakScope: true,
   viewModel,
   init() {
     const observedElement = $(arguments[0]).children()[0];

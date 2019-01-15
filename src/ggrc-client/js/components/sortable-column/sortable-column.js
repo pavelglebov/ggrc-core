@@ -8,6 +8,7 @@ import template from './sortable-column.mustache';
 export default can.Component.extend({
   tag: 'sortable-column',
   template: template,
+  leakScope: true,
   viewModel: {
     define: {
       isSorted: {

@@ -12,6 +12,7 @@ const tag = 'numberbox-form-field';
 export default can.Component.extend({
   template,
   tag,
+  leakScope: true,
   viewModel: TEXT_FORM_FIELD_VM,
   events: {
     inserted() {

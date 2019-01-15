@@ -11,6 +11,7 @@ import template from './templates/custom-roles.mustache';
 export default can.Component.extend({
   tag: 'custom-roles',
   template: template,
+  leakScope: true,
   viewModel: {
     define: {
       isReadonly: {

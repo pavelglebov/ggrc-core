@@ -8,6 +8,7 @@ import template from './autocomplete-dropdown.mustache';
 export default can.Component.extend({
   tag: 'autocomplete-dropdown',
   template,
+  leakScope: true,
   viewModel: {
     options: [],
     filteredOptions: [],

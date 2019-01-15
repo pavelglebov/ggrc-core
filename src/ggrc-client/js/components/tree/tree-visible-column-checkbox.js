@@ -9,6 +9,7 @@ const tag = 'tree-visible-column-checkbox';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     column: {},
     onChange(attr) {

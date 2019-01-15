@@ -15,6 +15,7 @@ const tag = 'person-data';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     define: {
       personId: {

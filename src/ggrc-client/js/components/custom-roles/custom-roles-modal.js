@@ -13,6 +13,7 @@ import template from './templates/custom-roles-modal.mustache';
 export default can.Component.extend({
   tag: 'custom-roles-modal',
   template,
+  leakScope: true,
   viewModel: {
     instance: {},
     updatableGroupId: null,

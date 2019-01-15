@@ -20,6 +20,7 @@ const errorMessages = {
 export default can.Component.extend({
   tag: 'gca-controls',
   template,
+  leakScope: true,
   viewModel: {
     instance: {},
     items: [],

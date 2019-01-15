@@ -9,6 +9,7 @@ import template from './inline-item.mustache';
 export default can.Component.extend({
   tag: 'assessment-inline-item',
   template,
+  leakScope: true,
   viewModel: {
     instance: {},
     propName: '@',

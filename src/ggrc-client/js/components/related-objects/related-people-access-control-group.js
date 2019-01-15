@@ -10,6 +10,7 @@ import Permission from '../../permission';
 
 export default can.Component.extend({
   tag: 'related-people-access-control-group',
+  leakScope: true,
   viewModel: {
     define: {
       canEdit: {

@@ -9,6 +9,7 @@ import template from './custom-attributes.mustache';
 export default can.Component.extend({
   tag: 'assessment-custom-attributes',
   template,
+  leakScope: true,
   viewModel: {
     items: [],
     editMode: false,

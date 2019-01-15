@@ -127,6 +127,7 @@ const viewModel = {
 export default can.Component.extend({
   template,
   tag,
+  leakScope: true,
   viewModel: viewModel,
   events: {
     '{viewModel} selectedItem.data'() {

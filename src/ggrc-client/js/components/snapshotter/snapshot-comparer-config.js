@@ -7,6 +7,7 @@ const tag = 'snapshot-comparer-config';
 
 export default can.Component.extend({
   tag,
+  leakScope: true,
   viewModel: {
     define: {
       rightRevision: {

@@ -8,6 +8,7 @@ import template from './mapping-type-selector.mustache';
 export default can.Component.extend({
   tag: 'mapping-type-selector',
   template,
+  leakScope: true,
   viewModel: {
     disabled: false,
     readonly: false,

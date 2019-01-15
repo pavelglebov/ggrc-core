@@ -22,6 +22,7 @@ import template from './templates/tree-actions.mustache';
 export default can.Component.extend({
   tag: 'tree-actions',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       addItem: {

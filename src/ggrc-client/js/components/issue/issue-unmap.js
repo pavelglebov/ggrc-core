@@ -9,6 +9,7 @@ import template from './issue-unmap.mustache';
 export default can.Component.extend({
   tag: 'issue-unmap',
   template,
+  leakScope: true,
   viewModel: {
     issueInstance: {},
     target: {},

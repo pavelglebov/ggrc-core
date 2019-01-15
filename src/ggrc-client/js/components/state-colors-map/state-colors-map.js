@@ -39,5 +39,6 @@ let viewModel = can.Map.extend({
 export default can.Component.extend({
   tag: 'state-colors-map',
   template,
+  leakScope: true,
   viewModel,
 });

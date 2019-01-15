@@ -95,5 +95,6 @@ let viewModel = AdvancedSearchContainer.extend({
 export default can.Component.extend({
   tag: 'advanced-search-filter-container',
   template: template,
+  leakScope: true,
   viewModel: viewModel,
 });

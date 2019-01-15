@@ -12,6 +12,7 @@ const tag = 'apply-decline-proposal';
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     define: {
       canDisplayApplyButton: {

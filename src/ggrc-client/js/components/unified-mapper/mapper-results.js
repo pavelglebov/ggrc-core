@@ -33,6 +33,7 @@ const DEFAULT_PAGE_SIZE = 10;
 export default can.Component.extend({
   tag: 'mapper-results',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       paging: {

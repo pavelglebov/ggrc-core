@@ -10,6 +10,7 @@ import {notifier} from '../../plugins/utils/notifiers-utils';
 export default can.Component.extend({
   tag: 'bulk-update-button',
   template: template,
+  leakScope: true,
   viewModel: {
     model: null,
     openBulkUpdateModal: function (el, type) {

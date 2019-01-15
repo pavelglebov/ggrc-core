@@ -56,4 +56,5 @@ export default can.Component.extend({
         });
     },
   },
+  leakScope: true,
 });

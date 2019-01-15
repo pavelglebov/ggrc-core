@@ -9,6 +9,7 @@ import template from './templates/people-group-modal.mustache';
 export default can.Component.extend({
   tag: 'people-group-modal',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       selectedCount: {

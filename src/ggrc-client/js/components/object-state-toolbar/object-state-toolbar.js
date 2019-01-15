@@ -15,6 +15,7 @@ const activeStates = ['In Progress', 'Rework Needed', 'Not Started'];
 export default can.Component.extend({
   tag,
   template,
+  leakScope: true,
   viewModel: {
     define: {
       updateState: {

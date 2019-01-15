@@ -13,6 +13,7 @@ import Context from '../../models/service-models/context';
 
 export default can.Component.extend({
   tag: 'comment-data-provider',
+  leakScope: true,
   viewModel: {
     instance: null,
     comments: [],

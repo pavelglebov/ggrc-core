@@ -8,6 +8,7 @@ const tag = 'sort-by';
 
 export default can.Component.extend({
   tag,
+  leakScope: true,
   viewModel: {
     sortedItems: [],
     isSnapshot: false,

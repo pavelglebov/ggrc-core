@@ -16,6 +16,7 @@ import template from './external-data-autocomplete.mustache';
 export default can.Component.extend({
   tag: 'external-data-autocomplete',
   template,
+  leakScope: true,
   viewModel: {
     define: {
       /**

@@ -16,6 +16,7 @@ import template from './object-search.mustache';
 export default can.Component.extend({
   tag: 'object-search',
   template,
+  leakScope: true,
   viewModel: function () {
     return ObjectOperationsBaseVM.extend({
       object: 'MultitypeSearch',

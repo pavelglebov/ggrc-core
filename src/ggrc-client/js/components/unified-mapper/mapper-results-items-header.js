@@ -8,6 +8,7 @@ import template from './templates/mapper-results-items-header.mustache';
 export default can.Component.extend({
   tag: 'mapper-results-items-header',
   template,
+  leakScope: true,
   viewModel: {
     columns: [],
     sortKey: '',

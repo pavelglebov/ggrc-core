@@ -20,6 +20,7 @@ export const keyMap = {
 export default can.Component.extend({
   tag: 'autocomplete-input',
   template: template,
+  leakScope: true,
   viewModel: {
     define: {
       // flag for showing 'autocomplete-result'

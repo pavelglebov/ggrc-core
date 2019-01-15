@@ -181,5 +181,6 @@ let viewModel = can.Map.extend({
 export default can.Component.extend({
   tag: 'tree-item-extra-info',
   template,
+  leakScope: true,
   viewModel,
 });

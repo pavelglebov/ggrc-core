@@ -9,6 +9,7 @@ import Evidence from '../../../models/business-models/evidence';
 
 export default can.Component.extend({
   tag: 'create-url',
+  leakScope: true,
   viewModel: {
     value: null,
     context: null,

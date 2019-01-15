@@ -21,6 +21,7 @@ const viewModel = viewModelBase.extend({
 export default can.Component.extend({
   tag: 'inline-aggregate-field',
   template,
+  leakScope: true,
   viewModel,
   events: {
     '{viewModel} source': function () {

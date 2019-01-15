@@ -7,6 +7,7 @@ import Mappings from '../../models/mappers/mappings';
 
 export default can.Component.extend({
   tag: 'assessment-object-type-dropdown',
+  leakScope: true,
   viewModel: {
     define: {
       objectTypes: {
