@@ -12,6 +12,9 @@
           <h6>{{modifyFieldTitle instance.type 'Title'}}</h6>
         {{/is_info_pin}}
         <div class="pane-header__title-details">
+          {{^if instance.mega_program}}
+            <i class="fa fa-bookmark mega-program-info-pin-icon"></i>
+          {{/if}}
           <h3>{{title}}</h3>
 
           {{#if snapshot}}
