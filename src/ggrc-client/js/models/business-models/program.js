@@ -62,7 +62,7 @@ export default Cacheable('CMS.Models.Program', {
     display_attr_names: ['title', 'status', 'updated_at', 'Program Managers'],
   },
   sub_tree_view_options: {
-    default_filter: ['Standard'],
+    default_filter: ['Standard', 'Program'],
   },
   defaults: {
     status: 'Draft',
