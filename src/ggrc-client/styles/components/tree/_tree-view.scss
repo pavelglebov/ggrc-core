@@ -464,8 +464,10 @@ sub-tree-models {
     }
 
     .sub-models_item {
-      min-width: 140px;
+      min-width: 160px;
       margin-bottom: 15px;
+      margin-right: 5px;
+      flex: 0 1 0;
 
       input {
         margin-right: 5px;

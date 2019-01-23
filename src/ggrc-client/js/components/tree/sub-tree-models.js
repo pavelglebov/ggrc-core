@@ -24,6 +24,8 @@ let viewModel = can.Map.extend({
           model.attr('inputId', 'stm-' +
             (Date.now() * Math.random()).toFixed());
           return model;
+        }).sort((a, b) => {
+          return a.name > b.name ? 1 : -1;
         });
       },
     },
