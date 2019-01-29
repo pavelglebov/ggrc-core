@@ -3,3 +3,4 @@ src/ggrc-client/vendor/*
 src/ggrc-client/styles/*.js
 src/ggrc-client/js/generated/*.js
 src/parser/parser_template.js
+src/ggrc-client/eslint-rules/*.js

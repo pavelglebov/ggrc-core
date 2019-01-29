@@ -1,5 +1,17 @@
-{
+/*
+ Copyright (C) 2019 Google Inc.
+ Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
+ */
+
+const rulesDirPlugin = require('eslint-plugin-rulesdir');
+rulesDirPlugin.RULES_DIR = 'src/ggrc-client/eslint-rules';
+
+module.exports = {
   "extends": ["eslint:recommended", "eslint-config-google"],
+
+  "plugins": [
+    "rulesdir"
+  ],
 
   "env": {
     "es6": true,
@@ -115,6 +127,7 @@
     }, {
       "object": "can",
       "property": "when"
-    }]
+    }],
+    "rulesdir/enforce-leakscope": "error"
   }
-}
+};

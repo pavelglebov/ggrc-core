@@ -24,9 +24,10 @@ let viewModel = can.Map.extend({
 /**
  * Filter Operator is a component representing operation connecting Advanced Search items.
  */
-export default can.Component.extend({
+const obj = {
   tag: 'advanced-search-filter-operator',
   template: template,
-  leakScope: true,
   viewModel: viewModel,
-});
+};
+
+export default can.Component(obj);

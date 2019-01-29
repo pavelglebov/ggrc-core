@@ -5,6 +5,5 @@
 
 export default can.Component.extend({
   tag: 'action-toolbar',
-  leakScope: true,
   viewModel: {},
 });
