@@ -64,6 +64,7 @@ export default Cacheable('CMS.Models.Program', {
   sub_tree_view_options: {
     default_filter: ['Standard', 'Program'],
   },
+  // relation_to_the_same_type: ['child', 'parent'],
   defaults: {
     status: 'Draft',
   },

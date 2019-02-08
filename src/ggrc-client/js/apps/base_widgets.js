@@ -111,7 +111,7 @@ baseWidgetsByType = {
   Process: filteredTypes,
   Product: filteredTypes,
   ProductGroup: filteredTypes,
-  Program: ['Parent Programs', 'Child Programs'].concat(_.difference(filteredTypes, ['Program', 'Assessment'])),
+  Program: _.difference(filteredTypes, ['Assessment']),
   Project: filteredTypes,
   Regulation: _.difference(filteredTypes, ['Regulation']),
   Requirement: filteredTypes,

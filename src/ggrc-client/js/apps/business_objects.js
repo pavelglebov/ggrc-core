@@ -18,6 +18,7 @@ import {
   isAllObjects,
 } from '../plugins/utils/current-page-utils';
 import * as businessModels from '../models/business-models/index';
+import Program from '../models/business-models/program';
 import TreeViewConfig from '../apps/base_widgets';
 
 const summaryWidgetViews = Object.freeze({
@@ -58,6 +59,7 @@ _.assign(CoreExtension, {
     let possibleModelType;
     let farModels;
     let extraDescriptorOptions;
+    let mutatedModels;
 
     // Info and summary widgets display the object information instead of listing
     // connected objects.
@@ -177,6 +179,36 @@ _.assign(CoreExtension, {
           order: 9,
         },
       },
+      Program: {
+        'Child Programs': {
+          widgetType: 'treeview',
+          treeViewDepth: 3,
+          widget_id: 'Child programs',
+          widget_name: 'Child Programs',
+          model: Program,
+          content_controller_options: {
+            depth: true,
+            filterDeepLimit: 2,
+            parent_instance: object,
+            model: Program,
+            countsName: 'Program',
+          },
+        },
+        'Parent Programs': {
+          widgetType: 'treeview',
+          treeViewDepth: 3,
+          widget_id: 'Parent programs',
+          widget_name: 'Parent Programs',
+          model: Program,
+          content_controller_options: {
+            depth: true,
+            filterDeepLimit: 2,
+            parent_instance: object,
+            model: Program,
+            countsName: 'Program',
+          },
+        },
+      }
     };
 
     _.forEach(farModels, function (modelName) {
