@@ -34,10 +34,7 @@ class AuditResource(mixins.SnapshotCounts, common.ExtendedResource):
         "summary": self.summary_query,
         "snapshot_counts": self.snapshot_counts_query,
     }
-    command = kwargs.pop("command", None)
-    if command not in command_map:
-      self.not_found_response()
-    return command_map[command](*args, **kwargs)
+    return self._process_request(command_map, *args, **kwargs)
 
   def summary_query(self, id):
     """Get data for audit summary page."""

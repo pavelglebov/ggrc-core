@@ -28,10 +28,7 @@ class AssessmentResource(mixins.SnapshotCounts, common.ExtendedResource):
         "related_objects": self.related_objects,
         "snapshot_counts": self.snapshot_counts_query,
     }
-    command = kwargs.pop("command", None)
-    if command not in command_map:
-      self.not_found_response()
-    return command_map[command](*args, **kwargs)
+    return self._process_request(command_map, *args, **kwargs)
 
   @staticmethod
   def _get_relationships(assessment):

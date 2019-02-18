@@ -1564,6 +1564,13 @@ class ExtendedResource(Resource):
 
     return self.json_success_response(result)
 
+  def _process_request(self, command_map, *args, **kwargs):
+    """Process request"""
+    command = kwargs.get("command", None)
+    if command not in command_map:
+      return self.not_found_response()
+    return command_map[command](*args, **kwargs)
+
 
 def filter_resource(resource, depth=0, user_permissions=None):  # noqa
   """

@@ -23,10 +23,7 @@ class SnapshotResource(common.ExtendedResource):
         None: super(SnapshotResource, self).get,
         "related_objects": self.related_objects,
     }
-    command = kwargs.pop("command", None)
-    if command not in command_map:
-      self.not_found_response()
-    return command_map[command](*args, **kwargs)
+    return self._process_request(command_map, *args, **kwargs)
 
   def related_objects(self, id):
     """Get data for snapshot related_objects page."""

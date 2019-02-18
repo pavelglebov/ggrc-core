@@ -158,13 +158,6 @@ class PersonResource(common.ExtendedResource):
     }
     return self._process_request(command_map, *args, **kwargs)
 
-  def _process_request(self, command_map, *args, **kwargs):
-    """Process request"""
-    command = kwargs.pop("command", None)
-    if command not in command_map:
-      self.not_found_response()
-    return command_map[command](*args, **kwargs)
-
   def _task_count(self, id):
     """Return open task count and overdue flag for a given user."""
     # id name is used as a kw argument and can't be changed here

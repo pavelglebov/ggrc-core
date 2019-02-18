@@ -22,10 +22,7 @@ class ProgramResource(common.ExtendedResource):
         "child_programs": self.related_programs,
         "parent_programs": self.related_programs,
     }
-    command = kwargs.get("command", None)
-    if command not in command_map:
-      return self.not_found_response()
-    return command_map[command](*args, **kwargs)
+    return self._process_request(command_map, *args, **kwargs)
 
   def related_programs(self, id, command=None):
     """Get data for Program related commands."""
