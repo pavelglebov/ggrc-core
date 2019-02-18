@@ -19,6 +19,7 @@ def contributed_services():
   from ggrc.services.resources import external
   from ggrc.services.resources import issue
   from ggrc.services.resources import person
+  from ggrc.services.resources import program
   from ggrc.services.resources import related_assessments
   from ggrc.services.resources import relationship
   from ggrc.services.resources import snapshot
@@ -57,7 +58,7 @@ def contributed_services():
       service('people_profiles', models.PersonProfile),
       service('products', models.Product),
       service('projects', models.Project),
-      service('programs', models.Program),
+      service('programs', models.Program, program.ProgramResource),
       service('relationships',
               models.Relationship,
               relationship.RelationshipResource),
