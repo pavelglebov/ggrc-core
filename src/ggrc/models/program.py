@@ -3,31 +3,30 @@
 
 """Program model."""
 from ggrc import db
-from ggrc.fulltext.mixin import Indexed
-from ggrc.access_control.roleable import Roleable
-from ggrc.models.context import HasOwnContext
+from ggrc.access_control import roleable
+from ggrc.fulltext import mixin as ft_mixin
+from ggrc.models import context
+from ggrc.models import deferred
 from ggrc.models import mixins
-from ggrc.models.mixins import base
-from ggrc.models.deferred import deferred
 from ggrc.models import object_document
-from ggrc.models.object_person import Personable
+from ggrc.models import object_person
 from ggrc.models import reflection
+from ggrc.models import relationship
 from ggrc.models import review
-from ggrc.models.relationship import Relatable
 
 
 class Program(review.Reviewable,
               mixins.CustomAttributable,
               object_document.PublicDocumentable,
-              Roleable,
-              Personable,
-              Relatable,
-              HasOwnContext,
+              roleable.Roleable,
+              object_person.Personable,
+              relationship.Relatable,
+              context.HasOwnContext,
               mixins.LastDeprecatedTimeboxed,
-              base.ContextRBAC,
+              mixins.base.ContextRBAC,
               mixins.BusinessObject,
               mixins.Folderable,
-              Indexed,
+              ft_mixin.Indexed,
               db.Model):
   """Representation for Program model."""
   __tablename__ = 'programs'
@@ -35,7 +34,7 @@ class Program(review.Reviewable,
   KINDS = ['Directive']
   KINDS_HIDDEN = ['Company Controls Policy']
 
-  kind = deferred(db.Column(db.String), 'Program')
+  kind = deferred.deferred(db.Column(db.String), 'Program')
 
   audits = db.relationship(
       'Audit', backref='program', cascade='all, delete-orphan')
