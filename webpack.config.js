@@ -11,6 +11,7 @@ const path = require('path');
 const getReleaseNotesDate = require('./getReleaseNotesDate.js');
 const ENV = process.env;
 const isProd = ENV.NODE_ENV === 'production';
+const isCoverage = ENV.COVERAGE === 'true';
 
 const contextDir = path.resolve(__dirname, 'src', 'ggrc-client');
 const imagesDir = path.resolve(contextDir, 'images');
@@ -168,6 +169,16 @@ module.exports = function (env) {
         },
       }),
     ];
+  }
+
+  if (isCoverage) {
+    config.module.rules.push({
+      test: /\.js$/,
+      use: {
+        loader: 'istanbul-instrumenter-loader',
+        options: {esModules: true},
+      },
+    });
   }
 
   if (!env || (env && !env.test)) {

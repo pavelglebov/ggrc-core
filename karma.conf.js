@@ -4,6 +4,9 @@
 // Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 
 const devConfig = require('./webpack.config')({test: true});
+const path = require('path');
+const ENV = process.env;
+const isCoverage = ENV.COVERAGE === 'true';
 
 module.exports = function (config) {
   let configuration = {
@@ -36,11 +39,6 @@ module.exports = function (config) {
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress'],
-
-    junitReporter: {
-      outputDir: 'test',
-      useBrowserName: false
-    },
 
     // web server port
     port: 9876,
@@ -76,6 +74,31 @@ module.exports = function (config) {
       },
     },
   };
+
+  if (isCoverage) {
+    configuration.singleRun = true;
+    configuration.reporters.push('coverage-istanbul');
+    configuration.processKillTimeout = 10000;
+    configuration.coverageIstanbulReporter = {
+      // reports can be any that are listed here: https://github.com/istanbuljs/istanbuljs/tree/aae256fb8b9a3d19414dcf069c592e88712c32c6/packages/istanbul-reports/lib
+      reports: ['html', 'text-summary'],
+
+      // base output directory. If you include %browser% in the path it will be replaced with the karma browser name
+      dir: path.join(__dirname, 'coverage'),
+
+      // Combines coverage information from multiple browsers into one report rather than outputting a report
+      // for each browser.
+      combineBrowserReports: true,
+
+      // if using webpack and pre-loaders, work around webpack breaking the source path
+      fixWebpackSourcePaths: true,
+
+      // Omit files with no statements, no functions and no branches from the report
+      skipFilesWithNoCoverage: true,
+
+      verbose: false, // output config used by istanbul for debugging
+    };
+  }
 
   config.set(configuration);
 };
