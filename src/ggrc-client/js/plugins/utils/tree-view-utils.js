@@ -25,9 +25,13 @@ import {
 } from './query-api-utils';
 import {
   parentHasObjectVersions,
+  // getWidgetConfigs,
+  // getWidgetConfig,
+} from './object-versions-utils';
+import {
   getWidgetConfigs,
   getWidgetConfig,
-} from './object-versions-utils';
+} from './widgets-utils';
 import {getRolesForType} from './acl-utils';
 import Mappings from '../../models/mappers/mappings';
 import {caDefTypeName} from './custom-attribute/custom-attribute-config';

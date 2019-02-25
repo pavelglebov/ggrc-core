@@ -10,7 +10,7 @@ import WidgetList from '../modules/widget_list';
 import {isDashboardEnabled} from '../plugins/utils/dashboards-utils';
 import {
   getWidgetConfig,
-} from '../plugins/utils/object-versions-utils';
+} from '../plugins/utils/widgets-utils';
 import {widgetModules} from '../plugins/utils/widgets-utils';
 import {
   getPageInstance,

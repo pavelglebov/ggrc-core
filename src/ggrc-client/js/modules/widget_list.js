@@ -69,23 +69,24 @@ export default can.Construct.extend({
           options && options.widget_view || widget.widget_view
         );
       } else if (widget.widgetType === 'treeview') {
-        // if (pageType === widgetId &&
-        //   widget.instance.class.relation_to_the_same_type) {
-        //     widget.instance.class.relation_to_the_same_type.forEach((relation) => {
-        //       let widgetName = relation.charAt(0).toUpperCase() +
-        //         relation.slice(1) +
-        //         ' ' +
-        //         widget.instance.class.title_plural;
-        //       descriptors[widgetName] = WidgetDescriptor.make_tree_view(
-        //         options && (options.instance || options.parent_instance) ||
-        //           widget.instance,
-        //         options && options.model || widget.far_model ||
-        //           widget.model,
-        //         widget,
-        //         widgetId
-        //       );
-        //     });
-        // } else {
+        if (widgetId === pageType && widget.instance.class.isMegaObject) {
+          const widgetsGroup = [
+            widgetId,
+            widgetId + '_child',
+            widgetId + '_parent',
+          ];
+
+          widgetsGroup.forEach((el => {
+            descriptors[el] = WidgetDescriptor.make_tree_view(
+              options && (options.instance || options.parent_instance) ||
+                widget.instance,
+              options && options.model || widget.far_model ||
+                widget.model,
+              widget,
+              el
+            );
+          }));
+        } else {
           descriptors[widgetId] = WidgetDescriptor.make_tree_view(
             options && (options.instance || options.parent_instance) ||
               widget.instance,
@@ -94,7 +95,7 @@ export default can.Construct.extend({
             widget,
             widgetId
           );
-        // }
+        }
       } else {
         descriptors[widgetId] = new WidgetDescriptor(
           pageType + ':' + widgetId, widget);

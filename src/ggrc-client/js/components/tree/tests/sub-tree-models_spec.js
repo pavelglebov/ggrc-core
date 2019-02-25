@@ -8,7 +8,7 @@ import childModelsMap from '../child-models-map';
 import * as TreeViewUtils from '../../../plugins/utils/tree-view-utils';
 import {
   getWidgetConfig,
-} from '../../../plugins/utils/object-versions-utils';
+} from '../../../plugins/utils/widgets-utils';
 
 describe('sub-tree-models component', function () {
   let vm;

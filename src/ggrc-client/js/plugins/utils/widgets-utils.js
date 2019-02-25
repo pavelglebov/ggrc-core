@@ -15,17 +15,19 @@ import {
 } from './snapshot-utils';
 import {
   isObjectVersion,
-  getWidgetConfigs,
+  // getWidgetConfigs,
+  getObjectVersionConfig,
 } from './object-versions-utils';
-import Person from '../../models/business-models/person';
 import WidgetList from '../../modules/widget_list';
 import {
   getPageType,
   getPageInstance,
 } from './current-page-utils';
 import QueryParser from '../../generated/ggrc_filter_query_parser';
+import * as businessModels from '../../models/business-models';
 
 let widgetsCounts = new can.Map({});
+let cachedObjects = {};
 
 let CUSTOM_COUNTERS = {
   MY_WORK: () => _getCurrentUser().getWidgetCountForMyWorkPage(),
@@ -35,7 +37,7 @@ let CUSTOM_COUNTERS = {
 function _getCurrentUser() {
   let userId = GGRC.current_user.id;
 
-  return Person.findInCacheById(userId);
+  return businessModels.Person.findInCacheById(userId);
 }
 
 const widgetModules = [];
@@ -76,6 +78,12 @@ function getWidgetList(modelName, path) {
   return widgetList;
 }
 
+function isMegaObjectRelated(widgetName) {
+  return widgetName && typeof widgetName === 'string' ?
+    (widgetName.indexOf('_child') > -1 || widgetName.indexOf('_parent') > -1) :
+    false;
+}
+
 function getWidgetModels(modelName, path) {
   const widgetList = getWidgetList(modelName, path);
   const defaults = getDefaultWidgets(widgetList, path);
@@ -83,7 +91,8 @@ function getWidgetModels(modelName, path) {
   return defaults
     .filter((name) => widgetList[name].widgetType === 'treeview')
     .map((widgetName) => {
-      return isObjectVersion(widgetName) ? widgetName :
+      return isObjectVersion(widgetName) || isMegaObjectRelated(widgetName) ?
+        widgetName :
         widgetList[widgetName].content_controller_options.model.shortName;
     });
 }
@@ -163,8 +172,12 @@ function _initWidgetCounts(widgets, type, id) {
 
   let params = [];
   _.each(widgetsObject, function (widgetObject) {
+    let operation;
+    if (widgetObject.isMegaObject) {
+      // operation = widgetObject.widgetId.split('_')[1];
+    }
     let expression = TreeViewUtils
-      .makeRelevantExpression(widgetObject.name, type, id);
+      .makeRelevantExpression(widgetObject.name, type, id, operation);
 
     let param = buildParam(widgetObject.name,
       {}, expression, null,
@@ -209,6 +222,69 @@ function refreshCounts() {
   return initWidgetCounts(widgets, pageInstance.type, pageInstance.id);
 }
 
+function getWidgetConfigs(modelNames) {
+  let configs = modelNames.map(function (modelName) {
+    return getWidgetConfig(modelName);
+  });
+  return configs;
+}
+
+function getWidgetConfig(modelName, buildVersionFromOriginal) {
+  let config = {};
+  let originalModelName;
+  let configObject;
+  let objectVersion;
+  let isMegaObject;
+
+  // Workflow approach
+  if (_.isObject(modelName)) {
+    modelName.widgetName = modelName.name;
+    modelName.widgetId = modelName.name;
+    return modelName;
+  }
+
+  if (cachedObjects[modelName]) {
+    return cachedObjects[modelName];
+  }
+
+  if (isObjectVersion(modelName)) {
+    config = getObjectVersionConfig(modelName, buildVersionFromOriginal);
+  } else if (isMegaObjectRelated(modelName)) {
+    config = getMegaObjectConfig(modelName);
+  }
+
+  objectVersion = config.isObjectVersion;
+  originalModelName = config.originalModelName || modelName;
+
+  configObject = {
+    name: originalModelName,
+    widgetId: config.widgetId || modelName,
+    widgetName: config.widgetName || modelName,
+    countsName: modelName,
+    isObjectVersion: objectVersion,
+    isMegaObject: config.isMegaObject,
+  };
+
+  cachedObjects.modelName = configObject;
+  return configObject;
+}
+
+function getMegaObjectConfig(modelName) {
+  let originalModelName,
+      postfix;
+
+  [originalModelName, postfix] = modelName.split('_');
+
+  return {
+    originalModelName: originalModelName,
+    widgetId: modelName,
+    widgetName: businessModels[originalModelName].title_plural +
+      ' ' + postfix.charAt(0).toUpperCase() + postfix.slice(1),
+    isMegaObject: true,
+  };
+
+}
+
 export {
   getWidgetList,
   getWidgetModels,
@@ -218,4 +294,6 @@ export {
   refreshCounts,
   widgetModules,
   initWidgets,
+  getWidgetConfig,
+  getWidgetConfigs,
 };

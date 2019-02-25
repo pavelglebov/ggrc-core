@@ -10,6 +10,7 @@ import caUpdate from '../mixins/ca-update';
 import timeboxed from '../mixins/timeboxed';
 import accessControlList from '../mixins/access-control-list';
 import baseNotifications from '../mixins/base-notifications';
+import megaObject from '../mixins/mega-object';
 import Stub from '../stub';
 
 export default Cacheable('CMS.Models.Program', {
@@ -27,6 +28,7 @@ export default Cacheable('CMS.Models.Program', {
     timeboxed,
     accessControlList,
     baseNotifications,
+    megaObject,
   ],
   is_custom_attributable: true,
   isRoleable: true,
@@ -64,7 +66,6 @@ export default Cacheable('CMS.Models.Program', {
   sub_tree_view_options: {
     default_filter: ['Standard', 'Program'],
   },
-  // relation_to_the_same_type: ['child', 'parent'],
   defaults: {
     status: 'Draft',
   },

@@ -10,7 +10,7 @@ import {
 } from '../../plugins/utils/tree-view-utils';
 import {
   getWidgetConfig,
-} from '../../plugins/utils/object-versions-utils';
+} from '../../plugins/utils/widgets-utils';
 
 let viewModel = can.Map.extend({
   define: {

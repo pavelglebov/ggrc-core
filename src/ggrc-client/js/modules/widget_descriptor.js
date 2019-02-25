@@ -6,7 +6,7 @@
 import SummaryWidgetController from '../controllers/summary_widget_controller';
 import DashboardWidget from '../controllers/dashboard_widget_controller';
 import InfoWidget from '../controllers/info_widget_controller';
-import {getWidgetConfig} from '../plugins/utils/object-versions-utils';
+import {getWidgetConfig} from '../plugins/utils/widgets-utils';
 import Program from '../models/business-models/program';
 
 const widgetDescriptors = {};
@@ -106,16 +106,17 @@ export default can.Construct.extend({
   */
   make_tree_view: function (instance, farModel, extenders, id) {
     let descriptor;
-    let objectVersionConfig = getWidgetConfig(id);
+    let objectConfig = getWidgetConfig(id);
     // Should not even try to create descriptor if configuration options are missing
     if (!instance || !farModel) {
       console.warn(
         `Arguments are missing or have incorrect format ${arguments}`);
       return null;
     }
-    let widgetId = objectVersionConfig.isObjectVersion ?
+    let widgetId = objectConfig.isObjectVersion ?
       farModel.table_singular + '_version' :
-      farModel.table_singular;
+      (objectConfig.isMegaObject ?
+        objectConfig.widgetId.toLowerCase() : farModel.table_singular);
     descriptor = {
       widgetType: 'treeview',
       treeViewDepth: 2,
@@ -130,21 +131,22 @@ export default can.Construct.extend({
         return true;
       },
       widget_name: function () {
-        let farModelName = objectVersionConfig.isObjectVersion ?
-          objectVersionConfig.widgetName :
-          farModel.title_plural;
+        let farModelName =
+          objectConfig.isObjectVersion || objectConfig.isMegaObject ?
+            objectConfig.widgetName :
+            farModel.title_plural;
 
         return farModelName;
       },
       widget_icon: farModel.table_singular,
       object_category: farModel.category || 'default',
       model: farModel,
-      objectVersion: objectVersionConfig.isObjectVersion,
+      objectVersion: objectConfig.isObjectVersion,
       content_controller_options: {
         parent_instance: instance,
         model: farModel,
-        objectVersion: objectVersionConfig.isObjectVersion,
-        countsName: objectVersionConfig.countsName,
+        objectVersion: objectConfig.isObjectVersion,
+        countsName: objectConfig.countsName,
         widgetId,
       },
     };
