@@ -533,6 +533,38 @@ def not_empty_revisions(exp, object_class, target_class, query):
   return all_models.Revision.id.in_(revision_with_changes)
 
 
+@validate("object_name", "ids")
+def child_op(exp, object_class, *_):
+  """Filter by children objects"""
+  if not(exp["object_name"] == "Program" and
+         object_class is all_models.Program):
+    raise BadQueryException("child operation "
+                            "works with object Program only")
+  ids = exp["ids"]
+  _children_ids = set()
+  for _id in ids:
+    _children_ids.update(
+        all_models.Program.query.get(_id).relatives_ids("children")
+    )
+  return object_class.id.in_(_children_ids)
+
+
+@validate("object_name", "ids")
+def parent_op(exp, object_class, target_class, query):
+  """Filter by parents objects"""
+  if not(exp["object_name"] == "Program" and
+         object_class is all_models.Program):
+    raise BadQueryException("parent operation "
+                            "works with object Program only")
+  ids = exp["ids"]
+  _parents_ids = set()
+  for _id in ids:
+    _parents_ids.update(
+        all_models.Program.query.get(_id).relatives_ids("parents")
+    )
+  return object_class.id.in_(_parents_ids)
+
+
 EQ_OPERATOR = validate("left", "right")(build_op_shortcut(operator.eq))
 LT_OPERATOR = validate("left", "right")(build_op_shortcut(operator.lt))
 GT_OPERATOR = validate("left", "right")(build_op_shortcut(operator.gt))
@@ -561,4 +593,6 @@ OPS = {
     "is": is_filter,
     "cascade_unmappable": cascade_unmappable,
     "not_empty_revisions": not_empty_revisions,
+    "child": child_op,
+    "parent": parent_op,
 }
