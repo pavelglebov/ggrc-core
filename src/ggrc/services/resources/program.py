@@ -35,7 +35,7 @@ class ProgramResource(common.ExtendedResource):
       raise exceptions.Forbidden()
     data = []
     if command == "child_programs":
-      pass
+      data = program.children()
     elif command == "parent_programs":
-      pass
+      data = program.parents()
     return self.json_success_response(data)

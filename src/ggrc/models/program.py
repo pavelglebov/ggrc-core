@@ -7,6 +7,7 @@ from ggrc.access_control import roleable
 from ggrc.fulltext import mixin as ft_mixin
 from ggrc.models import context
 from ggrc.models import deferred
+from ggrc.models import mega
 from ggrc.models import mixins
 from ggrc.models import object_document
 from ggrc.models import object_person
@@ -15,7 +16,8 @@ from ggrc.models import relationship
 from ggrc.models import review
 
 
-class Program(review.Reviewable,
+class Program(mega.Mega,
+              review.Reviewable,
               mixins.CustomAttributable,
               object_document.PublicDocumentable,
               roleable.Roleable,
