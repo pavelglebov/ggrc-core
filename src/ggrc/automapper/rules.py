@@ -11,11 +11,26 @@ class AutomappingRuleConfigError(ValueError):
   pass
 
 
-TYPE_ORDERING = [['Program'],
-                 ['Regulation', 'Policy', 'Standard', 'Contract'],
-                 ['Requirement'], ['Objective'], ['Control']]
+MEGA_MAPPINGS = [
+    "Regulation", "Objective", "Control", "Clause", "Contract",
+    "Policy", "Risk", "Standard", "Thread", "Requirement",
+    "System", "Product", "Process", "Market", "DataAsset",
+    "Facility", "OrgGroup", "Metric", "Technology Environment",
+    "Product Group", "Projects", "Vendors", "Access Groups"
+]
 
-TYPE_ORDERING += [["Issue"], ["Assessment"], ["Audit", "Snapshot"]]
+
+TYPE_ORDERING = [
+    ["Program"],
+    MEGA_MAPPINGS,
+    ["Regulation", "Policy", "Standard", "Contract"],
+    ["Requirement"],
+    ["Objective"],
+    ["Control"],
+    ["Issue"],
+    ["Assessment"],
+    ["Audit", "Snapshot"],
+]
 
 
 def get_type_levels():
@@ -94,20 +109,26 @@ def rules_to_str(rules):
 
 class Types(object):
   """Model names and collections to use in Rule initialization."""
-  directives = {'Regulation', 'Policy', 'Standard', 'Contract'}
+  directives = {"Regulation", "Policy", "Standard", "Contract"}
 
 
 rules = make_rule_set(rule_list=[  # pylint: disable=invalid-name
     Rule(
         # mapping directive to a program
-        {'Program'},
+        {"Program"},
         Types.directives,
-        {'Requirement'}
+        {"Requirement"}
     ),
     Rule(
-        # mappings for 'raise an issue' on assessment page
+        # mappings for "raise an issue" on assessment page
         {"Issue"},
         {"Assessment"},
         {"Audit", "Snapshot"},
+    ),
+    Rule(
+        # mappings for Mega Program
+        {"Program"},
+        {"Program"},
+        set(MEGA_MAPPINGS),
     ),
 ])
