@@ -25,6 +25,7 @@
 < docs/source/_static/data_model/entity-relationship diagram.mwb
 < docs/source/_static/data_model/entity-relationship diagram.pdf
 < docs/source/_static/.gitkeep
+< docs/source/support/aliases.rst
 < docs/source/support/deployment_and_update.rst
 < docs/source/support/index.rst
 < docs/source/_templates/.gitkeep
