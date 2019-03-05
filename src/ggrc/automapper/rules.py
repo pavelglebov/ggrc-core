@@ -11,18 +11,13 @@ class AutomappingRuleConfigError(ValueError):
   pass
 
 
-MEGA_MAPPINGS = [
-    "Regulation", "Objective", "Control", "Clause", "Contract",
-    "Policy", "Risk", "Standard", "Thread", "Requirement",
-    "System", "Product", "Process", "Market", "DataAsset",
-    "Facility", "OrgGroup", "Metric", "Technology Environment",
-    "Product Group", "Projects", "Vendors", "Access Groups"
-]
-
-
 TYPE_ORDERING = [
     ["Program"],
-    MEGA_MAPPINGS,
+    [
+        "Clause", "Risk", "Thread", "System", "Product", "Process", "Market",
+        "DataAsset", "Facility", "OrgGroup", "Metric", "Access Groups",
+        "Product Group", "Projects", "Vendors", "Technology Environment",
+    ],
     ["Regulation", "Policy", "Standard", "Contract"],
     ["Requirement"],
     ["Objective"],
@@ -109,14 +104,21 @@ def rules_to_str(rules):
 
 class Types(object):
   """Model names and collections to use in Rule initialization."""
-  directives = {"Regulation", "Policy", "Standard", "Contract"}
+  DIRECTIVES = {"Regulation", "Policy", "Standard", "Contract"}
+  MEGA_MAPPINGS = {
+      "Regulation", "Objective", "Control", "Clause", "Contract",
+      "Policy", "Risk", "Standard", "Thread", "Requirement",
+      "System", "Product", "Process", "Market", "DataAsset",
+      "Facility", "OrgGroup", "Metric", "Technology Environment",
+      "Product Group", "Projects", "Vendors", "Access Groups"
+  }
 
 
 rules = make_rule_set(rule_list=[  # pylint: disable=invalid-name
     Rule(
         # mapping directive to a program
         {"Program"},
-        Types.directives,
+        Types.DIRECTIVES,
         {"Requirement"}
     ),
     Rule(
@@ -129,6 +131,6 @@ rules = make_rule_set(rule_list=[  # pylint: disable=invalid-name
         # mappings for Mega Program
         {"Program"},
         {"Program"},
-        set(MEGA_MAPPINGS),
+        Types.MEGA_MAPPINGS,
     ),
 ])
