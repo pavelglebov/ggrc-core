@@ -206,7 +206,7 @@ class AutomapperGenerator(object):
       children_ids = self.program_children_cache[parent.id]
     else:
       _program = program.Program.query.get(parent.id)
-      children_ids = {o.id for o in _program.children()}
+      children_ids = _program.relatives_ids("children")
       self.program_children_cache[parent.id] = children_ids
     return child.id in children_ids
 
