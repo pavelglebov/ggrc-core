@@ -1,7 +1,8 @@
 # Copyright (C) 2018 Google Inc.
 # Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 """Module for Mega mixin"""
-from sqlalchemy import orm
+import sqlalchemy as sa
+from sqlalchemy.ext.declarative import declared_attr
 
 from ggrc import db
 from ggrc.builder import simple_property
@@ -20,13 +21,19 @@ class Mega(object):
   @simple_property
   def is_mega(self):
     """Returns True if object have children"""
-    rel = relationship.Relationship
-    _is_mega = db.session.query(rel.query.filter(
-        rel.source_id == self.id,
-        rel.source_type == self.__class__.__name__,
-        rel.destination_type == self.__class__.__name__,
-    ).exists()).scalar()
-    return _is_mega
+    return bool(self._child_relationships)
+
+  @declared_attr
+  def _child_relationships(cls):  # pylint: disable=no-self-argument
+    """Return relationships to child Programs"""
+    join_str = """and_(foreign(Relationship.source_id) == Program.id,
+                       foreign(Relationship.source_type) == 'Program',
+                       foreign(Relationship.destination_type) == 'Program')"""
+    _child_relationships = db.relationship(
+        "Relationship",
+        primaryjoin=join_str,
+    )
+    return _child_relationships
 
   def relatives_ids(self, direction):
     """Returns ids of relatives"""
@@ -57,7 +64,7 @@ class Mega(object):
   def relatives(self, direction):
     return self.__class__.query.filter(
         self.__class__.id.in_(self.relatives_ids(direction))
-    ).options(orm.undefer('title')).all()
+    ).options(sa.orm.undefer('title')).all()
 
   def children(self):
     """Returns object children """
@@ -66,3 +73,11 @@ class Mega(object):
   def parents(self):
     """Returns object parents"""
     return self.relatives("parents")
+
+  @classmethod
+  def eager_query(cls):
+    """Define fields to be loaded eagerly to lower the count of DB queries."""
+    query = super(Mega, cls).eager_query()
+    return query.options(
+        sa.orm.subqueryload('_child_relationships')
+    )
