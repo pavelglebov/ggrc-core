@@ -582,6 +582,18 @@ class Revision(ChangesSynchronized, Filterable, base.ContextRBAC, Base,
         else:
           populated_content[attr] = None
 
+  def populate_automappings(self):
+    """Add automapping info in revisions."""
+    from ggrc.models import automapping
+    if "automapping_id" not in self._content \
+        or not self._content["automapping_id"]:
+      return {}
+    automapping_id = self._content["automapping_id"]
+    automapping = automapping.Automapping.query.get(automapping_id)
+    if not automapping:
+      return {}
+    return {"automapping": automapping.log_json()}
+
   @builder.simple_property
   def content(self):
     """Property. Contains the revision content dict.
@@ -600,6 +612,7 @@ class Revision(ChangesSynchronized, Filterable, base.ContextRBAC, Base,
     populated_content.update(self.populate_categoies("assertions"))
     populated_content.update(self.populate_cad_default_values())
     populated_content.update(self.populate_cavs())
+    populated_content.update(self.populate_automappings())
 
     self.populate_requirements(populated_content)
     self.populate_options(populated_content)

@@ -120,6 +120,7 @@ class AutomapperGenerator(object):
               source_type=parent_relationship.source_type,
               destination_id=parent_relationship.destination_id,
               destination_type=parent_relationship.destination_type,
+              modified_by_id=current_user_id,
           )
       )
       automapping_id = automapping_result.inserted_primary_key[0]
