@@ -585,8 +585,8 @@ class Revision(ChangesSynchronized, Filterable, base.ContextRBAC, Base,
   def populate_automappings(self):
     """Add automapping info in revisions."""
     from ggrc.models import automapping
-    if "automapping_id" not in self._content \
-        or not self._content["automapping_id"]:
+    if ("automapping_id" not in self._content or
+            not self._content["automapping_id"]):
       return {}
     automapping_id = self._content["automapping_id"]
     automapping = automapping.Automapping.query.get(automapping_id)

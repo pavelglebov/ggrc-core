@@ -1,6 +1,7 @@
 # Copyright (C) 2018 Google Inc.
 # Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 """Module for Mega mixin"""
+
 import sqlalchemy as sa
 from sqlalchemy.ext.declarative import declared_attr
 
@@ -25,21 +26,29 @@ class Mega(object):
 
   @declared_attr
   def _child_relationships(cls):  # pylint: disable=no-self-argument
-    """Return relationships to child Programs"""
-    join_str = """and_(foreign(Relationship.source_id) == Program.id,
-                       foreign(Relationship.source_type) == 'Program',
-                       foreign(Relationship.destination_type) == 'Program')"""
-    _child_relationships = db.relationship(
-        "Relationship",
-        primaryjoin=join_str,
+    """Return relationships to children
+    used to eagerly query is_mega property"""
+    joinstr = (
+        "and_(foreign(Relationship.source_id) == {cls_name}.id,"
+        "foreign(Relationship.source_type) == '{cls_name}',"
+        "foreign(Relationship.destination_type) == '{cls_name}')"
     )
-    return _child_relationships
+    return db.relationship(
+        "Relationship",
+        primaryjoin=joinstr.format(cls_name=cls.__name__),
+    )
 
-  def relatives_ids(self, direction):
+  @classmethod
+  def eager_query(cls):
+    """Define fields to be loaded eagerly to lower the count of DB queries."""
+    query = super(Mega, cls).eager_query()
+    return query.options(
+        sa.orm.subqueryload('_child_relationships')
+    )
+
+  def relatives_ids(self, direction, all_generations=False):
     """Returns ids of relatives"""
     rel = relationship.Relationship
-    visited = set()
-    not_visited = {self.id, }
     if direction == "children":
       direction_filter = rel.source_id.in_
       not_visited_attr = "destination_id"
@@ -49,6 +58,8 @@ class Mega(object):
     else:
       raise ValueError
 
+    visited = set()
+    not_visited = {self.id, }
     while not_visited:
       child_rels = rel.query.filter(
           direction_filter(not_visited),
@@ -58,26 +69,21 @@ class Mega(object):
       visited.update(not_visited)
       not_visited = set((getattr(r, not_visited_attr) for r in child_rels
                          if getattr(r, not_visited_attr) not in visited))
+      if not all_generations:
+        visited.update(not_visited)
+        break
     visited.discard(self.id)
     return visited
 
-  def relatives(self, direction):
+  def relatives(self, direction, all_generations=False):
     return self.__class__.query.filter(
-        self.__class__.id.in_(self.relatives_ids(direction))
+        self.__class__.id.in_(self.relatives_ids(direction, all_generations))
     ).options(sa.orm.undefer('title')).all()
 
   def children(self):
     """Returns object children """
-    return self.relatives("children")
+    return self.relatives("children", all_generations=True)
 
   def parents(self):
     """Returns object parents"""
-    return self.relatives("parents")
-
-  @classmethod
-  def eager_query(cls):
-    """Define fields to be loaded eagerly to lower the count of DB queries."""
-    query = super(Mega, cls).eager_query()
-    return query.options(
-        sa.orm.subqueryload('_child_relationships')
-    )
+    return self.relatives("parents", all_generations=True)
