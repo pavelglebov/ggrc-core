@@ -2,6 +2,7 @@
 # Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 
 """Defines a Revision model for storing snapshots."""
+import flask
 import json
 
 from ggrc import builder
@@ -10,6 +11,7 @@ from ggrc.models.mixins import base
 from ggrc.models.mixins import Base
 from ggrc.models.mixins.filterable import Filterable
 from ggrc.models.mixins.synchronizable import ChangesSynchronized
+from ggrc.models import automapping
 from ggrc.models import reflection
 from ggrc.access_control import role
 from ggrc.models.types import LongJsonType
@@ -584,15 +586,21 @@ class Revision(ChangesSynchronized, Filterable, base.ContextRBAC, Base,
 
   def populate_automappings(self):
     """Add automapping info in revisions."""
-    from ggrc.models import automapping
     if ("automapping_id" not in self._content or
             not self._content["automapping_id"]):
       return {}
     automapping_id = self._content["automapping_id"]
-    automapping = automapping.Automapping.query.get(automapping_id)
-    if not automapping:
-      return {}
-    return {"automapping": automapping.log_json()}
+    if not hasattr(flask.g, "automappings_cache"):
+      flask.g.automappings_cache = dict()
+    if automapping_id not in flask.g.automappings_cache:
+      automapping_obj = automapping.Automapping.query.get(automapping_id)
+      if automapping_obj is None:
+        return {}
+      automapping_json = automapping_obj.log_json()
+      flask.g.automappings_cache[automapping_id] = automapping_json
+    else:
+      automapping_json = flask.g.automappings_cache[automapping_id]
+    return {"automapping": automapping_json}
 
   @builder.simple_property
   def content(self):
