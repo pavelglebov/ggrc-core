@@ -19,13 +19,13 @@ class ProgramResource(common.ExtendedResource):
     # pylint: disable=arguments-differ
     command_map = {
         None: super(ProgramResource, self).get,
-        "child_programs": self.related_programs,
-        "parent_programs": self.related_programs,
+        "child_programs": self.child_programs,
+        "parent_programs": self.parent_programs,
     }
     return self._process_request(command_map, *args, **kwargs)
 
-  def related_programs(self, id, command=None):
-    """Get data for Program related commands."""
+  def child_programs(self, id):
+    """Get data for Program child_programs command."""
     # pylint: disable=invalid-name,redefined-builtin
     from ggrc.rbac import permissions
     program = models.Program.query.get(id)
@@ -33,9 +33,17 @@ class ProgramResource(common.ExtendedResource):
       return self.not_found_response()
     if not permissions.is_allowed_read_for(program):
       raise exceptions.Forbidden()
-    data = []
-    if command == "child_programs":
-      data = program.children()
-    elif command == "parent_programs":
-      data = program.parents()
+    data = program.children()
+    return self.json_success_response(data)
+
+  def parent_programs(self, id):
+    """Get data for Program parent_programs command."""
+    # pylint: disable=invalid-name,redefined-builtin
+    from ggrc.rbac import permissions
+    program = models.Program.query.get(id)
+    if program is None:
+      return self.not_found_response()
+    if not permissions.is_allowed_read_for(program):
+      raise exceptions.Forbidden()
+    data = program.parents()
     return self.json_success_response(data)
