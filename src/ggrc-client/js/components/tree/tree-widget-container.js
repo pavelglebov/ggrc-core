@@ -45,6 +45,7 @@ import {
 import {
   getCounts,
 } from '../../plugins/utils/widgets-utils';
+import {getMegaObjectRelation} from '../../plugins/utils/mega-object-utils';
 import * as AdvancedSearch from '../../plugins/utils/advanced-search-utils';
 import Pagination from '../base-objects/pagination';
 import tracker from '../../tracker';
@@ -214,6 +215,16 @@ viewModel = can.Map.extend({
     this.attr('loading', true);
 
     let loadSnapshots = this.attr('options.objectVersion');
+    let megaObject = this.attr('options.megaObject');
+    let operation;
+    if (megaObject) {
+      const widget = this.attr('options.widgetId');
+      let relation = getMegaObjectRelation(widget);
+      if (relation) {
+        operation = relation.relation;
+      }
+    }
+
     return TreeViewUtils
       .loadFirstTierItems(
         modelName,
@@ -221,7 +232,8 @@ viewModel = can.Map.extend({
         page,
         filter,
         request,
-        loadSnapshots)
+        loadSnapshots,
+        operation)
       .then((data) => {
         const total = data.total;
 

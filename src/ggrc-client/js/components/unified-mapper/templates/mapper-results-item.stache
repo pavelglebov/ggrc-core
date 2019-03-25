@@ -20,7 +20,8 @@
     <mapper-results-item-attrs
       instance="displayItem"
       model-type="objectType"
-      columns="selectedColumns">
+      columns="selectedColumns"
+      >
     </mapper-results-item-attrs>
   </div>
   {{#drawRelatedAssessments}}

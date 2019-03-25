@@ -62,6 +62,7 @@
 
   &__title-details {
     display: flex;
+    align-items: center;
   }
 
   &__toolbar {
@@ -73,6 +74,13 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+  }
+
+  .mega-program-info-pin-icon {
+    font-size: 1.2em;
+    margin-right: 0.4em;
+    margin-top: 0.4em;
+    color: $lightBlueBtn;
   }
 }
 

@@ -132,6 +132,7 @@
         {deferred-list}="deferred_list"
         {filter-items}="*filterItems"
         {mapping-items}="*mappingItems"
+        {^items}="mapperResultsItems"
         (loaded)="onLoaded()"
         {status-item}="*statusItem">
       </mapper-results>

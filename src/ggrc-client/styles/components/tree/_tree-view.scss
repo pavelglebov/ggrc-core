@@ -106,6 +106,12 @@ tree-view {
       }
     }
   }
+
+  .mega-program-tree-view-icon {
+    font-size: 1em;
+    margin-right: 0.2em;
+    color: $lightBlueBtn;
+  }
 }
 
 
@@ -445,8 +451,10 @@ sub-tree-models {
     }
 
     .sub-models_item {
-      min-width: 140px;
+      min-width: 160px;
       margin-bottom: 15px;
+      margin-right: 5px;
+      flex: 0 1 0;
 
       input {
         margin-right: 5px;

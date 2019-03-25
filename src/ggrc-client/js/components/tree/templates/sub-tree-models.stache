@@ -21,7 +21,7 @@
                  id="{{inputId}}"
                  {($checked)}="display"
                  value="{{name}}">
-          <label for="{{inputId}}">{{widgetName}}</label>
+          <label for="{{inputId}}" class="single-line" title="{{widgetName}}">{{widgetName}}</label>
       </div>
     {{/uniqueModelsList}}
   </div>

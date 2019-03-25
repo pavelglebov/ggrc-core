@@ -14,7 +14,18 @@
         <span class="person-label {{lowercase role }}"></span>
         <div class="w-status">
           <div class="entry-author">
-            <person-data {person}="madeBy"></person-data>made changes &mdash; {{dateTime updatedAt}}
+            {{#automapping}}
+              System 
+            {{/automapping}}
+            {{^automapping}}
+              <person-data {person}="madeBy"></person-data>
+            {{/automapping}}
+
+            made changes &mdash; {{dateTime updatedAt}}
+
+            {{#automapping}}
+               {{automapping.title}}
+            {{/automapping}}
           </div>
             <div class="third-col">
               <p class="instruction">Field</p>

@@ -307,6 +307,13 @@ mapper-results-item {
       height: 32px;
       width: $icon-width;
     }
+
+    .mega-program-tree-view-icon {
+      width: auto;
+      font-size: 1em;
+      margin-right: 0.2em;
+      color: $lightBlueBtn;
+    }
   }
 
   object-selection-item {

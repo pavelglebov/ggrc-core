@@ -6,17 +6,24 @@
 {{#switch name}}
 
   {{#case 'title'}}
-    {{#if_instance_of instance 'Document|Evidence'}}
-      <a class="link" href="{{normalizeLink instance.link}}" target="_blank">
-        {{instance.title}}
-      </a>
+    {{#if_instance_of instance 'Program'}}
+      {{#if instance.is_mega}}
+        <i class="fa fa-bookmark mega-program-tree-view-icon"></i>
+      {{/if}}
+      {{instance.title}}
     {{else}}
-      {{#if_instance_of instance 'Person'}}
-      <div class="email tree-title-area">
-        {{instance.name}}
-      </div>
+      {{#if_instance_of instance 'Document|Evidence'}}
+        <a class="link" href="{{normalizeLink instance.link}}" target="_blank">
+          {{instance.title}}
+        </a>
       {{else}}
-        {{instance.title}}
+        {{#if_instance_of instance 'Person'}}
+        <div class="email tree-title-area">
+          {{instance.name}}
+        </div>
+        {{else}}
+          {{instance.title}}
+        {{/if_instance_of}}
       {{/if_instance_of}}
     {{/if_instance_of}}
   {{/case}}
@@ -219,6 +226,27 @@
         No
       {{/if}}
     </span>
+  {{/case}}
+
+  {{#case 'map_as'}}
+    <radio-button class="tree-radio-select-area" {target-value}="mapAsChild">
+      <label>
+        <input
+          type="radio"
+          name="map_as--{{instance.id}}"
+          can-value="mapAsChild"
+          value="false"
+          {{#if isDisabled}}disabled{{/if}}> Parent
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="map_as--{{instance.id}}"
+          can-value="mapAsChild"
+          value="true"
+          {{#if isDisabled}}disabled{{/if}}> Child
+      </label>
+    </radio-button>
   {{/case}}
 
   {{#default}}

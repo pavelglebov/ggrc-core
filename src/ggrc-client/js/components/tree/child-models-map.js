@@ -8,6 +8,7 @@ import {
   setChildTreeDisplayList,
 } from '../../plugins/utils/display-prefs-utils';
 import * as businessModels from '../../models/business-models/index';
+import {isMegaObjectRelated} from '../../plugins/utils/mega-object-utils';
 
 const childModelsMap = can.Map.extend({
   container: {},
@@ -17,7 +18,9 @@ const childModelsMap = can.Map.extend({
 
       if (savedModels) {
         // filter types that do not exist
-        savedModels = savedModels.filter((type) => businessModels[type]);
+        // (mega object relations are not business types but need to be passed)
+        savedModels = savedModels.filter((type) =>
+          businessModels[type] || isMegaObjectRelated(type));
       }
 
       this.attr('container').attr(parentType, savedModels);
