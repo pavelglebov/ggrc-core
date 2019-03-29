@@ -8,19 +8,27 @@
     <div class="attr">
       {{#switch attr_type}}
         {{#case 'custom'}}
-          <tree-item-custom-attribute {instance}="instance"
-                                      {custom-attribute-id}="attr_custom_attribute_id"
+          <tree-item-custom-attribute
+            {instance}="instance"
+            {custom-attribute-id}="attr_custom_attribute_id"
           ></tree-item-custom-attribute>
         {{/case}}
 
         {{#case 'role'}}
           <div class="roles attr-content">
-            <tree-people-with-role-list-field {instance}="instance" {role}="attr_name"/>
+            <tree-people-with-role-list-field
+              {instance}="instance"
+              {role}="attr_name"/>
           </div>
         {{/case}}
 
         {{#case 'default'}}
-          <tree-item-attr {instance}="instance" {name}="attr_name"></tree-item-attr>
+          <tree-item-attr
+            {instance}="instance"
+            {name}="attr_name"
+            map-as-child="mapAsChild"
+            is-disabled="isDisabled">
+          </tree-item-attr>
         {{/case}}
       {{/switch}}
     </div>

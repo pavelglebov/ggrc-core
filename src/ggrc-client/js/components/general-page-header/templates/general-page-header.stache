@@ -12,6 +12,11 @@
         {{/is_info_pin}}
         <div class="general-page-header__title-details">
           <div class="action-toolbar general-page-header__title-wrapper">
+            {{#if_instance_of instance 'Program'}}
+              {{#if instance.is_mega}}
+                <i class="fa fa-bookmark mega-program-info-pin-icon"></i>
+              {{/if}}
+            {{/if_instance_of}}
             <h3 class="action-toolbar__header general-page-header__title-value">{{title}}</h3>
             {{#if redirectionEnabled}}
             <div class="action-toolbar__controls">

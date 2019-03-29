@@ -19,6 +19,7 @@ import objectBulkUpdateTemplate from './object-bulk-update-modal.stache';
 import {notifier} from '../../plugins/utils/notifiers-utils';
 import * as businessModels from '../../models/business-models';
 import {changeUrl} from '../../router';
+import {getMegaObjectRelation} from '../../plugins/utils/mega-object-utils';
 
 const DATA_CORRUPTION_MESSAGE = 'Some Data is corrupted! ' +
             'Missing Scope Object';
@@ -74,6 +75,8 @@ const ObjectMapper = can.Control.extend({
 
     if (isAuditScopeModel(data.join_object_type) && !isSearch) {
       openForSnapshots(data);
+    } else if (data.mega_object) {
+      openForMegaObject(data);
     } else {
       openForCommonObjects(data, isSearch);
     }
@@ -148,6 +151,19 @@ const ObjectMapper = can.Control.extend({
       } else {
         self.launch(btn, Object.assign(config, data));
       }
+    }
+
+    function openForMegaObject(data) {
+      const config = getConfigForCommonObjects(data);
+
+      const relation = getMegaObjectRelation(data.mega_object_widget);
+
+      _.assign(config.general, {
+        isMegaObject: data.mega_object,
+        megaRelation: relation && relation.relation,
+      });
+
+      self.launch(btn, Object.assign(config, data));
     }
 
     function getBaseConfig() {

@@ -31,6 +31,6 @@ let viewModel = can.Map.extend({
 export default can.Component.extend({
   tag,
   template,
-  leakScope: true,
+  leakScope: false,
   viewModel,
 });

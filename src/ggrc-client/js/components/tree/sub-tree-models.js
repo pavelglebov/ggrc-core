@@ -10,7 +10,7 @@ import {
 } from '../../plugins/utils/tree-view-utils';
 import {
   getWidgetConfig,
-} from '../../plugins/utils/object-versions-utils';
+} from '../../plugins/utils/widgets-utils';
 
 let viewModel = can.Map.extend({
   define: {
@@ -71,8 +71,10 @@ let viewModel = can.Map.extend({
     let displayList;
 
     displayList = defaultModels.available.map(function (model) {
+      let config = getWidgetConfig(model);
+
       return {
-        widgetName: getWidgetConfig(model).widgetName,
+        widgetName: config.widgetName,
         name: model,
         display: selectedModels.indexOf(model) !== -1,
       };

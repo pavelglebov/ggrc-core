@@ -34,6 +34,8 @@ import Mappings from '../../models/mappers/mappings';
 import {mapObjects as mapObjectsUtil} from '../../plugins/utils/mapper-utils';
 import * as businessModels from '../../models/business-models';
 import TreeViewConfig from '../../apps/base_widgets';
+import {confirm} from '../../plugins/utils/modals';
+import {isMegaMapping} from '../../plugins/utils/mega-object-utils';
 
 let DEFAULT_OBJECT_MAP = {
   AccountBalance: 'Control',
@@ -124,6 +126,7 @@ export default can.Component.extend({
       deferred: false,
       isMappableExternally: false,
       searchModel: null,
+      mapperResultsItems: null,
       showAsSnapshots: function () {
         if (this.attr('freezedConfigTillSubmit.useSnapshots')) {
           return true;
@@ -172,7 +175,7 @@ export default can.Component.extend({
       this.closeModal();
 
       if (event.objects.length) {
-        this.map(event.objects);
+        this.map(event.objects, event.options);
       }
     },
     // hide object-mapper modal when create new object button clicked
@@ -206,7 +209,7 @@ export default can.Component.extend({
 
       self.viewModel.onSubmit();
     },
-    map(objects) {
+    map(objects, options) {
       const viewModel = this.viewModel;
 
       viewModel.updateFreezedConfigToLatest();
@@ -215,8 +218,16 @@ export default can.Component.extend({
         // postpone map operation unless target object is saved
         this.deferredSave(objects);
       } else {
+        let megaMapping;
+        let relationsObj;
+
+        if (options && options.megaMapping) {
+          megaMapping = options.megaMapping;
+          relationsObj = {};
+          objects.forEach((obj) => relationsObj[obj.id] = options.megaRelation);
+        }
         // map objects immediately
-        this.mapObjects(objects);
+        this.mapObjects(objects, megaMapping, relationsObj);
       }
     },
     closeModal: function () {
@@ -250,14 +261,58 @@ export default can.Component.extend({
       }
 
       const selectedObjects = this.viewModel.attr('selected');
-      // TODO: Figure out nicer / proper way to handle deferred save
+      // If we need to map object later on (set by 'data-deferred' attribute)
       if (this.viewModel.attr('deferred')) {
         return this.deferredSave(selectedObjects);
       }
+
+      const megaMapping = isMegaMapping(this.viewModel.attr('object'),
+        this.viewModel.attr('type'));
+
+      if (megaMapping) {
+        this.proceedWithMegaMapping(selectedObjects);
+      } else {
+        this.proceedWithRegularMapping(selectedObjects);
+      }
+    },
+    proceedWithMegaMapping(selectedObjects) {
+      let relationsObj = {};
+      const mapperItems = this.viewModel.attr('mapperResultsItems');
+
+      selectedObjects.forEach((obj) => {
+        const relation = _.find(mapperItems, (mapperItem) => {
+          return obj.id === mapperItem.id;
+        });
+
+        if (relation) {
+          if (relation.mapAsChild === false ||
+              relation.mapAsChild === 'false') {
+            relationsObj[obj.id] = 'parent';
+          } else if (relation.mapAsChild === true ||
+                    relation.mapAsChild === 'true') {
+            relationsObj[obj.id] = 'child';
+          }
+        }
+      });
+
+      confirm({
+        modal_title: 'Confirmation',
+        modal_description: 'Objects from the child program will' +
+        ' automatically be mapped to parent program. Do you want' +
+        ' to proceed?',
+        modal_confirm: 'Proceed',
+        button_view:
+          `${GGRC.templates_path}/modals/confirm_cancel_buttons.stache`,
+      }, () => {
+        this.viewModel.attr('is_saving', true);
+        this.mapObjects(selectedObjects, true, relationsObj);
+      });
+    },
+    proceedWithRegularMapping(selectedObjects) {
       this.viewModel.attr('is_saving', true);
       this.mapObjects(selectedObjects);
     },
-    mapObjects(objects) {
+    mapObjects(objects, megaMapping, relationsObj) {
       const viewModel = this.viewModel;
       const object = viewModel.attr('object');
       const type = viewModel.attr('type');
@@ -277,6 +332,8 @@ export default can.Component.extend({
 
       mapObjectsUtil(instance, objects, {
         useSnapshots: viewModel.attr('useSnapshots'),
+        megaMapping: megaMapping,
+        relationsObj: relationsObj,
       })
         .then(() => {
           stopFn();

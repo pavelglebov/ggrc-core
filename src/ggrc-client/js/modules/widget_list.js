@@ -8,6 +8,8 @@ import DashboardWidget from '../controllers/dashboard_widget_controller';
 import InfoWidget from '../controllers/info_widget_controller';
 import WidgetDescriptor from './widget_descriptor';
 import {getPageInstance} from '../plugins/utils/current-page-utils';
+import * as businessModels from '../models/business-models';
+import {getRelatedModelNames} from '../plugins/utils/mega-object-utils';
 
 /*
   WidgetList - an extensions-ready repository for widget descriptor configs.
@@ -82,6 +84,26 @@ export default can.Construct.extend({
           pageType + ':' + widgetId, widget);
       }
     });
+
+    if (businessModels[pageType] && businessModels[pageType].isMegaObject) {
+      const modelNames = getRelatedModelNames(pageType);
+      let baseWidget;
+      let options;
+
+      modelNames.forEach((name) => {
+        baseWidget = widgets[name];
+        options = baseWidget.content_controller_options;
+
+        descriptors[name] = WidgetDescriptor.make_tree_view(
+          options && (options.instance || options.parent_instance) ||
+            baseWidget.instance,
+          options && options.model || baseWidget.far_model ||
+            baseWidget.model,
+          baseWidget,
+          name
+        );
+      });
+    }
 
     _.forEach(descriptors, function (descriptor, id) {
       if (!descriptor || descriptor.suppressed) {

@@ -45,6 +45,7 @@ import '../../components/unmap-button/unmap-dropdown-item';
 import '../../components/external-data-autocomplete/external-data-autocomplete';
 import '../../components/dashboard-workflows/dashboard-workflows';
 import '../../components/questionnaire-link/questionnaire-link';
+import '../../components/radio-button/radio-button';
 
 import '../../components/custom-roles/custom-roles';
 import '../../components/custom-roles/custom-roles-modal';

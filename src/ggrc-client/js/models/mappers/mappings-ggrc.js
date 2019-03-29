@@ -75,8 +75,8 @@ new Mappings({
   },
 
   Program: {
-    map: [...coreObjects, 'Document'],
-    unmap: [...coreObjects, 'Document'],
+    map: [...coreObjects, 'Program', 'Document'],
+    unmap: [...coreObjects, 'Program', 'Document'],
     indirectMappings: ['Audit', 'Person', 'TaskGroup', 'Workflow'],
   },
 

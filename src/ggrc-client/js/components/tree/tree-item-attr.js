@@ -37,6 +37,8 @@ export default can.Component.extend({
   viewModel: {
     instance: null,
     name: '',
+    mapAsChild: false,
+    isDisabled: false,
     define: {
       defaultValue: {
         type: String,

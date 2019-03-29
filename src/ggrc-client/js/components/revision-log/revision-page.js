@@ -552,6 +552,7 @@ export default can.Component.extend({
       let newVal;
       let previous;
       let madeByPersonId;
+      let automapping;
 
       if (revision.destination_type === this.attr('instance.type') &&
         revision.destination_id === this.attr('instance.id')) {
@@ -580,8 +581,31 @@ export default can.Component.extend({
       } else if (revision.action === 'deleted') {
         origVal = 'Created';
       }
-      madeByPersonId = revision.modified_by ? revision.modified_by.id : null;
 
+      // automapping has different description
+      automapping = revision.content.automapping;
+      if (automapping) {
+        const person = automapping.modified_by.name ||
+          automapping.modified_by.email;
+        const automappingTitle =
+          `(automapping triggered after ${person} mapped ` +
+        `${automapping.destination.type} "${automapping.destination.title}"` +
+        ` to ${automapping.source.type} "${automapping.source.title}")`;
+        return {
+          automapping: {
+            title: automappingTitle,
+          },
+          updatedAt: revision.updated_at,
+          role: 'none',
+          changes: {
+            origVal: origVal,
+            newVal: newVal,
+            fieldName: fieldName,
+          },
+        };
+      }
+
+      madeByPersonId = revision.modified_by ? revision.modified_by.id : null;
       return {
         madeBy: revision.modified_by,
         updatedAt: revision.updated_at,

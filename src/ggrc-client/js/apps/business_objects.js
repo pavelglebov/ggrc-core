@@ -8,9 +8,7 @@ import DashboardWidget from '../controllers/dashboard_widget_controller';
 import InfoWidget from '../controllers/info_widget_controller';
 import WidgetList from '../modules/widget_list';
 import {isDashboardEnabled} from '../plugins/utils/dashboards-utils';
-import {
-  getWidgetConfig,
-} from '../plugins/utils/object-versions-utils';
+import {getWidgetConfig} from '../plugins/utils/widgets-utils';
 import {widgetModules} from '../plugins/utils/widgets-utils';
 import {
   getPageInstance,
@@ -19,6 +17,11 @@ import {
 } from '../plugins/utils/current-page-utils';
 import * as businessModels from '../models/business-models/index';
 import TreeViewConfig from '../apps/base_widgets';
+import {
+  getRelatedModelNames,
+  isMegaObjectRelated,
+  getMegaObjectConfig,
+} from '../plugins/utils/mega-object-utils';
 
 const summaryWidgetViews = Object.freeze({
   audits: GGRC.templates_path + '/audits/summary.stache',
@@ -120,6 +123,13 @@ _.assign(CoreExtension, {
       farModels = baseWidgetsByType[object.constructor.model_singular];
     }
 
+    // add additional widgets for mega objects
+    if (businessModels[objectClass.model_singular].isMegaObject) {
+      farModels = farModels.concat(
+        getRelatedModelNames(objectClass.model_singular)
+      );
+    }
+
     // here we are going to define extra descriptor options, meaning that
     //  these will be used as extra options to create widgets on top of
 
@@ -180,7 +190,12 @@ _.assign(CoreExtension, {
     };
 
     _.forEach(farModels, function (modelName) {
-      let widgetConfig = getWidgetConfig(modelName);
+      const megaRelated = isMegaObjectRelated(modelName);
+
+      let widgetConfig = megaRelated ?
+        getMegaObjectConfig(modelName) :
+        getWidgetConfig(modelName);
+
       modelName = widgetConfig.name;
 
       let farModel;

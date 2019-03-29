@@ -10,6 +10,8 @@ import Relationship from '../../models/service-models/relationship';
 
 async function mapObjects(instance, objects, {
   useSnapshots = false,
+  megaMapping = false,
+  relationsObj = false,
 } = {}) {
   let defer = [];
   let que = new RefreshQueue();
@@ -28,6 +30,30 @@ async function mapObjects(instance, objects, {
             type: 'Snapshot',
             id: destination.id,
           },
+        });
+
+        return defer.push(modelInstance.save());
+      } else if (megaMapping) {
+        // If we map a new child to base program (relation == 'child'),
+        // the source is the base program and the destination is a new child.
+        // If we map a new parent to base program (relation == 'parent'),
+        // the source is a new program and the destination is the base program
+        const relation = relationsObj[destination.id];
+        let src;
+        let dest;
+
+        if (relation === 'child') {
+          src = instance;
+          dest = destination;
+        } else if (relation === 'parent') {
+          src = destination;
+          dest = instance;
+        }
+
+        modelInstance = new Relationship({
+          context,
+          source: src,
+          destination: dest,
         });
 
         return defer.push(modelInstance.save());

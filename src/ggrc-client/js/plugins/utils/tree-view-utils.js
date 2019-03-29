@@ -25,9 +25,17 @@ import {
 } from './query-api-utils';
 import {
   parentHasObjectVersions,
+} from './object-versions-utils';
+import {
   getWidgetConfigs,
   getWidgetConfig,
-} from './object-versions-utils';
+} from './widgets-utils';
+import {
+  isMegaObjectRelated,
+  getRelatedModelNames,
+  transformQueryForMega,
+  getMegaObjectRelation,
+} from './mega-object-utils';
 import {getRolesForType} from './acl-utils';
 import Mappings from '../../models/mappers/mappings';
 import {caDefTypeName} from './custom-attribute/custom-attribute-config';
@@ -100,6 +108,12 @@ const NO_DEFAULT_SORTING_LIST = Object.freeze([
 
 allTypes.forEach(function (type) {
   let related = baseWidgets[type].slice(0);
+  const isMegaObject = businessModels[type] &&
+    businessModels[type].isMegaObject;
+
+  if (isMegaObject) {
+    related = related.concat(getRelatedModelNames(type));
+  }
 
   orderedModelsForSubTier[type] = _.chain(related)
     .map(function (type) {
@@ -221,10 +235,14 @@ function getColumnsForModel(modelType, modelName) {
   let displayColumns;
 
   let allAttrs = getAvailableAttributes(modelType);
+
+  const megaAttrs = Model.tree_view_options.mega_attr_list;
+
   if (disableConfiguration) {
     return {
       available: allAttrs,
       selected: allAttrs,
+      mega: megaAttrs,
       disableConfiguration: true,
     };
   }
@@ -247,6 +265,7 @@ function getColumnsForModel(modelType, modelName) {
   return {
     available: allAttrs,
     selected: mandatoryColumns.concat(displayColumns),
+    mega: megaAttrs,
     mandatory: mandatoryAttrNames,
     disableConfiguration: false,
   };
@@ -380,6 +399,7 @@ function getModelsForSubTier(modelName) {
  * @param {Object} filter -
  * @param {Object} request - Collection of QueryAPI sub-requests
  * @param {Boolean} transformToSnapshot - Transform query to Snapshot
+ * @param {String} operation - Type of operation
  * @return {Promise} Deferred Object
  */
 function loadFirstTierItems(modelName,
@@ -387,13 +407,15 @@ function loadFirstTierItems(modelName,
   pageInfo,
   filter,
   request,
-  transformToSnapshot) {
+  transformToSnapshot,
+  operation) {
   let params = buildParam(
     modelName,
     pageInfo,
-    makeRelevantExpression(modelName, parent.type, parent.id),
+    makeRelevantExpression(modelName, parent.type, parent.id, operation),
     null,
-    filter
+    filter,
+    operation,
   );
   let requestedType;
   let requestData = request.slice() || can.List();
@@ -448,7 +470,7 @@ function loadItemsForSubTier(models, type, id, filter, pageInfo) {
       dfds = loadedModelObjects.map(function (modelObject) {
         let subTreeFields = getSubTreeFields(type, modelObject.name);
 
-        if (!pageInfo && countMap[modelObject.name]) {
+        if (!pageInfo && countMap[modelObject.name || modelObject.countsName]) {
           pageInfo = {
             current: 1,
             pageSize: countMap[modelObject.name],
@@ -463,9 +485,15 @@ function loadItemsForSubTier(models, type, id, filter, pageInfo) {
           filter
         );
 
+        if (isMegaObjectRelated(modelObject.countsName)) {
+          params.object_name = modelObject.countsName;
+        }
+
         if (isSnapshotRelated(relevant.type, params.object_name) ||
           modelObject.isObjectVersion) {
           params = transformQuery(params);
+        } else if (isMegaObjectRelated(modelObject.countsName)) {
+          params = transformQueryForMega(params);
         }
 
         return batchRequests(params);
@@ -628,6 +656,8 @@ function _buildSubTreeCountMap(models, relevant, filter) {
             relevant.type,
             param.object_name)) {
             param = transformQuery(param);
+          } else if (isMegaObjectRelated(param.object_name)) {
+            param = transformQueryForMega(param);
           }
           return param;
         });
@@ -637,8 +667,11 @@ function _buildSubTreeCountMap(models, relevant, filter) {
       .then((...response) => {
         let total = 0;
         let showMore = models.some(function (model, index) {
-          let count = response[index][model] ?
-            response[index][model].total :
+          let modelName = isMegaObjectRelated(model) ?
+            getMegaObjectRelation(model).source : model;
+
+          let count = response[index][modelName] ?
+            response[index][modelName].total :
             response[index].Snapshot.total;
 
           if (!count) {
