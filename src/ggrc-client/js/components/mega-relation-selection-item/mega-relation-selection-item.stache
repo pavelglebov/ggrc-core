@@ -1,0 +1,21 @@
+{{!
+    Copyright (C) 2019 Google Inc.
+    Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
+}}
+
+<label>
+  <input
+    type="radio"
+    name="map_as--{{id}}"
+    ($click)="switchRelation(false)"
+    {{^if mapAsChild}}checked{{/if}}
+    {{#if isDisabled}}disabled{{/if}}> Parent
+</label>
+<label>
+  <input
+    type="radio"
+    name="map_as--{{id}}"
+    ($click)="switchRelation(true)"
+    {{#if mapAsChild}}checked{{/if}}
+    {{#if isDisabled}}disabled{{/if}}> Child
+</label>
