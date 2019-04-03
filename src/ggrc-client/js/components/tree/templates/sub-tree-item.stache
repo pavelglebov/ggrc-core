@@ -12,6 +12,9 @@
   ></tree-item-actions>
   <div class="flex-box columns" ($click)="onClick($element, %event)">
     <span class="title">
+      {{#if instance.is_mega}}
+        <i class="fa fa-bookmark mega-object-tree-view-icon"></i>
+      {{/if}}
       <i class="fa fa-{{instance.class.table_singular}}"></i>
       {{title}}
     </span>
