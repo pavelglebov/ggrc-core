@@ -15,6 +15,12 @@ import Mappings from '../../models/mappers/mappings';
 import {inferObjectType} from './models-utils';
 import PersistentNotifier from '../persistent-notifier';
 import {changeUrl, reloadPage} from '../../router';
+import {
+  getRelatedModelNames,
+  isMegaObjectRelated,
+  transformQueryForMega,
+  getMegaObjectRelation,
+} from '../../plugins/utils/mega-object-utils';
 
 /**
  * Util methods for work with Current Page.
@@ -50,6 +56,14 @@ function initMappedInstances() {
   let models = Mappings.getMappingList(currentPageInstance.type);
   let reqParams = [];
 
+  if (currentPageInstance.class.isMegaObject) {
+    models = models.concat(getRelatedModelNames(currentPageInstance.type));
+    const selfInd = models.indexOf(currentPageInstance.type);
+    if (selfInd > -1) {
+      models.splice(selfInd, 1);
+    }
+  }
+
   relatedToCurrentInstance.attr('initialized', true);
   models = can.makeArray(models);
 
@@ -64,6 +78,8 @@ function initMappedInstances() {
       });
     if (isSnapshotRelated(currentPageInstance.type, model)) {
       query = transformQuery(query);
+    } else if (isMegaObjectRelated(model)) {
+      query = transformQueryForMega(query);
     }
     reqParams.push(batchRequests(query));
   });
@@ -73,6 +89,11 @@ function initMappedInstances() {
       let response = can.makeArray(arguments);
 
       models.forEach(function (model, idx) {
+        if (isMegaObjectRelated(model)) {
+          const relation = getMegaObjectRelation(model);
+          model = relation.source;
+        }
+
         let ids = response[idx][model] ?
           response[idx][model].ids :
           response[idx].Snapshot.ids;
@@ -80,7 +101,13 @@ function initMappedInstances() {
           mapped[id] = true;
           return mapped;
         }, {});
-        relatedToCurrentInstance.attr(model, map);
+
+        if (relatedToCurrentInstance.attr(model)) {
+          const extended = $.extend(relatedToCurrentInstance.attr(model), map);
+          relatedToCurrentInstance.attr(model, extended);
+        } else {
+          relatedToCurrentInstance.attr(model, map);
+        }
       });
       return relatedToCurrentInstance;
     });
