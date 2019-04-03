@@ -6,19 +6,24 @@
 {{#switch name}}
 
   {{#case 'title'}}
-    {{#if_instance_of instance 'Document|Evidence'}}
-      <a class="link" href="{{normalizeLink instance.link}}" target="_blank">
-        {{instance.title}}
-      </a>
+    {{#if instance.is_mega}}
+      <i class="fa fa-bookmark mega-object-tree-view-icon"></i>
+      {{instance.title}}
     {{else}}
-      {{#if_instance_of instance 'Person'}}
-      <div class="email tree-title-area">
-        {{instance.name}}
-      </div>
+      {{#if_instance_of instance 'Document|Evidence'}}
+        <a class="link" href="{{normalizeLink instance.link}}" target="_blank">
+          {{instance.title}}
+        </a>
       {{else}}
-        {{instance.title}}
+        {{#if_instance_of instance 'Person'}}
+        <div class="email tree-title-area">
+          {{instance.name}}
+        </div>
+        {{else}}
+          {{instance.title}}
+        {{/if_instance_of}}
       {{/if_instance_of}}
-    {{/if_instance_of}}
+    {{/if}}
   {{/case}}
 
   {{#case 'network_zone'}}
@@ -225,6 +230,15 @@
         No
       {{/if}}
     </span>
+  {{/case}}
+
+  {{#case 'map_as'}}
+    <mega-relation-selection-item
+      class="tree-radio-select-area"
+      {is-disabled}="{isDisabled}"
+      {id}="{instance.id}"
+      {map-as-child}="{mapAsChild}">
+    </mega-relation-selection-item>
   {{/case}}
 
   {{#default}}

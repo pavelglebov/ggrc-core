@@ -21,7 +21,12 @@
         {{/case}}
 
         {{#default}}
-          <tree-item-attr {instance}="{instance}" {name}="{attr_name}"></tree-item-attr>
+          <tree-item-attr
+            {instance}="{instance}"
+            {name}="{attr_name}"
+            {map-as-child}="{mapAsChild}"
+            {is-disabled}="{isDisabled}"
+          ></tree-item-attr>
         {{/default}}
       {{/switch}}
     </div>

@@ -30,6 +30,6 @@ let viewModel = can.Map.extend({
 export default can.Component.extend({
   tag: 'collapsible-panel',
   template: can.stache(template),
-  leakScope: true,
+  leakScope: false,
   viewModel,
 });

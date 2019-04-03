@@ -69,7 +69,13 @@
                       data-toggle="unified-mapper"
                       data-join-option-type="{{model.model_singular}}"
                       data-join-object-id="{{instance.id}}"
-                      data-join-object-type="{{instance.class.model_singular}}">
+                      data-join-object-type="{{instance.class.model_singular}}"
+                      {{#if instance.class.isMegaObject}}
+                        {{#is instance.type model.model_singular}}
+                          data-mega-object="true"
+                          data-mega-object-widget="{{id}}"
+                        {{/is}}
+                      {{/if}}>
                     <div class="oneline">
                       <i class="fa fa-fw fa-{{ icon }} color"></i>
                       {{title}}

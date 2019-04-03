@@ -34,10 +34,12 @@ const RICH_TEXT_ATTRS = Object.freeze({
 export default can.Component.extend({
   tag: 'tree-item-attr',
   template: can.stache(template),
-  leakScope: true,
+  leakScope: false,
   viewModel: {
     instance: null,
     name: '',
+    mapAsChild: false,
+    isDisabled: false,
     define: {
       defaultValue: {
         type: String,

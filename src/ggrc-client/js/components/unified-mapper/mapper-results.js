@@ -8,6 +8,7 @@ import './mapper-results-columns-configuration';
 import '../related-objects/related-assessments';
 import '../object-list/object-list';
 import '../object-selection/object-selection';
+import '../mega-relation-selection-item/mega-relation-selection-item';
 import '../tree_pagination/tree_pagination';
 import template from './templates/mapper-results.stache';
 import * as StateUtils from '../../plugins/utils/state-utils';
@@ -27,6 +28,7 @@ import tracker from '../../tracker';
 import Snapshot from '../../models/service-models/snapshot';
 import * as businessModels from '../../models/business-models';
 import QueryParser from '../../generated/ggrc_filter_query_parser';
+import {isMegaMapping} from '../../plugins/utils/mega-object-utils';
 
 const DEFAULT_PAGE_SIZE = 10;
 
@@ -39,6 +41,12 @@ export default can.Component.extend({
       paging: {
         value: function () {
           return new Pagination({pageSizeSelect: [10, 25, 50]});
+        },
+      },
+      megaRelation: {
+        set(val) {
+          this.attr('megaRelationObj').defaultValue = val;
+          return val;
         },
       },
     },
@@ -78,6 +86,9 @@ export default can.Component.extend({
     objectGenerator: false,
     deferredList: [],
     disabledIds: [],
+    megaRelationObj: {
+      defaultValue: 'parent',
+    },
     init: function () {
       this.attr('submitCbs').add(this.onSearch.bind(this, true));
     },
@@ -107,9 +118,20 @@ export default can.Component.extend({
         TreeViewUtils.getColumnsForModel(
           this.getDisplayModel().model_singular
         );
+
+      const megaMapping =
+        isMegaMapping(this.attr('object'), this.attr('type'));
+      if (megaMapping) {
+        this.addMegaColumns(columns);
+      }
+
       this.attr('columns.available', columns.available);
       this.attr('columns.selected', columns.selected);
       this.attr('disableColumnsConfiguration', columns.disableConfiguration);
+    },
+    addMegaColumns: function (columns) {
+      columns.available = columns.available.concat(columns.mega);
+      columns.selected = columns.selected.concat(columns.mega);
     },
     setSortingConfiguration: function () {
       let sortingInfo = TreeViewUtils.getSortingForModel(
@@ -150,7 +172,7 @@ export default can.Component.extend({
       });
       return filters;
     },
-    prepareRelatedQuery: function (filter) {
+    prepareRelatedQuery: function (filter, operation) {
       if (!this.attr('baseInstance')) {
         return null;
       }
@@ -158,7 +180,7 @@ export default can.Component.extend({
       return buildRelevantIdsQuery(this.attr('type'), {}, {
         type: this.attr('baseInstance.type'),
         id: this.attr('baseInstance.id'),
-        operation: 'relevant',
+        operation: operation || 'relevant',
       }, filter);
     },
     prepareUnlockedFilter: function () {
@@ -183,7 +205,7 @@ export default can.Component.extend({
     loadAllItems: function () {
       this.attr('allItems', this.loadAllItemsIds());
     },
-    getQuery: function (queryType, addPaging) {
+    getQuery: function (queryType, addPaging, megaMapping) {
       let result = {};
       let paging = {};
       let modelName = this.attr('type');
@@ -251,16 +273,28 @@ export default can.Component.extend({
       // we need it to find result in response from backend
       result.queryIndex = request.push(query) - 1;
 
-      // prepare and add related query to request
-      // the query is used to select already mapped items
-      relatedQuery = this.prepareRelatedQuery(filters);
-      if (relatedQuery) {
-        if (this.attr('useSnapshots')) {
-          // Transform Related Query to Snapshot
-          relatedQuery = transformQuery(relatedQuery);
+      // mega object needs special query: parent and child op,
+      // instead of 'relevant'
+      if (megaMapping) {
+        const relations = ['parent', 'child'];
+
+        relations.forEach((relation) => {
+          relatedQuery = this.prepareRelatedQuery(filters, relation);
+
+          result[`${relation}QueryIndex`] = request.push(relatedQuery) - 1;
+        });
+      } else {
+        // prepare and add related query to request
+        // the query is used to select already mapped items
+        relatedQuery = this.prepareRelatedQuery(filters);
+        if (relatedQuery) {
+          if (this.attr('useSnapshots')) {
+            // Transform Related Query to Snapshot
+            relatedQuery = transformQuery(relatedQuery);
+          }
+          // we need it to find result in response from backend
+          result.relatedQueryIndex = request.push(relatedQuery) - 1;
         }
-        // we need it to find result in response from backend
-        result.relatedQueryIndex = request.push(relatedQuery) - 1;
       }
 
       return result;
@@ -276,13 +310,27 @@ export default can.Component.extend({
     getDisplayModel: function () {
       return businessModels[this.attr('type')];
     },
-    setDisabledItems: function (allItems, relatedIds) {
-      if (this.attr('searchOnly') || this.attr('objectGenerator')) {
-        return;
+    setDisabledItems: function (megaMapping, allItems, relatedData, type) {
+      if (!this.attr('objectGenerator') && relatedData) {
+        let disabledIds;
+
+        if (megaMapping) {
+          disabledIds = _.reduce(relatedData, (result, val) => {
+            return result.concat(val[type].ids);
+          }, []);
+        } else {
+          disabledIds = relatedData[type].ids;
+        }
+
+        this.attr('disabledIds', disabledIds);
+
+        if (this.attr('searchOnly')) {
+          return;
+        }
+        allItems.forEach(function (item) {
+          item.isDisabled = disabledIds.indexOf(item.data.id) !== -1;
+        });
       }
-      allItems.forEach(function (item) {
-        item.isDisabled = relatedIds.indexOf(item.data.id) !== -1;
-      });
     },
     setSelectedItems: function (allItems) {
       let selectedItems;
@@ -304,6 +352,40 @@ export default can.Component.extend({
         }
       });
     },
+    setMegaRelations: function (allItems, relatedData, type) {
+      const defaultRelation = this.attr('megaRelation') ?
+        this.attr('megaRelation') : 'parent';
+      const childIds = relatedData.child[type].ids;
+      const parentIds = relatedData.parent[type].ids;
+      const relationsObj = this.attr('megaRelationObj');
+
+      allItems.forEach((item) => {
+        if (childIds.indexOf(item.id) > -1) {
+          item.mapAsChild = true;
+        } else if (parentIds.indexOf(item.id) > -1) {
+          item.mapAsChild = false;
+        } else if (relationsObj[item.id]) {
+          item.mapAsChild = relationsObj[item.id] === 'child' ? true : false;
+        } else {
+          item.mapAsChild = defaultRelation === 'child' ? true : false;
+        }
+      });
+    },
+    disableItself: function (megaMapping, allItems = []) {
+      const baseInstance = this.attr('baseInstance');
+      if (allItems[0] && baseInstance) {
+        if (baseInstance.type === allItems[0].type) {
+          let self = allItems.find((item) => item.id === baseInstance.id);
+          if (self) {
+            self.isDisabled = true;
+
+            if (megaMapping) {
+              self.mapAsChild = null;
+            }
+          }
+        }
+      }
+    },
     transformValue: function (value) {
       let Model = this.getDisplayModel();
       if (this.attr('useSnapshots')) {
@@ -316,19 +398,23 @@ export default can.Component.extend({
       return Model.model(value);
     },
     load: function () {
-      let self = this;
-      let modelKey = this.getModelKey();
-      let dfd = $.Deferred();
-      let query = this.getQuery('values', true);
+      const self = this;
+      const modelKey = this.getModelKey();
+      const megaMapping = isMegaMapping(this.attr('object'), modelKey);
+      const dfd = $.Deferred();
+      const query = this.getQuery('values', true, megaMapping);
       this.attr('isLoading', true);
 
       $.when(...query.request.map((request) => batchRequests(request)))
         .done((...responseArr) => {
-          let data = responseArr[query.queryIndex];
-          let relatedData = this.buildRelatedData(
-            responseArr[query.relatedQueryIndex],
-            modelKey);
-          let disabledIds;
+          const data = responseArr[query.queryIndex];
+
+          const relatedData = this.getRelatedData(
+            megaMapping,
+            responseArr,
+            query,
+            modelKey,
+          );
 
           let result =
             data[modelKey].values.map((value) => {
@@ -339,11 +425,13 @@ export default can.Component.extend({
               };
             });
           this.setSelectedItems(result);
-          if (!this.attr('objectGenerator') && relatedData) {
-            disabledIds = relatedData[modelKey].ids;
-            this.attr('disabledIds', disabledIds);
-            this.setDisabledItems(result, disabledIds);
+          this.setDisabledItems(megaMapping, result, relatedData, modelKey);
+
+          if (megaMapping) {
+            this.setMegaRelations(result, relatedData, modelKey);
           }
+          this.disableItself(megaMapping, result);
+
           // Update paging object
           this.paging.attr('total', data[modelKey].total);
           dfd.resolve(result);
@@ -355,10 +443,16 @@ export default can.Component.extend({
         });
       return dfd;
     },
-    buildRelatedData: function (relatedData, type) {
-      let deferredList = this.attr('deferredList');
+    getRelatedData: function (megaMapping, responseArr, query, modelKey) {
+      return megaMapping ?
+        this.buildMegaRelatedData(responseArr, query, modelKey) :
+        this.buildRelatedData(responseArr, query, modelKey);
+    },
+    buildRelatedData: function (responseArr, query, type) {
+      const deferredList = this.attr('deferredList');
       let ids;
       let empty = {};
+      let relatedData = responseArr[query.relatedQueryIndex];
 
       if (!deferredList || !deferredList.length) {
         return relatedData;
@@ -388,6 +482,19 @@ export default can.Component.extend({
       }
 
       relatedData[type].ids = ids;
+      return relatedData;
+    },
+    buildMegaRelatedData: function (responseArr, query, type) {
+      // Skipping 'deferredList' check:
+      // 'deferredList' is used when you able to pre-Map objects
+      // while creating a new Object. In case of Mega Object there is no
+      // case when you can pre-Map objects while creating a new object of
+      // the same type.
+      const relatedData = {
+        parent: responseArr[query.parentQueryIndex] || {},
+        child: responseArr[query.childQueryIndex] || {},
+      };
+
       return relatedData;
     },
     loadAllItemsIds: function () {

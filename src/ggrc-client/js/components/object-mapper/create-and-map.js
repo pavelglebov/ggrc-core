@@ -21,6 +21,7 @@ import {
   getCreateObjectUrl,
   getMappingUrl,
 } from '../../plugins/utils/ggrcq-utils';
+import {isMegaMapping} from '../../plugins/utils/mega-object-utils';
 
 export default can.Component.extend({
   tag: 'create-and-map',
@@ -62,6 +63,18 @@ export default can.Component.extend({
           return Mappings.shouldBeMappedExternally(sourceType, destinationType);
         },
       },
+      isMegaMapping: {
+        get() {
+          return isMegaMapping(this.attr('sourceType'),
+            this.attr('destinationType'));
+        },
+      },
+      getMegaRelation: {
+        get() {
+          return this.attr('megaRelation') ?
+            this.attr('megaRelation') : 'parent';
+        },
+      },
     },
     source: null,
     /**
@@ -71,6 +84,7 @@ export default can.Component.extend({
      */
     sourceType: '',
     destinationModel: null,
+    megaRelation: null,
     newEntries: [],
     getCreateAndMapExternallyText() {
       let destinationModel = this.attr('destinationModel');
@@ -105,10 +119,18 @@ export default can.Component.extend({
         return;
       }
 
+      let options = {};
+
+      if (this.attr('isMegaMapping')) {
+        options.megaMapping = true;
+        options.megaRelation = this.attr('getMegaRelation');
+      }
+
       this.attr('source')
         .dispatch({
           ...MAP_OBJECTS,
           objects,
+          options,
         });
     },
     createExternally() {

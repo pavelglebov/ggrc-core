@@ -38,7 +38,12 @@
           data-object-plural="{{destinationModel.table_plural}}"
           data-unique-id="{{source.id}}"
           data-join-object-id="{{source.id}}">
-          Create and map new object
+
+          {{#if isMegaMapping}}
+            Create and map new {{getMegaRelation}} {{destinationType}}
+          {{else}}
+            Create and map new object
+          {{/if}}
         </button>
 
       {{/if}}

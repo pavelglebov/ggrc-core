@@ -8,7 +8,8 @@
                   {disabled-ids}="{disabledIds}"
                   {all-items}="{allItems}"
                   {(refresh-selection)}="{refreshItems}"
-                  {(all-selected)}="{allSelected}">
+                  {(all-selected)}="{allSelected}"
+                  {mega-relation-obj}="{megaRelationObj}">
   {{#if items.length}}
     <div class="list-header">
       {{^disableColumnsConfiguration}}
