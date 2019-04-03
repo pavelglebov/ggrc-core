@@ -147,26 +147,32 @@ export default can.Component.extend({
       const refreshQueue = new RefreshQueue();
 
       _.forEach(revisions, (revision) => {
-        if (revision.modified_by) {
-          refreshQueue.enqueue(revision.modified_by);
-        }
-        if (revision.destination_type && revision.destination_id) {
-          revision.destination = new Stub({
-            id: revision.destination_id,
-            type: revision.destination_type,
-          });
-          refreshQueue.enqueue(revision.destination);
-        }
-        if (revision.source_type && revision.source_id) {
-          revision.source = new Stub({
-            id: revision.source_id,
-            type: revision.source_type,
-          });
-          refreshQueue.enqueue(revision.source);
+        this.enqueueRelated(revision, refreshQueue);
+        if (revision.content && revision.content.automapping) {
+          this.enqueueRelated(revision.content.automapping, refreshQueue);
         }
       });
 
       return refreshQueue.trigger().then(() => revisions);
+    },
+    enqueueRelated(object, refreshQueue) {
+      if (object.modified_by) {
+        refreshQueue.enqueue(object.modified_by);
+      }
+      if (object.destination_type && object.destination_id) {
+        object.destination = new Stub({
+          id: object.destination_id,
+          type: object.destination_type,
+        });
+        refreshQueue.enqueue(object.destination);
+      }
+      if (object.source_type && object.source_id) {
+        object.source = new Stub({
+          id: object.source_id,
+          type: object.source_type,
+        });
+        refreshQueue.enqueue(object.source);
+      }
     },
     composeRevisionsData(revisions) {
       let objRevisions = [];
@@ -182,22 +188,26 @@ export default can.Component.extend({
         } else {
           objRevisions.push(revision);
         }
+
+        if (revision.content && revision.content.automapping) {
+          this.reifyObject(revision.content.automapping);
+        }
       });
 
       return {
-        object: _.map(objRevisions, this.reifyRevision),
-        mappings: _.map(mappings, this.reifyRevision),
-        revisionsForCompare: _.map(revisionsForCompare, this.reifyRevision),
+        object: _.map(objRevisions, this.reifyObject),
+        mappings: _.map(mappings, this.reifyObject),
+        revisionsForCompare: _.map(revisionsForCompare, this.reifyObject),
       };
     },
-    reifyRevision(revision) {
+    reifyObject(object) {
       _.forEach(['modified_by', 'source', 'destination'],
         function (field) {
-          if (revision[field] && isReifiable(revision[field])) {
-            revision.attr(field, reifyUtil(revision[field]));
+          if (object[field] && isReifiable(object[field])) {
+            object.attr(field, reifyUtil(object[field]));
           }
         });
-      return revision;
+      return object;
     },
     changeLastUpdatesFilter(element) {
       const isChecked = element.checked;
