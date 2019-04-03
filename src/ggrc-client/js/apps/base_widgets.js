@@ -3,6 +3,9 @@
  Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
  */
 
+import * as businessModels from '../models/business-models';
+import {getRelatedWidgetNames} from '../plugins/utils/mega-object-utils';
+
 /**
  * Tree View Widgets Configuration module
  */
@@ -126,6 +129,13 @@ baseWidgetsByType = {
   Threat: filteredTypes,
   Vendor: filteredTypes,
 };
+
+_.each(baseWidgetsByType, (val, widget) => {
+  if (businessModels[widget] && businessModels[widget].isMegaObject) {
+    baseWidgetsByType[widget] = baseWidgetsByType[widget]
+      .concat(getRelatedWidgetNames(widget));
+  }
+});
 
 baseWidgetsByType = _.assign(baseWidgetsByType, objectVersionWidgets);
 

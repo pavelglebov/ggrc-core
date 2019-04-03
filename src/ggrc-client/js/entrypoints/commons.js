@@ -6,7 +6,6 @@
 // Common templates
 import '../templates';
 
-import '../apps/base_widgets';
 import '../tracker';
 import '../plugins/canjs_extensions';
 import '../bootstrap/modal-ajax';
@@ -26,6 +25,8 @@ import '../generated/ggrc_filter_query_parser';
 
 // Models
 import '../models';
+
+import '../apps/base_widgets';
 
 import '../modules/widget_list';
 
