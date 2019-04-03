@@ -15,17 +15,22 @@ import {
 } from './snapshot-utils';
 import {
   isObjectVersion,
-  getWidgetConfigs,
+  getObjectVersionConfig,
 } from './object-versions-utils';
-import Person from '../../models/business-models/person';
+import {
+  isMegaObjectRelated,
+  getMegaObjectConfig,
+} from './mega-object-utils';
 import WidgetList from '../../modules/widget_list';
 import {
   getPageType,
   getPageInstance,
 } from './current-page-utils';
 import QueryParser from '../../generated/ggrc_filter_query_parser';
+import Person from '../../models/business-models/person';
 
 let widgetsCounts = new can.Map({});
+let cachedObjects = {};
 
 let CUSTOM_COUNTERS = {
   MY_WORK: () => _getCurrentUser().getWidgetCountForMyWorkPage(),
@@ -81,11 +86,7 @@ function getWidgetModels(modelName, path) {
   const defaults = getDefaultWidgets(widgetList, path);
 
   return defaults
-    .filter((name) => widgetList[name].widgetType === 'treeview')
-    .map((widgetName) => {
-      return isObjectVersion(widgetName) ? widgetName :
-        widgetList[widgetName].content_controller_options.model.model_singular;
-    });
+    .filter((name) => widgetList[name].widgetType === 'treeview');
 }
 
 function getDefaultWidgets(widgetList, path) {
@@ -163,8 +164,12 @@ function _initWidgetCounts(widgets, type, id) {
 
   let params = [];
   _.each(widgetsObject, function (widgetObject) {
-    let expression = TreeViewUtils
-      .makeRelevantExpression(widgetObject.name, type, id);
+    let expression = TreeViewUtils.makeRelevantExpression(
+      widgetObject.name,
+      type,
+      id,
+      widgetObject.relation,
+    );
 
     let param = buildParam(widgetObject.name,
       {}, expression, null,
@@ -209,6 +214,53 @@ function refreshCounts() {
   return initWidgetCounts(widgets, pageInstance.type, pageInstance.id);
 }
 
+function getWidgetConfigs(modelNames) {
+  let configs = modelNames.map(function (modelName) {
+    return getWidgetConfig(modelName);
+  });
+  return configs;
+}
+
+function getWidgetConfig(modelName) {
+  let config = {};
+  let originalModelName;
+  let configObject;
+  let objectVersion;
+
+  // Workflow approach
+  if (_.isObject(modelName)) {
+    modelName.widgetName = modelName.name;
+    modelName.widgetId = modelName.name;
+    return modelName;
+  }
+
+  if (cachedObjects[modelName]) {
+    return cachedObjects[modelName];
+  }
+
+  if (isObjectVersion(modelName)) {
+    config = getObjectVersionConfig(modelName);
+  } else if (isMegaObjectRelated(modelName)) {
+    config = getMegaObjectConfig(modelName);
+  }
+
+  objectVersion = config.isObjectVersion;
+  originalModelName = config.originalModelName || modelName;
+
+  configObject = {
+    name: originalModelName,
+    widgetId: config.widgetId || modelName,
+    widgetName: config.widgetName || modelName,
+    countsName: modelName,
+    isObjectVersion: objectVersion,
+    relation: config.relation,
+    isMegaObject: config.isMegaObject,
+  };
+
+  cachedObjects[modelName] = configObject;
+  return configObject;
+}
+
 export {
   getWidgetList,
   getWidgetModels,
@@ -218,4 +270,6 @@ export {
   refreshCounts,
   widgetModules,
   initWidgets,
+  getWidgetConfig,
+  getWidgetConfigs,
 };
