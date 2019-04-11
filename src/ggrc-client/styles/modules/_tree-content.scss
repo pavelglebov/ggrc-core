@@ -554,10 +554,12 @@ ul.new-tree {
 }
 
 .tree-radio-select-area {
+  display: flex;
   margin-left: 2px;
 
   label {
-    display: inline-block;
+    display: flex;
+    margin-bottom: 0;
 
     &:first-child {
       margin-right: 20px;

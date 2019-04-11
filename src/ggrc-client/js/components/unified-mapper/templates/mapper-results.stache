@@ -9,7 +9,8 @@
                   {all-items}="{allItems}"
                   {(refresh-selection)}="{refreshItems}"
                   {(all-selected)}="{allSelected}"
-                  {mega-relation-obj}="{megaRelationObj}">
+                  {mega-relation-obj}="{megaRelationObj}"
+                  {{#if isMegaMapping}}class="object-selection__mega-mapping"{{/if}}>
   {{#if items.length}}
     <div class="list-header">
       {{^disableColumnsConfiguration}}

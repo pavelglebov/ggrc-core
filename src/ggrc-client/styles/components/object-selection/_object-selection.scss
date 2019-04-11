@@ -3,6 +3,22 @@
  * Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
  */
 
+.object-selection__mega-mapping {
+  mapper-results-item-attrs {
+    .attr:last-child { // "Map As" column values
+      display: flex;
+      align-items: center;
+      flex: 1 1 60px;
+    }
+  }
+
+  mapper-results-items-header {
+    .columns-wrapper .title:last-child { // "Map As" column title
+      flex: 1 1 60px;
+    }
+  }
+}
+
 object-selection-item {
   display: flex;
   width: 16px;
