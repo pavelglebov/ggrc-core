@@ -20,6 +20,12 @@
           </tree-visible-column-checkbox>
         </li>
       {{/columns}}
+      {{#serviceColumns}}
+        <li class="{{#mandatory}}disabled{{/mandatory}}">
+          <tree-visible-column-checkbox {column}="{.}">
+          </tree-visible-column-checkbox>
+        </li>
+      {{/serviceColumns}}
     </ul>
     <button type="button"
             class="btn btn-small btn-lightBlue set-tree-attrs"

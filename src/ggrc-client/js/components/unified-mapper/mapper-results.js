@@ -124,17 +124,14 @@ export default can.Component.extend({
           this.getDisplayModel().model_singular
         );
 
-      if (this.attr('isMegaMapping')) {
-        this.addMegaColumns(columns);
-      }
-
       this.attr('columns.available', columns.available);
       this.attr('columns.selected', columns.selected);
       this.attr('disableColumnsConfiguration', columns.disableConfiguration);
-    },
-    addMegaColumns: function (columns) {
-      columns.available = columns.available.concat(columns.mega);
-      columns.selected = columns.selected.concat(columns.mega);
+
+      if (this.attr('isMegaMapping')) {
+        this.attr('columns.service',
+          this.getDisplayModel().tree_view_options.mega_attr_list);
+      }
     },
     setSortingConfiguration: function () {
       let sortingInfo = TreeViewUtils.getSortingForModel(
@@ -306,9 +303,6 @@ export default can.Component.extend({
       return this.attr('useSnapshots') ?
         Snapshot.model_singular :
         this.attr('type');
-    },
-    getModel: function () {
-      return businessModels[this.getModelKey()];
     },
     getDisplayModel: function () {
       return businessModels[this.attr('type')];

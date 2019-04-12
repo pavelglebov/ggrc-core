@@ -20,6 +20,7 @@ export default can.Component.extend({
     searchOnly: false,
     drawRelatedAssessments: false,
     selectedColumns: [],
+    serviceColumns: [],
     showDetails: false,
     title() {
       let displayItem = this.displayItem();

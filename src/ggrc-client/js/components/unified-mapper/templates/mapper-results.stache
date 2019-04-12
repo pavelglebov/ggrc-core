@@ -16,7 +16,8 @@
       {{^disableColumnsConfiguration}}
         <mapper-results-columns-configuration {model-type}="{getDisplayModel.model_singular}"
                                               {available-columns}="{columns.available}"
-                                              {(selected-columns)}="{columns.selected}">
+                                              {(selected-columns)}="{columns.selected}"
+                                              {is-mega-mapping}="{isMegaMapping}">
         </mapper-results-columns-configuration>
       {{/disableColumnsConfiguration}}
       <mapper-results-items-header class="{{#useSnapshots}}is-snapshot{{/useSnapshots}}
@@ -24,6 +25,7 @@
                                           {{#relatedAssessments.show}}has-related-assessments{{/relatedAssessments.show}}"
                                    {model-type}="{type}"
                                    {columns}="{columns.selected}"
+                                   {service-columns}="{columns.service}"
                                    {(sort-key)}="{sort.key}"
                                    {(sort-direction)}="{sort.direction}">
       </mapper-results-items-header>
@@ -50,6 +52,7 @@
                              {item-data}="{data}"
                              {search-only}="{searchOnly}"
                              {selected-columns}="{columns.selected}"
+                             {service-columns}="{columns.service}"
                              {draw-related-assessments}="{relatedAssessments.show}"
                              (show-related-assessments)="{showRelatedAssessments(%event)}">
         </mapper-results-item>

@@ -4,7 +4,7 @@
 }}
 
 <div class="columns-wrapper">
-  {{#each columns}}
+  {{#each aggregatedColumns}}
     {{#if disable_sorting}}
       <div class="title">
         {{attr_title}}

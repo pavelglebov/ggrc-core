@@ -229,13 +229,10 @@ function getColumnsForModel(modelType, modelName) {
 
   let allAttrs = getAvailableAttributes(modelType);
 
-  const megaAttrs = Model.tree_view_options.mega_attr_list;
-
   if (disableConfiguration) {
     return {
       available: allAttrs,
       selected: allAttrs,
-      mega: megaAttrs,
       disableConfiguration: true,
     };
   }
@@ -258,7 +255,6 @@ function getColumnsForModel(modelType, modelName) {
   return {
     available: allAttrs,
     selected: mandatoryColumns.concat(displayColumns),
-    mega: megaAttrs,
     mandatory: mandatoryAttrNames,
     disableConfiguration: false,
   };

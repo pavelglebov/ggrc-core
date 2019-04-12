@@ -11,9 +11,13 @@ export default can.Component.extend({
   leakScope: true,
   viewModel: {
     columns: [],
+    serviceColumns: [],
     sortKey: '',
     sortDirection: 'asc',
     modelType: '',
+    aggregatedColumns() {
+      return this.attr('columns').concat(this.attr('serviceColumns'));
+    },
     isSorted(attr) {
       return attr.attr('attr_sort_field') === this.attr('sortKey');
     },

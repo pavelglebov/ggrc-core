@@ -4,7 +4,7 @@
 }}
 
 <div class="flex-box flex-box-single">
-  {{#each selectedColumns}}
+  {{#each aggregatedColumns}}
     <div class="attr">
       {{#switch attr_type}}
         {{#case "custom"}}

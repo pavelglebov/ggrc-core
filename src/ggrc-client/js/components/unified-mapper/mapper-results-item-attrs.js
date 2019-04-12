@@ -16,7 +16,11 @@ export default can.Component.extend({
   viewModel: {
     instance: null,
     columns: [],
+    serviceColumns: [],
     modelType: '',
+    aggregatedColumns() {
+      return this.attr('columns').concat(this.attr('serviceColumns'));
+    },
   },
   events: {
     click(element, event) {
