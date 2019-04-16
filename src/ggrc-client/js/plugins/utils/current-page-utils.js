@@ -16,7 +16,7 @@ import {inferObjectType} from './models-utils';
 import PersistentNotifier from '../persistent-notifier';
 import {changeUrl, reloadPage} from '../../router';
 import {
-  getRelatedModelNames,
+  getRelatedWidgetNames,
   isMegaObjectRelated,
   transformQueryForMega,
   getMegaObjectRelation,
@@ -57,7 +57,7 @@ function initMappedInstances() {
   let reqParams = [];
 
   if (currentPageInstance.class.isMegaObject) {
-    models = models.concat(getRelatedModelNames(currentPageInstance.type));
+    models = models.concat(getRelatedWidgetNames(currentPageInstance.type));
     const selfInd = models.indexOf(currentPageInstance.type);
     if (selfInd > -1) {
       models.splice(selfInd, 1);

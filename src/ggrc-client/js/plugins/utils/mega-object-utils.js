@@ -15,7 +15,7 @@ import * as businessModels from '../../models/business-models';
  * @param {String} widgetName - widget name
  * @return {Array} Array of related widget names
  */
-function getRelatedModelNames(widgetName) {
+function getRelatedWidgetNames(widgetName) {
   return [widgetName + '_child', widgetName + '_parent'];
 }
 
@@ -99,7 +99,7 @@ function transformQueryForMega(query) {
 }
 
 export {
-  getRelatedModelNames,
+  getRelatedWidgetNames,
   isMegaObjectRelated,
   isMegaMapping,
   getMegaObjectConfig,
