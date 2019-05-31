@@ -176,10 +176,12 @@ let handlers = {
       } else if (formTarget === 'redirect') {
         if (typeof xhr !== 'undefined' && 'getResponseHeader' in xhr) {
           navigate(xhr.getResponseHeader('location'));
-        } else if (data._redirect) {
-          navigate(data._redirect);
-        } else {
-          navigate(data.selfLink.replace('/api', ''));
+        } else if (data) {
+          if (data._redirect) {
+            navigate(data._redirect);
+          } else {
+            navigate(data.selfLink.replace('/api', ''));
+          }
         }
       } else {
         $target.modal_form('hide');
