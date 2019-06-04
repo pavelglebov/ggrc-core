@@ -1,12 +1,14 @@
-[//]: <> (updated 05/22/2019)
+[//]: <> (updated 06/13/2019)
 
 Our product team is working hard to engineer compliance @ scale and make your day to day user journeys easier. We have been adding key capabilities to the product as listed here below.
 
-[Integration with Drogon enabled for SOX systems (v.2.5.0, 05/22/2019)](https://docs.google.com/document/d/1Tm1nRVDIgUArjezZSnCvcwCm3gLcXdB6wRJKUaF6VUA/edit#heading=h.7sp3gw0nc2)
+[Introducing new Risk Library frontend (v.2.6.0, 06/13/2019)](https://docs.google.com/document/d/1Tm1nRVDIgUArjezZSnCvcwCm3gLcXdB6wRJKUaF6VUA/edit#heading=h.dq9h48b02x8y)
+
+[Integration with Drogon enabled for SOX systems (v.2.5.0, 05/22/2019)](https://docs.google.com/document/d/1Tm1nRVDIgUArjezZSnCvcwCm3gLcXdB6wRJKUaF6VUA/edit#heading=h.sai06mckrfn4)
 
 [Mapping Scope Object to Standard or Regulation moved to new frontend (v.2.5.0, 05/22/2019)](https://docs.google.com/document/d/1Tm1nRVDIgUArjezZSnCvcwCm3gLcXdB6wRJKUaF6VUA/edit#heading=h.b64613515b6c)
 
-[Introducing Program to Program mapping (Mega Program) (v.2.3.0, 05/03/2019)](https://docs.google.com/document/d/1Tm1nRVDIgUArjezZSnCvcwCm3gLcXdB6wRJKUaF6VUA/edit#heading=h.grald8eg2cgj)
+[Introducing Program to Program mapping (Mega Program) (v.2.3.0, 05/03/2019)](https://docs.google.com/document/d/1Tm1nRVDIgUArjezZSnCvcwCm3gLcXdB6wRJKUaF6VUA/edit#heading=h.9zvt2bl5lw41)
 
 [A functionality to turn off sync of people fields between Assessment and Ticket tracker (v.2.3.0, 05/03/2019)](https://docs.google.com/document/d/1Tm1nRVDIgUArjezZSnCvcwCm3gLcXdB6wRJKUaF6VUA/edit#heading=h.bee9ft50hu3p)
 
@@ -94,6 +96,10 @@ Our product team is working hard to engineer compliance @ scale and make your da
 
 [Performance improvements](https://docs.google.com/document/d/1Tm1nRVDIgUArjezZSnCvcwCm3gLcXdB6wRJKUaF6VUA/edit#heading=h.m9vl04nitn8)
 
+### Introducing new Risk Library frontend (v.2.6.0, 06/13/2019)
+
+New frontend supports creating, editing, deleting, changing proposals, restoring versions, comments and import of Risks. The above listed functionality is disabled in the current UI. New frontend also supports mapping of Scoping objects, Controls, Standards and Regulations to Risks. The current frontend still provides an ability to add reference URLs, attachments, snapshot creation, object mapping (except to Standards, Regulations, Controls and Scoping objects).
+
 ### Integration with Drogon enabled for SOX systems (v.2.5.0, 05/22/2019)
 
 Integration with Drogon was enabled for read-only SOX systems. The frequency of data sync is once per day. Any updates will have to be executed Drogon as it is the source system.
@@ -106,7 +112,7 @@ Mapping and unmapping of Scope Object to Standard or Regulation was moved to a n
 
 Program to Program mapping was enabled. Through Unified mapper Programs can be selected to become a Parent or a Child. Objects listed below will be automapped from a Child Program to a Parent Program.
 
-Object types available for automapping: Regulation, Objective, Control, Clause, Contract, Policy, Risk, Standard, Thread, Requirement, System, Product, Process, Market, DataAsset, Facility, OrgGroup, Metric, Technology Environment, Product Group, Projects, Vendors, Access Groups, Key report, Account balance.
+Object types available for automapping: Regulation, Objective, Control, Contract, Policy, Risk, Standard, Thread, Requirement, System, Product, Process, Market, DataAsset, Facility, OrgGroup, Metric, Technology Environment, Product Group, Projects, Vendors, Access Groups, Key report, Account balance.
 
 ### A functionality to turn off sync of people fields between Assessment and Ticket tracker (v.2.3.0, 05/03/2019)
 
