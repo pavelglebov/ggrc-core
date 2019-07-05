@@ -3,33 +3,299 @@
  * Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
  */
 
-.spinner {
+// .spinner {
+//   display: inline-block;
+//   &.initial-spinner {
+//     position: absolute;
+//     left: 49%;  // not 50% to roughly compensate for the spinner's own width
+//     top: 205px;
+//     color: gray;
+//   }
+//   &.tree-items {
+//     position: absolute;
+//     z-index: 1000001 !important;
+//     top: 10px;
+//     left: 49%;
+//   }
+//   #lhn .spinny & {
+//     margin-left: 20%;
+//   }
+// }
+
+// .spinner-size {
+//   &__medium {
+//     font-size: 1.5em;
+//   }
+//   &__large {
+//     font-size: 2em;
+//   }
+//   &__huge {
+//     font-size: 3em;
+//   }
+// }
+
+$spinnerSize: 65px;
+
+$logoYellow: #f9b500;
+$logoBlue: #2a6ef1;
+$logoRed: #ea001f;
+$logoGreen:#00a21b;
+
+.breeding-rhombus-spinner {
+  position: relative;
   display: inline-block;
-  &.initial-spinner {
-    position: absolute;
-    left: 49%;  // not 50% to roughly compensate for the spinner's own width
-    top: 205px;
-    color: gray;
+  height: $spinnerSize;
+  width: $spinnerSize;
+  transform: rotate(45deg);
+}
+
+.breeding-rhombus-spinner, .breeding-rhombus-spinner * {
+  box-sizing: border-box;
+}
+
+
+$rhombusSize: $spinnerSize / 7.5;
+
+.breeding-rhombus-spinner .rhombus {
+  position: absolute;
+  height: $rhombusSize;
+  width: $rhombusSize;
+  top: ($spinnerSize - $rhombusSize) / 2;
+  left: ($spinnerSize - $rhombusSize) / 2;
+  border-radius: $spinnerSize / 40;
+  animation-iteration-count: infinite;
+  animation-duration: 2000ms;
+}
+
+.breeding-rhombus-spinner .rhombus:nth-child(2n+0) {
+   margin-right: 0;
+ }
+
+.breeding-rhombus-spinner .rhombus.child-1 {
+  animation-name: breeding-rhombus-spinner-animation-child-1;
+  animation-delay: calc(100ms * 1);
+  background-color: $logoYellow;
+}
+
+.breeding-rhombus-spinner .rhombus.child-2 {
+  animation-name: breeding-rhombus-spinner-animation-child-2;
+  animation-delay: calc(100ms * 2);
+  background-color: $logoBlue;
+}
+
+.breeding-rhombus-spinner .rhombus.child-3 {
+  animation-name: breeding-rhombus-spinner-animation-child-3;
+  animation-delay: calc(100ms * 3);
+  background-color: $logoBlue;
+}
+
+.breeding-rhombus-spinner .rhombus.child-4 {
+  animation-name: breeding-rhombus-spinner-animation-child-4;
+  animation-delay: calc(100ms * 4);
+  background-color: $logoRed;
+}
+
+.breeding-rhombus-spinner .rhombus.child-5 {
+  animation-name: breeding-rhombus-spinner-animation-child-5;
+  animation-delay: calc(100ms * 5);
+  background-color: $logoRed;
+}
+
+.breeding-rhombus-spinner .rhombus.child-6 {
+  animation-name: breeding-rhombus-spinner-animation-child-6;
+  animation-delay: calc(100ms * 6);
+  background-color: $logoGreen;
+}
+
+.breeding-rhombus-spinner .rhombus.child-7 {
+  animation-name: breeding-rhombus-spinner-animation-child-7;
+  animation-delay: calc(100ms * 7);
+  background-color: $logoGreen;
+}
+
+.breeding-rhombus-spinner .rhombus.child-8 {
+  animation-name: breeding-rhombus-spinner-animation-child-8;
+  animation-delay: calc(100ms * 8);
+  background-color: $logoYellow;
+}
+
+
+$bigRhombusSize: $spinnerSize / 3;
+
+.breeding-rhombus-spinner .rhombus.big {
+  height: $bigRhombusSize;
+  width: $bigRhombusSize;
+  top: ($spinnerSize - $bigRhombusSize) / 2;
+  left: ($spinnerSize - $bigRhombusSize) / 2;
+  background-color: #ffffff;
+  border-radius: $spinnerSize / 20;
+  animation: breeding-rhombus-spinner-animation-child-big 2s infinite;
+  animation-delay: 0.5s;
+  animation-duration: 2000ms;
+}
+
+
+$borderRhombusSize: $spinnerSize / 2;
+
+.breeding-rhombus-spinner .rhombus.border {
+  height: $borderRhombusSize;
+  width: $borderRhombusSize;
+  top: ($spinnerSize - $borderRhombusSize) / 2;
+  left: ($spinnerSize - $borderRhombusSize) / 2;
+  background: transparent;
+  border-radius: $spinnerSize / 12;
+  overflow: hidden;
+  animation: breeding-rhombus-spinner-animation-child-big-border 2s infinite;
+  animation-delay: 0.5s;
+
+  > .rhombus {
+    height: $borderRhombusSize;
+    width: $borderRhombusSize;
+    transform: rotate(45deg);
   }
-  &.tree-items {
-    position: absolute;
-    z-index: 1000001 !important;
-    top: 10px;
-    left: 49%;
+
+  .part-1 {
+    background: $logoYellow;
+    top: -30%;
+    left: -74%;
+    animation-name: breeding-rhombus-spinner-animation-border-1;
+    animation-delay: calc(100ms * 1);
   }
-  #lhn .spinny & {
-    margin-left: 20%;
+
+  .part-2 {
+    background: $logoBlue;
+    top: -66%;
+    left: 29%;
+    animation-name: breeding-rhombus-spinner-animation-border-2;
+    animation-delay: calc(100ms * 3);
+  }
+
+  .part-3 {
+    background: $logoRed;
+    top: 30%;
+    left: 74%;
+    animation-name: breeding-rhombus-spinner-animation-border-3;
+    animation-delay: calc(100ms * 4);
+  }
+
+  .part-4 {
+    background: $logoGreen;
+    top: 67%;
+    left: -30%;
+    animation-name: breeding-rhombus-spinner-animation-border-4;
+    animation-delay: calc(100ms * 5);
   }
 }
 
-.spinner-size {
-  &__medium {
-    font-size: 1.5em;
+.breeding-rhombus-spinner .rhombus.big .tick-1 {
+  position: absolute;
+  background: #000000;
+  width: 20%;
+  height: 60%;
+  right: 20%;
+  top: 20%;
+}
+
+.breeding-rhombus-spinner .rhombus.big .tick-2 {
+  position: absolute;
+  background: #000000;
+  width: 35%;
+  height: 20%;
+  right: 20%;
+  bottom: 20%;
+}
+
+.breeding-rhombus-spinner .rhombus.big .tick-3 {
+  position: absolute;
+  background: $logoYellow;
+  width: 15%;
+  height: 20%;
+  left: 20%;
+  bottom: 20%;
+}
+
+$translateFactor: 4;
+
+@keyframes breeding-rhombus-spinner-animation-child-1 {
+  50% {
+    transform: translate($rhombusSize * -$translateFactor, $rhombusSize * -$translateFactor);
   }
-  &__large {
-    font-size: 2em;
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-2 {
+  50% {
+    transform: translate(0, $rhombusSize * -$translateFactor);
   }
-  &__huge {
-    font-size: 3em;
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-3 {
+  50% {
+    transform: translate($rhombusSize * $translateFactor, $rhombusSize * -$translateFactor);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-4 {
+  50% {
+    transform: translate($rhombusSize * $translateFactor, 0);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-5 {
+  50% {
+    transform: translate($rhombusSize * $translateFactor, $rhombusSize * $translateFactor);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-6 {
+  50% {
+    transform: translate(0, $rhombusSize * $translateFactor);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-7 {
+  50% {
+    transform: translate($rhombusSize * -$translateFactor, $rhombusSize * $translateFactor);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-8 {
+  50% {
+    transform: translate($rhombusSize * -$translateFactor, 0);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-big {
+  50% {
+    transform: scale(0.5);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-big-border {
+  50% {
+    transform: scale(0.5);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-border-1 {
+  50% {
+    transform: translate($rhombusSize * -$translateFactor, $rhombusSize * -$translateFactor);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-border-2 {
+  50% {
+    transform: translate(0, $rhombusSize * -$translateFactor);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-border-3 {
+  50% {
+    transform: translate($rhombusSize * $translateFactor, $rhombusSize * $translateFactor);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-border-4 {
+  50% {
+    transform: translate($rhombusSize * -$translateFactor, $rhombusSize * $translateFactor);
   }
 }

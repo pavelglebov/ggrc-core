@@ -4,7 +4,28 @@
 }}
 
 {{#if toggle}}
-<div class="spinner {{extraCssClass}}">
+<!-- <div class="spinner {{extraCssClass}}">
   <i class="spinner-icon {{#if size}}spinner-size__{{size}}{{/if}} fa fa-spinner fa-pulse" aria-hidden="true"></i>
+</div> -->
+<div class="breeding-rhombus-spinner">
+  <div class="rhombus child-1"></div>
+  <div class="rhombus child-2"></div>
+  <div class="rhombus child-3"></div>
+  <div class="rhombus child-4"></div>
+  <div class="rhombus child-5"></div>
+  <div class="rhombus child-6"></div>
+  <div class="rhombus child-7"></div>
+  <div class="rhombus child-8"></div>
+  <div class="rhombus border">
+    <div class="rhombus child-1"></div>
+    <div class="rhombus child-2"></div>
+    <div class="rhombus child-3"></div>
+    <div class="rhombus child-4"></div>
+  </div>
+  <div class="rhombus big">
+    <div class="tick-1"></div>
+    <div class="tick-2"></div>
+    <div class="tick-3"></div>
+  </div>
 </div>
 {{/if}}
