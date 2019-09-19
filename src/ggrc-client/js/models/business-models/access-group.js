@@ -10,6 +10,7 @@ import AccessControlList from '../mixins/access-control-list';
 import ScopeObjectNotifications from '../mixins/notifications/scope-object-notifications';
 import Questionnaire from '../mixins/questionnaire';
 import Stub from '../stub';
+import ChangeableExternally from '../mixins/changeable-externally';
 
 export default Cacheable.extend({
   root_object: 'access_group',
@@ -26,6 +27,7 @@ export default Cacheable.extend({
     AccessControlList,
     ScopeObjectNotifications,
     Questionnaire,
+    ChangeableExternally,
   ],
   is_custom_attributable: true,
   isRoleable: true,
