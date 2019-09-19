@@ -25,7 +25,11 @@
             Open Change Log in new frontend
           </questionnaire-link>
           <span class="revision-log__logs-message">
-            The logs before and after migration to new UI on {{instance.constructor.migrationDate}} are available below.
+            The logs before and after migration to new UI 
+            {{#if instance.constructor.migrationDate}}
+              on {{instance.constructor.migrationDate}} 
+            {{/if}}
+            are available below.
           </span>
         </div>
       {{/if}}
