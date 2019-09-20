@@ -35,7 +35,7 @@
         instance:from="page_instance"
         destinationModel:from="instance.constructor"
         type:from="'unmap'">
-          <i class="fa fa-fw fa-external-link"></i>
+          <i class="fa fa-external-link"></i>
           Unmap in new frontend
       </questionnaire-mapping-link>
     {{/if}}
