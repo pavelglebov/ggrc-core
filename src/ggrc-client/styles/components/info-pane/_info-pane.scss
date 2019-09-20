@@ -199,3 +199,7 @@
 .saving-status {
   @extend %info-pane-saving;
 }
+
+a.external-redirect-link {
+  text-decoration: none;
+}

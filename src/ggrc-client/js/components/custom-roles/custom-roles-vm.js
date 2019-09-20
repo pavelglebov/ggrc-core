@@ -4,18 +4,19 @@
  */
 
 import canMap from 'can-map';
-import {isProposableExternally} from '../../plugins/utils/ggrcq-utils';
+import {isChangeableExternally} from '../../plugins/utils/ggrcq-utils';
+import {isSnapshot} from '../../plugins/utils/snapshot-utils';
 
 export default canMap.extend({
   define: {
     isReadonly: {
       get() {
-        let instance = this.attr('instance');
+        const instance = this.attr('instance');
         if (!instance) {
           return false;
         }
 
-        let readonly = this.attr('readOnly');
+        const readonly = this.attr('readOnly');
         return instance.constructor.isProposable
             || readonly
             || instance.attr('readonly');
@@ -23,7 +24,8 @@ export default canMap.extend({
     },
     redirectionEnabled: {
       get() {
-        return isProposableExternally(this.attr('instance'));
+        const instance = this.attr('instance');
+        return isChangeableExternally(instance) && !isSnapshot(instance);
       },
     },
   },

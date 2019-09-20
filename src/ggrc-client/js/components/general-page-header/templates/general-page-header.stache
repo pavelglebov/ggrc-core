@@ -17,14 +17,21 @@
             {{/if}}
             <h3 class="action-toolbar__header general-page-header__title-value">{{title}}</h3>
             {{#if redirectionEnabled}}
-            <div class="action-toolbar__controls">
-              <div class="action-toolbar__controls-item">
-                <proposable-control
-                  instance:from="instance"
-                  attrName:from="'title'"
-                ></proposable-control>
-              </div>
-            </div>
+                <div class="action-toolbar__controls">
+                  <div class="action-toolbar__controls-item">
+                    {{#if instance.constructor.isProposable}}
+                      <proposable-control
+                        instance:from="instance"
+                        attrName:from="'title'"
+                      ></proposable-control>
+                    {{else}}
+                      <external-control
+                        instance:from="instance"
+                        attrName:from="'title'"
+                      ></external-control>
+                    {{/if}}
+                  </div>
+                </div>
             {{/if}}
           </div>
           {{#if snapshot}}
@@ -40,10 +47,17 @@
               {{#if redirectionEnabled}}
               <div class="action-toolbar__controls">
                 <div class="action-toolbar__controls-item">
-                  <proposable-control
-                    instance:from="instance"
-                    attrName:from="'status'"
-                  ></proposable-control>
+                  {{#if instance.constructor.isProposable}}
+                    <proposable-control
+                      instance:from="instance"
+                      attrName:from="'status'"
+                    ></proposable-control>
+                  {{else}}
+                    <external-control
+                      instance:from="instance"
+                      attrName:from="'status'"
+                    ></external-control>
+                  {{/if}}
                 </div>
               </div>
               {{/if}}

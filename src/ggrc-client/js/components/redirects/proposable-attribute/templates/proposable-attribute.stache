@@ -11,10 +11,17 @@
     {{#if showToolbarControls}}
     <div class="action-toolbar__controls">
       <div class="action-toolbar__controls-item">
-        <proposable-control
-          instance:from="instance"
-          attrName:from="attrName"
-        ></proposable-control>
+        {{#if instance.constructor.isProposable}}
+          <proposable-control
+            instance:from="instance"
+            attrName:from="attrName"
+          ></proposable-control>
+        {{else}}
+          <external-control
+            instance:from="instance"
+            attrName:from="'attrName'"
+          ></external-control>
+        {{/if}}
       </div>
     </div>
     {{/if}}
