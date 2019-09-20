@@ -22,15 +22,17 @@
     </unmap-button>
 
   {{else}}
-
-    {{^if isMappableExternally}}
-      <unmap-button
-        source:from="page_instance"
-        destination:from="instance"
-        class="unmap-link">
-          <i class="fa fa-ban"></i>Unmap
-      </unmap-button>
-    {{else}}
+    <unmap-button
+      source:from="page_instance"
+      destination:from="instance"
+      class="unmap-link">
+        <i class="fa fa-ban"></i>Unmap
+    </unmap-button>
+  {{/if}}
+  </li>
+{{else}}
+  {{#if isUnmappableExternally}}
+    <li class="border">
       <questionnaire-mapping-link
         instance:from="page_instance"
         destinationModel:from="instance.constructor"
@@ -38,8 +40,6 @@
           <i class="fa fa-external-link"></i>
           Unmap in new frontend
       </questionnaire-mapping-link>
-    {{/if}}
-
+    </li>
   {{/if}}
-  </li>
 {{/if}}

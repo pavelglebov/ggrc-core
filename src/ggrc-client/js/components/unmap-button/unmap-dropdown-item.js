@@ -11,7 +11,7 @@ import '../issue/issue-unmap-item';
 import template from './unmap-dropdown-item.stache';
 import {
   allowedToUnmap,
-  shouldBeMappedExternally,
+  toBeUnmappedExternally,
 } from '../../models/mappers/mappings';
 import {
   isAllObjects,
@@ -67,12 +67,12 @@ export default canComponent.extend({
             && !destination._is_sox_restricted;
         },
       },
-      isMappableExternally: {
+      isUnmappableExternally: {
         get() {
           let source = this.attr('page_instance.type');
           let destination = this.attr('instance.type');
 
-          return shouldBeMappedExternally(source, destination);
+          return toBeUnmappedExternally(source, destination);
         },
       },
     },
