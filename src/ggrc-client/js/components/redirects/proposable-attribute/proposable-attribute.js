@@ -7,13 +7,15 @@ import canStache from 'can-stache';
 import canMap from 'can-map';
 import canComponent from 'can-component';
 import template from './templates/proposable-attribute.stache';
-import {isProposableExternally} from '../../../plugins/utils/ggrcq-utils';
+import {isChangeableExternally} from '../../../plugins/utils/ggrcq-utils';
+import '../proposable-control/proposable-control';
+import '../external-control/external-control';
 
 const viewModel = canMap.extend({
   define: {
     showToolbarControls: {
       get() {
-        return isProposableExternally(this.attr('instance'));
+        return isChangeableExternally(this.attr('instance'));
       },
     },
   },

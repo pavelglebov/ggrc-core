@@ -25,10 +25,17 @@
           modelType:from="instance.constructor.model_singular"
           roleName:from="title"
         >
-          <proposable-control
-            instance:from="instance"
-            attrName:from="linkAttrName"
-          ></proposable-control>
+          {{#if instance.constructor.isProposable}}
+            <proposable-control
+              instance:from="instance"
+              attrName:from="linkAttrName"
+            ></proposable-control>
+          {{else}}
+            <external-control
+              instance:from="instance"
+              attrName:from="'linkAttrName'"
+            ></external-control>
+          {{/if}}
         </role-attr-names-provider>
       </div>
     </div>

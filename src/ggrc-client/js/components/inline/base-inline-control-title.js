@@ -7,6 +7,7 @@ import canStache from 'can-stache';
 import canMap from 'can-map';
 import canComponent from 'can-component';
 import '../redirects/proposable-control/proposable-control';
+import '../redirects/external-control/external-control';
 import template from './base-inline-control-title.stache';
 
 export default canComponent.extend({

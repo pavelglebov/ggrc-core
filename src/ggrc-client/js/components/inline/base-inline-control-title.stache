@@ -4,18 +4,25 @@
 }}
 
 <div class="inline__header action-toolbar">
-  <!-- header (laber/h1-6) -->
   <content></content>
 
   {{#if redirectionEnabled}}
     <div class="action-toolbar__controls">
       <div class="action-toolbar__controls-item">
-        <proposable-control
-          instance:from="instance"
-          attrName:from="redirectionAttrName"
-          isCustomAttribute:from="true"
-        >
-        </proposable-control>
+        {{#if instance.constructor.isProposable}}
+          <proposable-control
+            instance:from="instance"
+            attrName:from="redirectionAttrName"
+            isCustomAttribute:from="true"
+          >
+          </proposable-control>
+        {{else}}
+          <external-control
+            instance:from="instance"
+            attrName:from="'redirectionAttrName'"
+            isCustomAttribute:from="true"
+          ></external-control>
+        {{/if}}
       </div>
     </div>
   {{else}}

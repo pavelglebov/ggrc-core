@@ -43,7 +43,29 @@
   }
 
   &__controls-item {
-    @extend %editable-control-item;
+    @extend %field-controllable;
+
+    border-radius: 50%;
+    background: #444;
+    cursor: pointer;
+  
+    &:hover {
+      background: darken(#444, 10%);
+    }
+  
+    .fa {
+      color: $white;
+      font-size: 18px;
+      height: 28px;
+      line-height: 28px;
+      width: 28px;
+      display: inline-flex;
+      justify-content: center;
+      align-self: center;
+      align-items: center;
+      text-align: center;
+    }
+
     margin: 0 0 0 8px;
   }
 

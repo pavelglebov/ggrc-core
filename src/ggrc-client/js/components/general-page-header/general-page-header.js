@@ -7,17 +7,17 @@ import canStache from 'can-stache';
 import canMap from 'can-map';
 import canComponent from 'can-component';
 import template from './templates/general-page-header.stache';
-import {
-  isProposableExternally,
-  isChangeableExternally,
-} from '../../plugins/utils/ggrcq-utils';
+import {isChangeableExternally} from '../../plugins/utils/ggrcq-utils';
 import {isSnapshot} from '../../plugins/utils/snapshot-utils';
+import '../redirects/proposable-control/proposable-control';
+import '../redirects/external-control/external-control';
 
 const viewModel = canMap.extend({
   define: {
     redirectionEnabled: {
       get() {
-        return isProposableExternally(this.attr('instance'));
+        const instance = this.attr('instance');
+        return isChangeableExternally(instance) && !isSnapshot(instance);
       },
     },
     showProposalButton: {

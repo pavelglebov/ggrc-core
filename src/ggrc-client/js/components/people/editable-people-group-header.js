@@ -7,6 +7,7 @@ import canStache from 'can-stache';
 import canMap from 'can-map';
 import canComponent from 'can-component';
 import '../redirects/proposable-control/proposable-control';
+import '../redirects/external-control/external-control';
 import '../redirects/role-attr-names-provider/role-attr-names-provider';
 import template from './editable-people-group-header.stache';
 
