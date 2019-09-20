@@ -55,16 +55,29 @@ const coreObjectConfig = {
 
 const scopingObjectConfig = {
   ...createRule,
-  map: loDifference(businessObjects,
-    ['Assessment', ...externalBusinessObjects, ...externalDirectiveObjects]),
-  externalMap: [...externalBusinessObjects, ...externalDirectiveObjects],
+  map: loDifference(businessObjects, [
+    'Assessment',
+    ...externalBusinessObjects,
+    ...externalDirectiveObjects,
+    ...scopingObjects,
+  ]),
+  externalMap: [
+    ...externalBusinessObjects,
+    ...externalDirectiveObjects,
+    ...scopingObjects,
+  ],
   unmap: loDifference(businessObjects, [
     'Assessment',
     'Audit',
     ...externalBusinessObjects,
     ...externalDirectiveObjects,
+    ...scopingObjects,
   ]),
-  externalUnmap: [...externalBusinessObjects, ...externalDirectiveObjects],
+  externalUnmap: [
+    ...externalBusinessObjects,
+    ...externalDirectiveObjects,
+    ...scopingObjects,
+  ],
   indirectMappings: ['Assessment', 'Person', 'TaskGroup', 'Workflow'],
 };
 
@@ -184,22 +197,7 @@ export default {
 
   // Scoping objects
   AccessGroup: {
-    ...createRule,
-    map: loDifference(businessObjects,
-      ['Assessment', 'AccessGroup',
-        ...externalBusinessObjects,
-        ...externalDirectiveObjects,
-      ]),
-    externalMap: [...externalBusinessObjects, ...externalDirectiveObjects],
-    unmap: loDifference(businessObjects, [
-      'Assessment',
-      'AccessGroup',
-      'Audit',
-      ...externalBusinessObjects,
-      ...externalDirectiveObjects,
-    ]),
-    externalUnmap: [...externalBusinessObjects, ...externalDirectiveObjects],
-    indirectMappings: ['Assessment', 'Person', 'TaskGroup', 'Workflow'],
+    ...scopingObjectConfig,
   },
   AccountBalance: {
     ...scopingObjectConfig,
