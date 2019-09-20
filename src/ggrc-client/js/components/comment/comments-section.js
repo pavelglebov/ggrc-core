@@ -27,7 +27,8 @@ export default canComponent.extend({
         get() {
           const instance = this.attr('instance');
 
-          return !isAllowedFor('update', instance)
+          return instance.constructor.disableAddComments
+            || !isAllowedFor('update', instance)
             || instance.attr('archived')
             || isChangeableExternally(instance);
         },
@@ -36,7 +37,8 @@ export default canComponent.extend({
         get() {
           const instance = this.attr('instance');
 
-          return isChangeableExternally(instance);
+          return !instance.constructor.disableAddComments &&
+            isChangeableExternally(instance);
         },
       },
     },

@@ -7,6 +7,7 @@ import Cacheable from '../cacheable';
 import Questionnaire from '../mixins/questionnaire';
 import Stub from '../stub';
 import ChangeableExternally from '../mixins/changeable-externally';
+import DisableAddComments from '../mixins/disable-add-comments';
 
 export default Cacheable.extend({
   root_object: 'product',
@@ -20,6 +21,7 @@ export default Cacheable.extend({
   mixins: [
     Questionnaire,
     ChangeableExternally,
+    DisableAddComments,
   ],
   is_custom_attributable: true,
   isRoleable: true,
