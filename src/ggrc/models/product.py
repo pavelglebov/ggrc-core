@@ -11,6 +11,7 @@ from ggrc.fulltext.mixin import Indexed
 from ggrc.models.comment import ScopedCommentable
 from ggrc.models.deferred import deferred
 from ggrc.models import mixins
+from ggrc.models.mixins import synchronizable
 from ggrc.models.object_document import PublicDocumentable
 from ggrc.models.object_person import Personable
 from ggrc.models.option import Option
@@ -20,6 +21,7 @@ from ggrc.models.utils import validate_option
 
 
 class Product(Roleable,
+              synchronizable.Synchronizable,
               mixins.CustomAttributable,
               Personable,
               Relatable,

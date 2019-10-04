@@ -5,17 +5,19 @@ from sqlalchemy import orm
 
 from ggrc import db
 from ggrc.access_control import roleable
+from ggrc.fulltext import mixin as fulltext_mixin
 from ggrc.models.comment import ScopedCommentable
 from ggrc.models.deferred import deferred
 from ggrc.models import mixins
-from ggrc.fulltext import mixin as fulltext_mixin
+from ggrc.models.mixins import synchronizable
 from ggrc.models import object_document
 from ggrc.models import object_person
 from ggrc.models import reflection
 from ggrc.models import relationship
 
 
-class KeyReport(mixins.CustomAttributable,
+class KeyReport(synchronizable.Synchronizable,
+                mixins.CustomAttributable,
                 object_person.Personable,
                 roleable.Roleable,
                 relationship.Relatable,
