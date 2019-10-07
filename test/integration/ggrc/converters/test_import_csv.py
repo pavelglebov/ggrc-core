@@ -134,90 +134,6 @@ class TestBasicCsvImport(TestCase):
     for policy in policies:
       test_owners(policy)
 
-  @ddt.data(True, False)
-  def test_intermappings(self, reverse_order):
-    """It is allowed to reference previous lines in map columns."""
-    self.generate_people(["miha", "predrag", "vladan", "ivan"])
-    facility_data_block = [
-        OrderedDict([
-            ("object_type", "facility"),
-            ("Code*", "HOUSE-{}".format(idx)),
-            ("title", "Facility-{}".format(idx)),
-            ("admin", "user@example.com"),
-            ("assignee", "user@example.com"),
-            ("verifier", "user@example.com"),
-            ("map:facility", "" if idx == 1 else "HOUSE-{}".format(idx - 1)),
-        ])
-        for idx in (xrange(1, 5) if not reverse_order else xrange(4, 0, -1))
-    ]
-    objective_data_block = [
-        OrderedDict([
-            ("object_type", "objective"),
-            ("Code*", "O1"),
-            ("title", "House of cards"),
-            ("admin", "user@example.com"),
-            ("map:facility", "HOUSE-2"),
-            ("map:objective", ""),
-        ]),
-        OrderedDict([
-            ("object_type", "objective"),
-            ("Code*", "O2"),
-            ("title", "House of the rising sun"),
-            ("admin", "user@example.com"),
-            ("map:facility", "HOUSE-3"),
-            ("map:objective", "O1\nO2\nO3"),
-        ]),
-        OrderedDict([
-            ("object_type", "objective"),
-            ("Code*", "O3"),
-            ("title", "Yellow house"),
-            ("admin", "user@example.com"),
-            ("map:facility", "HOUSE-4"),
-            ("map:objective", ""),
-        ]),
-        OrderedDict([
-            ("object_type", "objective"),
-            ("Code*", "O4"),
-            ("title", "There is no place like home"),
-            ("admin", "user@example.com"),
-            ("map:facility", "HOUSE-1"),
-            ("map:objective", "O3\nO4\nO3"),
-        ]),
-    ]
-
-    response_json = self.import_data(
-        *(facility_data_block + objective_data_block)
-    )
-    self.assertEqual(4, response_json[0]["created"])  # Facility
-    self.assertEqual(4, response_json[1]["created"])  # Objective
-
-    if reverse_order:
-      expected_block_1 = set([
-          u"Line {line}: Facility 'house-{idx}' "
-          u"doesn't exist, so it can't be mapped/unmapped.".format(
-              idx=idx,
-              line=6 - idx
-          )
-          for idx in xrange(1, 4)
-      ])
-      rel_numbers = 8
-    else:
-      expected_block_1 = set()
-      rel_numbers = 11
-
-    expected_block_2 = {
-        u"Line 11: Objective 'o3' doesn't exist, "
-        u"so it can't be mapped/unmapped."
-    }
-    self.assertEqual(expected_block_1, set(response_json[0]["row_warnings"]))
-    self.assertEqual(expected_block_2, set(response_json[1]["row_warnings"]))
-    self.assertEqual(rel_numbers, models.Relationship.query.count())
-
-    obj2 = models.Objective.query.filter_by(slug="O2").first()
-    obj3 = models.Objective.query.filter_by(slug="O3").first()
-    self.assertNotEqual(None, models.Relationship.find_related(obj2, obj2))
-    self.assertEqual(None, models.Relationship.find_related(obj3, obj3))
-
   @ddt.data(['Standard', ('Regulation', 'Policy', 'Contract', 'Requirement'),
              {"Standard": ["map:standard"]}],
             ['Regulation', ('Standard', 'Policy', 'Contract', 'Requirement'),
@@ -515,40 +431,6 @@ class TestBasicCsvImport(TestCase):
     self._check_csv_response(response, {})
     program = models.Program.query.first()
     self.assertEqual(program.folder, folder_id)
-
-  @ddt.data(
-      'AccessGroup',
-      'AccountBalance',
-      'DataAsset',
-      'Facility',
-      'KeyReport',
-      'Market',
-      'Metric',
-      'OrgGroup',
-      'Process',
-      'Product',
-      'ProductGroup',
-      'Project',
-      'System',
-      'TechnologyEnvironment',
-      'Vendor')
-  def test_document_recipients_roles(self, object_type):
-    """Test check admin recipients for document created via import roleable"""
-    title = 'program 1'
-    user = factories.PersonFactory()
-    response = self.import_data(OrderedDict([
-        ("object_type", object_type),
-        ("Code*", ""),
-        ("title", title),
-        ("Admin", user.email),
-        ("Assignee*", "user@example.com"),
-        ("Verifier*", "user@example.com"),
-        ("reference url", "http://someurl.html")
-    ]))
-
-    self._check_csv_response(response, {})
-    document = all_models.Document.query.one()
-    self.assertEqual(document.recipients, 'Admin')
 
   @ddt.data(
       'Contract',

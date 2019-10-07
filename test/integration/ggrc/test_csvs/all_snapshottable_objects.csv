@@ -3,35 +3,10 @@ Person,name,email,company,role,,,,,,,,,,,,,,,,,,
 ,user 1,user1@example.com,google,Administrator,,,,,,,,,,,,,,,,,,
 ,user 4,user4@example.com,google,reader,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,
-Object type,"Use this db for custom attribute definitions
-https://gist.github.com/zidarsk8/c6335d961a7004b9f896a3e4b1db8a8b",,,,,,,,,,,,,,,,,,,,,
-Access Group,Code*,Title*,Description,Notes,Admin*,verifier,assignee,Effective Date,Launch Status,Reference URL,CA date,CA dropdown,CA text,CA rich text,CA checkbox,CA multiselect,,,,,,
-,Access Group code,Access Group title,Access Group description,Access Group notes,"user@example.com
-user1@example.com",user@example.com,user@example.com,20/2/2020,Draft,http://url.example.zzz,22/2/2022,thREE,Access group ca text,"access group<br><br>
-rich text",yes,yes,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
 Object type,,,,,,,,,,,,,,,,,,,,,,
 Contract,Code*,Title*,Description,Notes,Admin*,Effective Date,State,Reference URL,,,,,,,,,,,,,,
 ,Contract code,Contract title,Contract description,Contract notes,"user@example.com
 user1@example.com",20/2/2020,Draft,http://url.example.zzz,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-Object type,,,,,,,,,,,,,,,,,,,,,,
-Data Asset,Code*,Title*,Description,Notes,Admin*,verifier,assignee,Effective Date,Launch Status,Reference URL,CA date,CA dropdown,CA text,CA rich text,CA checkbox,CA multiselect,,,,,,
-,Data Assest code,Data Assest title,Data Assest description,Data Assest notes,"user@example.com
-user1@example.com",user@example.com,user@example.com,20/2/2020,Draft,http://url.example.zzz,22/2/2022,tWo,DATA ASSET ca text,"data asset<br><br>
-rich text",yes,yes,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-Object type,,,,,,,,,,,,,,,,,,,,,,
-Facility,Code*,Title*,Description,Notes,Admin*,verifier,assignee,Effective Date,Launch Status,Reference URL,CA date,CA dropdown,CA text,CA rich text,CA checkbox,CA multiselect,,,,,,
-,Facility code,Facility title,Facility description,Facility notes,"user@example.com
-user1@example.com",user@example.com,user@example.com,20/2/2020,Draft,http://url.example.zzz,22/2/2022,TWO,Facility ca text,"Facility<br><br>
-rich text",no,no,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-Object type,,,,,,,,,,,,,,,,,,,,,,
-Market,Code*,Title*,Description,Notes,Admin*,verifier,assignee,Effective Date,Launch Status,Reference URL,CA date,CA dropdown,CA text,CA rich text,CA checkbox,CA multiselect,,,,,,
-,Market code,Market title,Market description,Market notes,"user@example.com
-user1@example.com",user@example.com,user@example.com,20/2/2020,Draft,http://url.example.zzz,22/2/2022,three,Market ca text,"Market<br><br>
-rich text",yes,yes,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,
 Object type,,,,,,,,,,,,,,,,,,,,,,
 Objective,Code*,Title*,Description,Notes,Admin*,State,Reference URL,,,,,,,,,,,,,,,
@@ -39,24 +14,9 @@ Objective,Code*,Title*,Description,Notes,Admin*,State,Reference URL,,,,,,,,,,,,,
 user1@example.com",Draft,http://url.example.zzz,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,
 Object type,,,,,,,,,,,,,,,,,,,,,,
-Org Group,Code*,Title*,Description,Notes,Admin*,verifier,assignee,Effective Date,Launch Status,Reference URL,,,,,,,,,,,,
-,Org Group code,Org Group title,Org Group description,Org Group notes,"user@example.com
-user1@example.com",user@example.com,user@example.com,20/2/2020,Draft,http://url.example.zzz,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-Object type,,,,,,,,,,,,,,,,,,,,,,
 Policy,Code*,Title*,Description,Notes,Admin*,Effective Date,State,Reference URL,Kind/Type,,,,,,,,,,,,,
 ,Policy code,Policy title,Policy description,Policy notes,"user@example.com
 user1@example.com",20/2/2020,Draft,http://url.example.zzz,company policy,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-Object type,,,,,,,,,,,,,,,,,,,,,,
-Process,Code*,Title*,Description,Notes,Admin*,verifier,assignee,Effective Date,Launch Status,Reference URL,Network Zone,,,,,,,,,,,
-,Process code,Process title,Process description,Process notes,"user@example.com
-user1@example.com",user@example.com,user@example.com,20/2/2020,Draft,http://url.example.zzz,prod,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-Object type,,,,,,,,,,,,,,,,,,,,,,
-Product,Code*,Title*,Description,Notes,Admin*,verifier,assignee,Effective Date,Launch Status,Reference URL,Kind/Type,,,,,,,,,,,
-,Product code,Product title,Product description,Product notes,"user@example.com
-user1@example.com",user@example.com,user@example.com,20/2/2020,Draft,http://url.example.zzz,saas,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,
 Object type,,,,,,,,,,,,,,,,,,,,,,
 Regulation,Code*,Title*,Description,Notes,Admin*,Effective Date,State,Reference URL,,,,,,,,,,,,,,
@@ -75,48 +35,8 @@ Standard,Code*,Title*,Description,Notes,Admin*,Effective Date,State,Reference UR
 user1@example.com",20/2/2020,Draft,http://url.example.zzz,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,
 Object type,,,,,,,,,,,,,,,,,,,,,,
-System,Code*,Title*,Description,Notes,Admin*,verifier,assignee,Effective Date,Launch Status,Reference URL,Network Zone,,,,,,,,,,,
-,System code,System title,System description,System notes,"user@example.com
-user1@example.com",user@example.com,user@example.com,20/2/2020,Draft,http://url.example.zzz,core,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-Object type,,,,,,,,,,,,,,,,,,,,,,
 Threat,Code*,Title*,Description,Notes,Admin*,Effective Date,State,Reference URL,CA date,CA dropdown,CA text,CA rich text,CA checkbox,CA multiselect,,,,,,,,
 ,Threat code,Threat title,Threat description,Threat notes,"user@example.com
 user1@example.com",20/2/2020,Draft,http://url.example.zzz,22/2/2022,four,Threat ca text,"Threat<br><br>
 rich text",no,no,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,
-Object type,,,,,,,,,,,,,,,,,,,,,,
-Vendor,Code*,Title*,Description,Notes,Admin*,verifier,assignee,Effective Date,Launch Status,Reference URL,,,,,,,,,,,,
-,Vendor code,Vendor title,Vendor description,Vendor notes,"user@example.com
-user1@example.com",user@example.com,user@example.com,20/2/2020,Draft,http://url.example.zzz,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-Object type,,,,,,,,,,,,,,,,,,,,,,
-Metric,Code*,Title*,Description,Notes,verifier,assignee,,Admin*,Effective Date,Launch Status,Reference URL,,,,,,,,,,,Delete
-,Metric code,Metric title,Metric description,Metric notes,user@example.com,user@example.com,,"user@example.com
-user1@example.com",20/2/2020,Draft,http://url.example.zzz,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-Object type,,,,,,,,,,,,,,,,,,,,,,
-TechnologyEnvironment,Code*,Title*,Description,Notes,verifier,assignee,,Admin*,Effective Date,Launch Status,Reference URL,,,,,,,,,,,Delete
-,TechnologyEnvironment code,TechnologyEnvironment title,TechnologyEnvironment description,TechnologyEnvironment notes,user@example.com,user@example.com,,"user@example.com
-user1@example.com",20/2/2020,Draft,http://url.example.zzz,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-Object type,,,,,,,,,,,,,,,,,,,,,,
-ProductGroup,Code*,Title*,Description,Notes,verifier,assignee,,Admin*,Effective Date,Launch Status,Reference URL,,,,,,,,,,,Delete
-,ProductGroup code,ProductGroup title,ProductGroup description,ProductGroup notes,user@example.com,user@example.com,,"user@example.com
-user1@example.com",20/2/2020,Draft,http://url.example.zzz,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-Object type,,,,,,,,,,,,,,,,,,,,,,
-KeyReport,Code*,Title*,Description,Notes,Admin*,verifier,assignee,Effective Date,Launch Status,Reference URL,,,,,,,,,,,,
-,KeyReport code,KeyReport title,KeyReport description,KeyReport notes,"user@example.com
-user1@example.com",user@example.com,user@example.com,20/2/2020,Draft,http://url.example.zzz,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-Object type,,,,,,,,,,,,,,,,,,,,,,
-AccountBalance,Code*,Title*,Description,Notes,Admin*,verifier,assignee,Effective Date,Launch Status,Reference URL,,,,,,,,,,,,
-,AccountBalance code,AccountBalance title,AccountBalance description,AccountBalance notes,"user@example.com
-user1@example.com",user@example.com,user@example.com,20/2/2020,Draft,http://url.example.zzz,,,,,,,,,,,,
-
-Object type
-Project,Code*,Title*,Description,Notes,Admin*,Verifier,Assignee,Launch Status,Effective Date,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,Project code,Project title,Project description,Project notes,"user@example.com
-user1@example.com",user@example.com,user@example.com,Draft,20/2/2020,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

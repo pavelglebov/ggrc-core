@@ -80,7 +80,7 @@ class TestWithExtCustomAttrsSetter(TestCase):
         } for name, val in name_to_val.iteritems()
     )
 
-  @ddt.data('System')
+  @ddt.data('Standard')
   def test_post_orig_cavs(self, obj_type):
     """Test POST orig cav for {0!r} for normal user"""
 
@@ -102,7 +102,7 @@ class TestWithExtCustomAttrsSetter(TestCase):
 
     self.assertDictEqual(cav, exp)
 
-  @ddt.data('System')
+  @ddt.data('Standard')
   def test_post_orig_cavs_external(self, obj_type):
     """Test POST orig cav for {0!r} for external user"""
 
@@ -126,7 +126,7 @@ class TestWithExtCustomAttrsSetter(TestCase):
 
     self.assertDictEqual(cav, exp)
 
-  @ddt.data('System')
+  @ddt.data('Standard')
   def test_post_ext_cavs(self, obj_type):
     """Test POST external cav for {0!r} for normal user"""
 
@@ -147,7 +147,7 @@ class TestWithExtCustomAttrsSetter(TestCase):
                for i in obj.custom_attribute_values)
     self.assertDictEqual(cav, exp)
 
-  @ddt.data('System')
+  @ddt.data('Standard')
   def test_post_ext_cavs_external(self, obj_type):
     """Test POST external cav for {0!r} for external user"""
 
@@ -170,7 +170,7 @@ class TestWithExtCustomAttrsSetter(TestCase):
                for i in obj.custom_attribute_values)
     self.assertDictEqual(cav, exp)
 
-  @ddt.data('System')
+  @ddt.data('Threat')
   def test_post_ext_and_orig_cavs_external(self, obj_type):
     """Test POST external and orig cav for {0!r} are specified for ext user"""
 
@@ -197,7 +197,7 @@ class TestWithExtCustomAttrsSetter(TestCase):
                for i in obj.custom_attribute_values)
     self.assertDictEqual(cav, exp)
 
-  @ddt.data('System')
+  @ddt.data('Standard')
   def test_post_not_existing_cavs_external(self, obj_type):
     """Test POST missing cav for {0!r} are specified for external user"""
 
@@ -221,7 +221,7 @@ class TestWithExtCustomAttrsSetter(TestCase):
                for i in obj.custom_attribute_values)
     self.assertDictEqual(cav, exp)
 
-  @ddt.data('System')
+  @ddt.data('Standard')
   def test_post_not_all_cavs_external(self, obj_type):
     """Test POST not all cavs for {0!r} are specified for external user"""
 
@@ -244,7 +244,7 @@ class TestWithExtCustomAttrsSetter(TestCase):
                for i in obj.custom_attribute_values)
     self.assertDictEqual(cav, exp)
 
-  @ddt.data('System')
+  @ddt.data('Standard')
   def test_post_not_all_mandatory_cavs_external(self, obj_type):
     """Test POST not all cavs for {0!r} are specified for external user"""
 
@@ -273,7 +273,7 @@ class TestWithExtCustomAttrsSetter(TestCase):
                for i in obj.custom_attribute_values)
     self.assertDictEqual(cav, exp)
 
-  @ddt.data('System')
+  @ddt.data('Standard')
   def test_put_orig_cavs(self, obj_type):
     """Test PUT orig cav for {0!r} for normal user"""
 

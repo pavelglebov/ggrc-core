@@ -28,6 +28,8 @@ class TestLogin(TestCase):
         data={"system": {
             "title": "new_system",
             "context": None,
+            "external_id": 11111,
+            "external_slug": "11111",
         }}
     )
 
@@ -63,6 +65,8 @@ class TestLogin(TestCase):
         data={"system": {
             "title": "new_system",
             "context": None,
+            "external_id": 11111,
+            "external_slug": "11111",
         }}
     )
 
@@ -103,6 +107,8 @@ class TestLogin(TestCase):
         data={"system": {
             "title": "new_system",
             "context": None,
+            "external_id": 11111,
+            "external_slug": "11111",
         }}
     )
 
@@ -131,6 +137,8 @@ class TestLogin(TestCase):
         data={"system": {
             "title": "new_system",
             "context": None,
+            "external_id": 11111,
+            "external_slug": "11111",
         }}
     )
     self.assertEqual(400, response.status_code)
@@ -152,6 +160,8 @@ class TestLogin(TestCase):
         data={"system": {
             "title": "new_system",
             "context": None,
+            "external_id": 11111,
+            "external_slug": "11111",
         }}
     )
     self.assertEqual(400, response.status_code)

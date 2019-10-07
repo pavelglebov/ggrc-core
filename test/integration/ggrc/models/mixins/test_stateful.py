@@ -44,7 +44,7 @@ class TestStatefulMixin(WithQueryApi, TestCase):
       "TechnologyEnvironment",
   )
   def test_update_status(self, model_name):
-    """Test status updating."""
+    """Test status updating for {0}."""
     factory = factories.get_model_factory(model_name)
 
     # pylint: disable=protected-access

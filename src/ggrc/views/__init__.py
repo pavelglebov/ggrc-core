@@ -22,7 +22,6 @@ from ggrc.builder import json as builder_json
 from ggrc.cache import utils as cache_utils
 from ggrc.fulltext import mixin
 from ggrc.integrations import integrations_errors, issues
-from ggrc.integrations.synchronization_jobs import one_time_back_sync
 from ggrc.integrations.external_app import constants
 from ggrc.models import background_task, reflection, revision
 from ggrc.models.hooks.issue_tracker import integration_utils
@@ -407,14 +406,6 @@ def generate_wf_tasks_notifications(_):
   """Generate notifications for wf cycle tasks."""
   common.generate_cycle_tasks_notifs()
   return app.make_response(("success", 200, [("Content-Type", "text/html")]))
-
-
-@app.route("/_background_tasks/onetime_back_sync", methods=["POST"])
-@background_task.queued_task
-def onetime_back_sync(_):
-  """Onetime synchronization of IssueTrackerIssue component_id/hotlist_id."""
-  one_time_back_sync.update_synced_issues()
-  return app.make_response(('success', 200, [("Content-Type", "text/json")]))
 
 
 def _remove_dead_reindex_objects(indexed_models):
@@ -882,20 +873,6 @@ def admin_find_empty_revisions():
   return bg_task.make_response(
       app.make_response(("scheduled %s" % bg_task.name, 200,
                         [('Content-Type', 'text/html')])))
-
-
-@app.route("/admin/onetime_back_sync", methods=["POST"])
-@login.login_required
-@login.admin_required
-def admin_onetime_back_sync():
-  """Back sync for IssuetrackerIssues"""
-  bg_task = background_task.create_task(
-      name="onetime_back_sync",
-      url=flask.url_for(onetime_back_sync.__name__),
-      queued_callback=onetime_back_sync,
-  )
-  db.session.commit()
-  return bg_task.task_scheduled_response()
 
 
 @app.route("/admin")

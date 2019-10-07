@@ -214,7 +214,7 @@ class TestCreatorProgram(TestCase):
 
     # Use admin owner role to map it with system
     acr_id = all_models.AccessControlRole.query.filter_by(
-        object_type="System",
+        object_type="Regulation",
         name="Admin"
     ).first().id
     self.objects["program"] = all_models.Program.query.get(program_id)
@@ -222,8 +222,8 @@ class TestCreatorProgram(TestCase):
     # Create an object:
     for obj in ("mapped_object", "unrelated"):
       random_title = factories.random_str()
-      response = self.api.post(all_models.System, {
-          "system": {
+      response = self.api.post(all_models.Regulation, {
+          "regulation": {
               "title": random_title,
               "context": None,
               "access_control_list": [
@@ -232,8 +232,8 @@ class TestCreatorProgram(TestCase):
       })
       self.assertEqual(response.status_code, 201,
                        "Creator can't create object")
-      system_id = response.json.get("system").get("id")
-      self.objects[obj] = all_models.System.query.get(system_id)
+      system_id = response.json.get("regulation").get("id")
+      self.objects[obj] = all_models.Regulation.query.get(system_id)
 
     # Map Object to Program
     response = self.api.post(all_models.Relationship, {
@@ -242,7 +242,7 @@ class TestCreatorProgram(TestCase):
             "type": "Program"
         }, "destination": {
             "id": self.objects["mapped_object"].id,
-            "type": "System"
+            "type": "Regulation"
         }, "context": None},
     })
     self.assertEqual(response.status_code, 201,

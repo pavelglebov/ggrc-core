@@ -51,7 +51,7 @@ class TestRevisions(query_helper.WithQueryApi, TestCase):
 
   def test_revisions(self):
     """ Test revision creation for POST and PUT """
-    cls = ggrc.models.DataAsset
+    cls = ggrc.models.Regulation
     name = cls._inflector.table_singular  # pylint: disable=protected-access
     _, obj = self.gen.generate(cls, name, {name: {
         "title": "revisioned v1",
@@ -72,7 +72,7 @@ class TestRevisions(query_helper.WithQueryApi, TestCase):
 
   def test_relevant_revisions(self):
     """ Test revision creation for mapping to an object """
-    cls = ggrc.models.DataAsset
+    cls = ggrc.models.Regulation
     name = cls._inflector.table_singular  # pylint: disable=protected-access
 
     _, obj1 = self.gen.generate(cls, name, {name: {
@@ -125,7 +125,7 @@ class TestRevisions(query_helper.WithQueryApi, TestCase):
 
   def test_content_length(self):
     """Test revision content length restrictions."""
-    process = factories.ProcessFactory(
+    process = factories.RegulationFactory(
         title="a" * 200,
         description="b" * 65000,
         notes="c" * 65000,

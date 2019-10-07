@@ -153,7 +153,7 @@ class TestPeopleMentions(TestCase):
     """Test sending mention email after import an object with comments."""
     with factories.single_commit():
       factories.PersonFactory(email="some_user@example.com")
-      obj = factories.ProductFactory(title="Product4")
+      obj = factories.RegulationFactory(title="Regulation4")
       obj_slug = obj.slug
       url = urljoin(get_url_root(), utils.view_url_for(obj))
 
@@ -162,7 +162,7 @@ class TestPeopleMentions(TestCase):
 
     import_data = OrderedDict(
         [
-            ("object_type", "Product"),
+            ("object_type", "Regulation"),
             ("Code*", obj_slug),
             ("comments", first_comment + u";;" + second_comment)
         ]
@@ -171,12 +171,12 @@ class TestPeopleMentions(TestCase):
       response = self.import_data(import_data)
     self._check_csv_response(response, {})
     expected_title = (u"user@example.com mentioned you on "
-                      u"a comment within Product4")
+                      u"a comment within Regulation4")
     body = settings.EMAIL_MENTIONED_PERSON.render(person_mention={
         "comments": [
-            (u"user@example.com mentioned you on a comment within Product4 "
+            (u"user@example.com mentioned you on a comment within Regulation4 "
              u"at 01/09/2018 23:31:42 PST:\n" + first_comment + u"\n"),
-            (u"user@example.com mentioned you on a comment within Product4 "
+            (u"user@example.com mentioned you on a comment within Regulation4 "
              u"at 01/09/2018 23:31:42 PST:\n" + second_comment + u"\n"),
         ],
         "url": url,
@@ -191,7 +191,7 @@ class TestPeopleMentions(TestCase):
     with factories.single_commit():
       factories.PersonFactory(email="first@example.com")
       factories.PersonFactory(email="second@example.com")
-      obj = factories.ProductFactory(title="Product5")
+      obj = factories.RegulationFactory(title="Product5")
       obj_slug = obj.slug
 
     first_comment = u"One <a href=\"mailto:first@example.com\"></a>"
@@ -200,7 +200,7 @@ class TestPeopleMentions(TestCase):
 
     import_data = OrderedDict(
         [
-            ("object_type", "Product"),
+            ("object_type", "Regulation"),
             ("Code*", obj_slug),
             ("comments", first_comment + u";;" + second_comment)
         ]
@@ -209,7 +209,7 @@ class TestPeopleMentions(TestCase):
       response = self.import_data(import_data)
     self._check_csv_response(response, {})
 
-    obj = all_models.Product.query.filter_by(title="Product5").one()
+    obj = all_models.Regulation.query.filter_by(title="Product5").one()
     url = urljoin(get_url_root(), utils.view_url_for(obj))
 
     expected_title = (u"user@example.com mentioned you on "

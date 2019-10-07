@@ -73,16 +73,6 @@ class SnapshotterBaseTestCase(TestCase):
               "title": "objective rich field 1",
               "attribute_type": "Rich Text",
           },
-          {
-              "definition_type": "process",
-              "title": "process date field 1",
-              "attribute_type": "Date",
-          },
-          {
-              "definition_type": "access_group",
-              "title": "access group text field 2",
-              "attribute_type": "Text",
-          },
       ]
 
     for cad in cad_definitions:

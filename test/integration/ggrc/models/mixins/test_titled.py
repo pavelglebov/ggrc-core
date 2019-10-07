@@ -48,10 +48,12 @@ class TestTitledMixin(TestCase):
   def test_post_title_is_valid(self, title, expected):
     """Test object creation request title={0!r}"""
     response = self.api.post(
-        all_models.Product,
-        {'product': {"description": "desc", "title": title}}
+        all_models.Regulation,
+        {'regulation': {"description": "desc", "title": title}}
     )
 
     self.assertStatus(response, 201)
-    product = all_models.Product.query.get(response.json['product']['id'])
+    product = all_models.Regulation.query.get(
+        response.json['regulation']['id']
+    )
     self.assertEqual(product.title, expected)

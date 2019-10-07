@@ -12,8 +12,8 @@ from ggrc.models.object_person import Personable
 from ggrc.models.relationship import Relatable
 
 
-class OrgGroup(Roleable,
-               synchronizable.Synchronizable,
+class OrgGroup(synchronizable.Synchronizable,
+               Roleable,
                mixins.CustomAttributable,
                Personable,
                Relatable,

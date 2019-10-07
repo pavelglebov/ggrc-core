@@ -122,6 +122,8 @@ class TestMaxACLValidation(TestCase):
     ]
     data = {
         "org_group": {
+            "external_id": factories.SynchronizableExternalId.next(),
+            "external_slug": str(factories.SynchronizableExternalId.next()),
             "title": "org_group title",
             "context": None,
             "access_control_list": acl,

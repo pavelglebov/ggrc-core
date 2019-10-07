@@ -60,6 +60,22 @@ class Types(object):
   }
 
   external = {
+      "AccessGroup",
+      "AccountBalance",
+      "DataAsset",
+      "Facility",
+      "KeyReport",
+      "Market",
+      "Metric",
+      "OrgGroup",
+      "Process",
+      "Product",
+      "ProductGroup",
+      "Project",
+      "System",
+      "Vendor",
+      "TechnologyEnvironment",
+      "ProductGroup",
       "Control",
       "Risk",
   }

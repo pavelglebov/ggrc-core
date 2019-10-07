@@ -82,13 +82,6 @@ class TestComprehensiveSheets(TestCase):
             "row_warnings": 4,
             "rows": 16,
         },
-        "System": {
-            "created": 14,
-            "ignored": 2,
-            "row_errors": 3,
-            "row_warnings": 4,
-            "rows": 16,
-        },
         "Requirement": {
             "created": 14,
             "ignored": 2,
@@ -96,89 +89,12 @@ class TestComprehensiveSheets(TestCase):
             "row_warnings": 4,
             "rows": 16,
         },
-        "Process": {
-            "created": 14,
-            "ignored": 2,
-            "row_errors": 3,
-            "row_warnings": 4,
-            "rows": 16,
-        },
-        "Data Asset": {
-            "created": 14,
-            "ignored": 2,
-            "row_errors": 3,
-            "row_warnings": 4,
-            "rows": 16,
-        },
-        "Product": {
-            "created": 14,
-            "ignored": 2,
-            "row_errors": 3,
-            "row_warnings": 4,
-            "rows": 16,
-        },
-        "Project": {
-            "created": 13,
-            "ignored": 2,
-            "row_errors": 3,
-            "row_warnings": 7,
-            "rows": 15,
-        },
-        "Facility": {
-            "created": 14,
-            "ignored": 2,
-            "row_errors": 3,
-            "row_warnings": 4,
-            "rows": 16,
-        },
-        "Market": {
-            "created": 13,
-            "ignored": 2,
-            "row_errors": 3,
-            "row_warnings": 3,
-            "rows": 15,
-        },
-        "Org Group": {
-            "created": 13,
-            "ignored": 2,
-            "row_errors": 3,
-            "row_warnings": 3,
-            "rows": 15,
-        },
-        "Vendor": {
-            "created": 13,
-            "ignored": 2,
-            "row_errors": 3,
-            "row_warnings": 3,
-            "rows": 15,
-        },
         "Person": {
             "created": 13,
             "ignored": 1,
             "row_errors": 1,
             "row_warnings": 0,
             "rows": 14,
-        },
-        "Metric": {
-            "created": 14,
-            "ignored": 2,
-            "row_errors": 3,
-            "row_warnings": 4,
-            "rows": 16,
-        },
-        "Technology Environment": {
-            "created": 14,
-            "ignored": 2,
-            "row_errors": 3,
-            "row_warnings": 4,
-            "rows": 16,
-        },
-        "Product Group": {
-            "created": 14,
-            "ignored": 2,
-            "row_errors": 3,
-            "row_warnings": 4,
-            "rows": 16,
         },
     }
 
@@ -247,50 +163,20 @@ class TestComprehensiveSheets(TestCase):
             },
             "block_warnings": {
                 errors.UNKNOWN_COLUMN.format(
-                    line=54, column_name="assertions"),
+                    line=42, column_name="assertions"),
                 errors.UNKNOWN_COLUMN.format(
-                    line=54, column_name="categories")
+                    line=42, column_name="categories")
             },
             "row_errors": {
-                errors.DUPLICATE_VALUE_IN_CSV.format(
-                    line=57, column_name="Code",
-                    value="risk-2", processed_line=56),
-                errors.DUPLICATE_VALUE_IN_CSV.format(
-                    line=57, column_name="Title",
-                    value="risk-2", processed_line=56),
-                errors.DUPLICATE_VALUE_IN_CSV.format(
-                    line=58, column_name="Code",
-                    value="risk-2", processed_line=56),
-                errors.DUPLICATE_VALUE_IN_CSV.format(
-                    line=58, column_name="Title",
-                    value="risk-2", processed_line=56),
                 errors.EXTERNAL_MODEL_IMPORT_RESTRICTION.format(
-                    line=55,
+                    line=43,
                     external_model_name="Risk"
-                ),
-                errors.EXTERNAL_MODEL_IMPORT_RESTRICTION.format(
-                    line=56,
-                    external_model_name="Risk"
-                ),
-                errors.EXTERNAL_MODEL_IMPORT_RESTRICTION.format(
-                    line=57,
-                    external_model_name="Risk"
-                ),
-                errors.EXTERNAL_MODEL_IMPORT_RESTRICTION.format(
-                    line=58,
-                    external_model_name="Risk"
-                ),
+                )
             },
             "row_warnings": {
                 errors.EXPORT_ONLY_WARNING.format(
-                    line=55, column_name="Last Deprecated Date"),
-                errors.EXPORT_ONLY_WARNING.format(
-                    line=56, column_name="Last Deprecated Date"),
-                errors.EXPORT_ONLY_WARNING.format(
-                    line=57, column_name="Last Deprecated Date"),
-                errors.EXPORT_ONLY_WARNING.format(
-                    line=58, column_name="Last Deprecated Date"),
-            },
+                    line=43, column_name="Last Deprecated Date"),
+            }
         },
         "Program": {
             "block_warnings": {

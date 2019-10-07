@@ -9,6 +9,7 @@ import ddt
 import mock
 
 from ggrc.models import all_models
+from ggrc.models.mixins import synchronizable
 
 from integration.ggrc import TestCase
 from integration.ggrc.models import factories
@@ -88,17 +89,17 @@ class TestExternalPermissions(TestCase):
         "context": 0,
     }
 
-    if model_plural == "risks":
-      model_data["risk_type"] = "some text"
+    if issubclass(model, synchronizable.Synchronizable):
       model_data["external_id"] = factories.SynchronizableExternalId.next()
       model_data["external_slug"] = factories.random_str()
+
+    if model_plural == "risks":
+      model_data["risk_type"] = "some text"
       model_data["review_status"] = all_models.Review.STATES.UNREVIEWED
       model_data["review_status_display_name"] = "some status"
 
     if model_plural == "controls":
       model_data["assertions"] = '["test assertion"]'
-      model_data["external_id"] = factories.SynchronizableExternalId.next()
-      model_data["external_slug"] = factories.random_str()
       model_data["review_status"] = all_models.Review.STATES.UNREVIEWED
       model_data["review_status_display_name"] = "some status"
 
@@ -181,9 +182,9 @@ class TestExternalPermissions(TestCase):
   def test_external_user_creation(self):
     """Test creation of external user and its role."""
     response = self._post(
-        "api/{}".format("markets"),
+        "api/{}".format("regulations"),
         data=json.dumps({
-            "market": {
+            "regulation": {
                 "title": "some market",
                 "context": 0
             }
@@ -242,9 +243,9 @@ class TestExternalAppRequest(TestCase):
   def test_external_user_creation(self):
     """Test creation of external user and its role."""
     response = self.client.post(
-        "api/{}".format("markets"),
+        "api/{}".format("regulations"),
         data=json.dumps({
-            "market": {
+            "regulation": {
                 "title": "some market",
                 "context": 0
             }

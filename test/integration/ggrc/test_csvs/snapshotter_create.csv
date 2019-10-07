@@ -1,4 +1,4 @@
-Object type,,,,,,,,,,,,,,,
+ Object type,,,,,,,,,,,,,,,
 program,code*,title*,Program Managers,state,,,,,,,,,,,
 ,Prog-13211,Program with 3 of everything snapshotable,user@example.com,Draft,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
@@ -9,56 +9,12 @@ program,code*,title*,Program Managers,state,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 Object type,,,,,,,,,,,,,,,
-Access Group,code*,title*,description,admin,verifier,assignee,Launch Status,map:program,,,,,,,
-,ag-1,ag-1,test,user@example.com,user@example.com,user@example.com,Draft,Prog-13211,,,,,,,
-,ag-2,ag-2,test,user@example.com,user@example.com,user@example.com,Active,Prog-13211,,,,,,,
-,ag-3,ag-3,test,user@example.com,user@example.com,user@example.com,Draft,Prog-13211,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-Object type,,,,,,,,,,,,,,,
 Contract,code*,title*,description,admin,state,map:program,,,,,,,,,
 ,contract-1,contract-1,test,user@example.com,Draft,Prog-13211,,,,,,,,,
 ,Contract-2,Contract-2,test,user@example.com,Active,Prog-13211,,,,,,,,,
 ,Contract-3,Contract-3,test,user@example.com,Draft,Prog-13211,,,,,,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
-Object type,,,,,,,,,,,,,,,
-Data Asset,code*,title*,description,admin,verifier,assignee,Launch Status,map:program,,,,,,,
-,da-1,da-1,test,user@example.com,user@example.com,user@example.com,Draft,Prog-13211,,,,,,,
-,da-2,da-2,test,user@example.com,user@example.com,user@example.com,Active,Prog-13211,,,,,,,
-,da-3,da-3,test,user@example.com,user@example.com,user@example.com,Draft,Prog-13211,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-Object type,"Must be unique.  Can be left empty for autogeneration.  If updating or deleting, code is required",,,"if owner is not provided, current user will be reated as owner of the object","Default value 'draft' is selected
-Other values are:
-Final
-Effective
-Ineffective
-Launched
-Not Launched
-In Scope
-Not in Scope
-Deprecated",,,,,,,,MM/DD/YYYY,,
-Facility,code*,title*,description,admin,Launch Status,notes,compliance contacts,primary contacts,secondary contacts,assignee,verifier,reference url,effective date,map:program,
-,fac-1,fac-1,test,user@example.com,Draft,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,fac-2,fac-2,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,fac-3,fac-3,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-Object type,"Must be unique.  Can be left empty for autogeneration.  If updating or deleting, code is required",,,"if owner is not provided, current user will be reated as owner of the object","Default value 'draft' is selected
-Other values are:
-Final
-Effective
-Ineffective
-Launched
-Not Launched
-In Scope
-Not in Scope
-Deprecated",,,,,,,,MM/DD/YYYY,,
-Market,code*,title*,description,admin,Launch Status,notes,compliance contacts,primary contacts,secondary contacts,assignee,verifier,reference url,effective date,map:program,
-,mkt-1,mkt-1,test,user@example.com,Draft,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,mkt-2,mkt-2,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,mkt-3,mkt-3,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 Object type,"Must be unique.  Can be left empty for autogeneration.  If updating or deleting, code is required",,,"if owner is not provided, current user will be reated as owner of the object","Default value 'draft' is selected
@@ -76,21 +32,6 @@ objective,code*,title*,description,admin,state,notes,primary contacts,,,secondar
 ,obj-2,obj-2,test,user@example.com,Active,this is a note,user@example.com,,,user@example.com,google.com,Prog-13211,,,
 ,obj-3,obj-3,test,user@example.com,Active,this is a note,user@example.com,,,user@example.com,google.com,Prog-13211,,,
 ,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-Object type,"Must be unique.  Can be left empty for autogeneration.  If updating or deleting, code is required",,,"if owner is not provided, current user will be reated as owner of the object","Default value 'draft' is selected
-Other values are:
-Final
-Effective
-Ineffective
-Launched
-Not Launched
-In Scope
-Not in Scope
-Deprecated",,,,,,,,,,
-OrgGroup,code*,title*,description,admin,Launch Status,notes,compliance contacts,primary contacts,secondary contacts,assignee,verifier,reference url,map:program,,
-,orggroup-1,orggroup-1,test,user@example.com,Draft,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,ggrc.com,Prog-13211,,
-,Orggroup-2,Orggroup-2,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,ggrc.com,Prog-13211,,
-,Orggroup-3,Orggroup-3,test,user@example.com,Deprecated,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,ggrc.com,Prog-13211,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 Object type,"Must be unique.  Can be left empty for autogeneration.  If updating or deleting, code is required",,,"if owner is not provided, current user will be reated as owner of the object","Default value 'draft' is selected
@@ -113,45 +54,6 @@ Policy,code*,title*,description,admin,state,notes,primary contacts,,,secondary c
 ,p1,policy 1,test,user@example.com,Draft,this is a note,user@example.com,,,user@example.com,7/1/2015,google.com,Company Policy,Prog-13211,
 ,p2,policy 2,test,user@example.com,Active,this is a note,user@example.com,,,user@example.com,7/1/2015,google.com,Org Group Policy,Prog-13211,
 ,p3,policy 3,test,user@example.com,Active,this is a note,user@example.com,,,user@example.com,7/1/2015,google.com,Data Asset Policy,Prog-13211,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-Object type,"Must be unique.  Can be left empty for autogeneration.  If updating or deleting, code is required",,,"if owner is not provided, current user will be reated as owner of the object","Default value 'draft' is selected
-Other values are:
-Final
-Effective
-Ineffective
-Launched
-Not Launched
-In Scope
-Not in Scope
-Deprecated",,,,,,,,MM/DD/YYYY,"Options are:
-Prod
-Corp
-Service
-Core
-3rd Party",
-Process,code*,title*,description,admin,Launch Status,notes,compliance contacts,primary contacts,secondary contacts,assignee,verifier,reference url,effective date,network zone,map:program
-,proc-1,proc-1,test,user@example.com,Draft,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,prod,Prog-13211
-,proc-2,proc-2,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,corp,Prog-13211
-,proc-3,proc-3,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,service,Prog-13211
-,,,,,,,,,,,,,,,
-Object type,"Must be unique.  Can be left empty for autogeneration.  If updating or deleting, code is required",,,"if owner is not provided, current user will be reated as owner of the object","Default value 'draft' is selected
-Other values are:
-Final
-Effective
-Ineffective
-Launched
-Not Launched
-In Scope
-Not in Scope
-Deprecated",,,,,,,,MM/DD/YYYY,"Options are:
-Saas
-Desktop Software
-Appliance",
-Product,code*,title*,description,admin,Launch Status,notes,compliance contacts,primary contacts,secondary contacts,assignee,verifier,reference url,effective date,Kind/Type,map:program
-,prod-1,prod-1,test,user@example.com,Draft,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Saas,Prog-13211
-,prod-2,prod-2,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Desktop Software,Prog-13211
-,prod-3,prod-3,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Appliance,Prog-13211
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 Object type,"Must be unique.  Can be left empty for autogeneration.  If updating or deleting, code is required",,,"if owner is not provided, current user will be reated as owner of the object","Default value 'draft' is selected
@@ -210,43 +112,6 @@ Launched
 Not Launched
 In Scope
 Not in Scope
-Deprecated",,,,,,,,MM/DD/YYYY,"Options are:
-Prod
-Corp
-Service
-Core
-3rd Party",
-System,code*,title*,description,admin,Launch Status,notes,compliance contacts,primary contacts,secondary contacts,assignee,verifier,reference url,effective date,network zone,map:program
-,sys-1,sys-1,test,user@example.com,Draft,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,prod,Prog-13211
-,sys-2,sys-2,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,corp,Prog-13211
-,sys-3,sys-3,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,service,Prog-13211
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-Object type,"Must be unique.  Can be left empty for autogeneration.  If updating or deleting, code is required",Mandatory field,,"if owner is not provided, current user will be reated as owner of the object","Default value 'draft' is selected
-Other values are:
-Final
-Effective
-Ineffective
-Launched
-Not Launched
-In Scope
-Not in Scope
-Deprecated",,,,,,MM/DD/YYYY,,,,
-Vendor,code*,title*,description,admin,Launch Status,notes,compliance contacts,primary contacts,secondary contacts,assignee,verifier,effective date,reference url,map:program,
-,ven-1,ven-1,test,user@example.com,Draft,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,7/1/2015,google.com,Prog-13211,
-,ven-2,ven-2,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,7/1/2015,google.com,Prog-13211,
-,ven-3,ven-3,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,7/1/2015,google.com,Prog-13211,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-Object type,"Must be unique.  Can be left empty for autogeneration.  If updating or deleting, code is required",,,"if owner is not provided, current user will be reated as owner of the object","Default value 'draft' is selected
-Other values are:
-Final
-Effective
-Ineffective
-Launched
-Not Launched
-In Scope
-Not in Scope
 Deprecated",MM/DD/YYYY,,,,,,,,,
 Threat,code*,title*,description,notes,Admin*,Effective date,map:program,,,,,,,,
 ,threat-1,threat-1,test,this is a note,user@example.com,7/1/2015,Prog-13211,,,,,,,,
@@ -254,103 +119,3 @@ Threat,code*,title*,description,notes,Admin*,Effective date,map:program,,,,,,,,
 ,Threat-3,Threat-3,test,this is a note,user@example.com,7/1/2015,Prog-13211,,,,,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
-Object type,"Must be unique.  Can be left empty for autogeneration.  If updating or deleting, code is required",,,"if owner is not provided, current user will be reated as owner of the object","Default value 'draft' is selected
-Other values are:
-Final
-Effective
-Ineffective
-Launched
-Not Launched
-In Scope
-Not in Scope
-Deprecated",,,,,,,,"Options are:
-Prod
-Corp
-Service
-Core
-3rd Party",,
-Metric,code*,title*,description,admin,Launch Status,notes,compliance contacts,primary contacts,secondary contacts,assignee,verifier,reference url,effective date,map:program,
-,metric-1,metric-1,test,user@example.com,Draft,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,metric-2,metric-2,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,metric-3,metric-3,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-Object type,"Must be unique.  Can be left empty for autogeneration.  If updating or deleting, code is required",,,"if owner is not provided, current user will be reated as owner of the object","Default value 'draft' is selected
-Other values are:
-Final
-Effective
-Ineffective
-Launched
-Not Launched
-In Scope
-Not in Scope
-Deprecated",,,,,,,,"Options are:
-Prod
-Corp
-Service
-Core
-3rd Party",,
-TechnologyEnvironment,code*,title*,description,admin,Launch Status,notes,compliance contacts,primary contacts,secondary contacts,assignee,verifier,reference url,effective date,map:program,
-,tech_env1,tech_env1,test,user@example.com,Draft,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,tech_env2,tech_env2,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,tech_env3,tech_env3,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-Object type,"Must be unique.  Can be left empty for autogeneration.  If updating or deleting, code is required",,,"if owner is not provided, current user will be reated as owner of the object","Default value 'draft' is selected
-Other values are:
-Final
-Effective
-Ineffective
-Launched
-Not Launched
-In Scope
-Not in Scope
-Deprecated",,,,,,,,"Options are:
-Prod
-Corp
-Service
-Core
-3rd Party",,
-ProductGroup,code*,title*,description,admin,Launch Status,notes,compliance contacts,primary contacts,secondary contacts,assignee,verifier,reference url,effective date,map:program,
-,productgroup-1,productgroup-1,test,user@example.com,Draft,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,productgroup-2,productgroup-2,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,productgroup-3,productgroup-3,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-Object type,"Must be unique.  Can be left empty for autogeneration.  If updating or deleting, code is required",,,"if owner is not provided, current user will be reated as owner of the object","Default value 'draft' is selected
-Other values are:
-Final
-Effective
-Ineffective
-Launched
-Not Launched
-In Scope
-Not in Scope
-Deprecated",,,,,,,,MM/DD/YYYY,,
-KeyReport,code*,title*,description,admin,Launch Status,notes,compliance contacts,primary contacts,secondary contacts,assignee,verifier,reference url,effective date,map:program,
-,keyreport-1,keyreport-1,test,user@example.com,Draft,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,keyreport-2,keyreport-2,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,keyreport-3,keyreport-3,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-Object type,"Must be unique.  Can be left empty for autogeneration.  If updating or deleting, code is required",,,"if owner is not provided, current user will be reated as owner of the object","Default value 'draft' is selected
-Other values are:
-Final
-Effective
-Ineffective
-Launched
-Not Launched
-In Scope
-Not in Scope
-Deprecated",,,,,,,,MM/DD/YYYY,,
-AccountBalance,code*,title*,description,admin,Launch Status,notes,compliance contacts,primary contacts,secondary contacts,assignee,verifier,reference url,effective date,map:program,
-,accountbalance-1,accountbalance-1,test,user@example.com,Draft,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,accountbalance-2,accountbalance-2,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,accountbalance-3,accountbalance-3,test,user@example.com,Active,this is a note,user@example.com,user@example.com,user@example.com,user@example.com,user@example.com,google.com,7/1/2015,Prog-13211,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-Object type,"Must be unique.  Can be left empty for autogeneration.  If updating or deleting, code is required",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Project,code*,title*,description,assignee,verifier,admin,Launch Status,map:program,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,project-1,project-1,test,user@example.com,user@example.com,user@example.com,Draft,Prog-13211,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,project-2,project-2,test,user@example.com,user@example.com,user@example.com,Active,Prog-13211,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,project-3,project-3,test,user@example.com,user@example.com,user@example.com,Active,Prog-13211,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

@@ -15,6 +15,10 @@ def get_snapshottable_models():
   return {getattr(all_models, stype) for stype in Types.all}
 
 
+def get_external_models():
+  return {getattr(all_models, stype) for stype in Types.external}
+
+
 class TestSnapshotQueryApi(TestCase):
   """Basic tests for /query api."""
 
@@ -111,14 +115,11 @@ class TestSnapshotQueryApi(TestCase):
     self._ca_objects = {}
     external_ca_model_names = [
         "control",
+        "risk",
     ]
     ca_model_names = [
-        "facility",
-        "market",
         "requirement",
         "threat",
-        "access_group",
-        "data_asset"
     ]
     external_ca_args = [
         {"title": "CA text", "attribute_type": "Text"},
@@ -160,7 +161,7 @@ class TestSnapshotQueryApi(TestCase):
     with factories.single_commit():
       objects = [
           factories.ControlFactory(directive=None),
-          factories.RiskFactory()
+          factories.RiskFactory(),
       ]
 
       ca_definitions = {
@@ -194,7 +195,7 @@ class TestSnapshotQueryApi(TestCase):
     """Test that revision contains all content needed."""
 
     facility_revision = all_models.Revision.query.filter(
-        all_models.Revision.resource_type == "Facility").order_by(
+        all_models.Revision.resource_type == "Threat").order_by(
         all_models.Revision.id.desc()).first()
 
     self.assertIn("custom_attribute_values", facility_revision.content)
@@ -251,7 +252,7 @@ class TestSnapshotQueryApi(TestCase):
     fields.
     """
     self.client.get("/login")
-    test_models = get_snapshottable_models()
+    test_models = get_snapshottable_models() - get_external_models()
     for model in test_models:
       obj = model.eager_query().first()
       generated_json = self._clean_json(obj.log_json())

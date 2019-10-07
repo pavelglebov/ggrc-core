@@ -91,6 +91,12 @@ class TitledFactory(ModelFactory):
   title = factory.LazyAttribute(lambda m: random_str(prefix='title '))
 
 
+class ExternalResourceFactory(ModelFactory):
+  external_id = factory.LazyAttribute(lambda _:
+                                      SynchronizableExternalId.next())
+  external_slug = factory.LazyAttribute(lambda _: random_str())
+
+
 class WithACLandCAFactory(ModelFactory):
   """Factory class to create object with ACL and CA in one step"""
 
@@ -442,31 +448,31 @@ class RegulationFactory(TitledFactory):
     model = all_models.Regulation
 
 
-class OrgGroupFactory(TitledFactory):
+class OrgGroupFactory(ExternalResourceFactory, TitledFactory):
 
   class Meta:
     model = all_models.OrgGroup
 
 
-class SystemFactory(TitledFactory):
+class SystemFactory(ExternalResourceFactory, TitledFactory):
 
   class Meta:
     model = all_models.System
 
 
-class KeyReportFactory(TitledFactory):
+class KeyReportFactory(ExternalResourceFactory, TitledFactory):
 
   class Meta:
     model = all_models.KeyReport
 
 
-class AccountBalanceFactory(TitledFactory):
+class AccountBalanceFactory(ExternalResourceFactory, TitledFactory):
 
   class Meta:
     model = all_models.AccountBalance
 
 
-class ProcessFactory(TitledFactory):
+class ProcessFactory(ExternalResourceFactory, TitledFactory):
 
   class Meta:
     model = all_models.Process
@@ -478,7 +484,7 @@ class PolicyFactory(TitledFactory):
     model = all_models.Policy
 
 
-class MarketFactory(TitledFactory):
+class MarketFactory(ExternalResourceFactory, TitledFactory):
 
   class Meta:
     model = all_models.Market
@@ -516,21 +522,21 @@ class AccessControlRoleAdminFactory(AccessControlRoleFactory):
   name = "Admin"
 
 
-class AccessGroupFactory(TitledFactory):
+class AccessGroupFactory(ExternalResourceFactory, TitledFactory):
   """Access Group factory class"""
 
   class Meta:
     model = all_models.AccessGroup
 
 
-class DataAssetFactory(TitledFactory):
+class DataAssetFactory(ExternalResourceFactory, TitledFactory):
   """DataAsset factory class"""
 
   class Meta:
     model = all_models.DataAsset
 
 
-class FacilityFactory(TitledFactory):
+class FacilityFactory(ExternalResourceFactory, TitledFactory):
   """Facility factory class"""
 
   class Meta:
@@ -544,7 +550,7 @@ class ObjectPersonFactory(ModelFactory):
     model = all_models.ObjectPerson
 
 
-class ProductFactory(TitledFactory):
+class ProductFactory(ExternalResourceFactory, TitledFactory):
   """Product factory class"""
 
   class Meta:
@@ -567,7 +573,7 @@ class StandardFactory(TitledFactory):
   description = factory.LazyAttribute(lambda _: random_str(length=100))
 
 
-class VendorFactory(TitledFactory):
+class VendorFactory(ExternalResourceFactory, TitledFactory):
   """Vendor factory class"""
 
   class Meta:
@@ -632,13 +638,13 @@ class ReviewFactory(ModelFactory):
   notification_type = all_models.Review.NotificationTypes.EMAIL_TYPE
 
 
-class ProjectFactory(TitledFactory):
+class ProjectFactory(ExternalResourceFactory, TitledFactory):
 
   class Meta:
     model = all_models.Project
 
 
-class TechnologyEnvironmentFactory(TitledFactory):
+class TechnologyEnvironmentFactory(ExternalResourceFactory, TitledFactory):
 
   class Meta:
     model = all_models.TechnologyEnvironment
@@ -666,13 +672,13 @@ class BackgroundOperationFactory(ModelFactory):
     model = all_models.BackgroundOperation
 
 
-class MetricFactory(TitledFactory):
+class MetricFactory(ExternalResourceFactory, TitledFactory):
 
   class Meta:
     model = all_models.Metric
 
 
-class ProductGroupFactory(TitledFactory):
+class ProductGroupFactory(ExternalResourceFactory, TitledFactory):
 
   class Meta:
     model = all_models.ProductGroup
