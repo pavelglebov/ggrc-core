@@ -454,28 +454,6 @@ class CommentInitiator(object):  # pylint: disable=too-few-public-methods
     )
 
 
-class ScopedCommentable(Commentable):
-  """Mixin for commentable scoping objects.
-
-  This is a mixin for adding default options to objects on which people can
-  comment.
-  """
-
-  VALID_RECIPIENTS = frozenset([
-      "Assignees",
-      "Creators",
-      "Verifiers",
-      "Admin",
-      "Primary Contacts",
-      "Secondary Contacts",
-      "Product Managers",
-      "Technical / Program Managers",
-      "Technical Leads",
-      "System Owners",
-      "Legal Counsels",
-      "Assignee",
-      "Verifier",
-      "Compliance Contacts",
-      "Line of Defense One Contacts",
-      "Vice Presidents",
-  ])
+class ScopedCommentable(ExternalCommentable):
+  """Mixin for external commentable scoping objects."""
+  pass

@@ -8,6 +8,7 @@ from collections import OrderedDict
 
 from ggrc import models
 from ggrc.converters import errors
+from ggrc.models import comment
 from ggrc.models.mixins import synchronizable
 from integration.ggrc import TestCase
 
@@ -47,3 +48,8 @@ class TestExternalScopeObject(TestCase):
         ("Title", "Test title")
     ]))
     self._check_csv_response(response, excepted_resp)
+
+  @ddt.data(*models.all_models.get_scope_models())
+  def test_scoped_are_ext_commentable(self, model):
+    """Test that '{0.__name__}' model are external Commentable"""
+    self.assertTrue(issubclass(model, comment.ExternalCommentable))
