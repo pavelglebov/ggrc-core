@@ -17,7 +17,7 @@ from ggrc.models.all_models import get_scope_models
 
 # revision identifiers, used by Alembic.
 revision = '9a38b1d92f3e'
-down_revision = 'ac75e70c9081'
+down_revision = '394f80f98f02'
 
 
 scope_tables_names = set([model.__tablename__ for model in get_scope_models()])
