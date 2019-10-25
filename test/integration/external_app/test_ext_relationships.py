@@ -39,20 +39,20 @@ class TestExternalRelationshipNew(TestCase):
     """If ext app create already created relationship
     it has to be with is_external=False"""
     with factories.single_commit():
-      market1 = factories.MarketFactory()
-      market2 = factories.MarketFactory()
+      obj_1 = factories.StandardFactory()
+      obj_2 = factories.RegulationFactory()
       relationship = factories.RelationshipFactory(
-          source=market1,
-          destination=market2,
+          source=obj_1,
+          destination=obj_2,
           is_external=False,
       )
       relationship_id = relationship.id
-    ext_api = ExternalApiClient(use_ggrcq_service_account=True)
+    ext_api = ExternalApiClient(use_ggrcq_service_account=False)
 
     response = ext_api.post(all_models.Relationship, data={
         "relationship": {
-            "source": {"id": market1.id, "type": market1.type},
-            "destination": {"id": market2.id, "type": market2.type},
+            "source": {"id": obj_1.id, "type": obj_1.type},
+            "destination": {"id": obj_2.id, "type": obj_2.type},
             "is_external": True,
             "context": None,
         },

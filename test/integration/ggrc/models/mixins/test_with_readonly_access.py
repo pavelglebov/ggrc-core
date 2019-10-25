@@ -51,8 +51,7 @@ class TestWithReadOnlyAccessAPI(TestCase, query_helper.WithQueryApi):
         dct,
     )
 
-    self.assertStatus(resp, 201)
-    self.assertFalse(obj.readonly)
+    self.assertStatus(resp, 403)
 
   @ddt.data(
       ('System', True, True),
@@ -80,16 +79,16 @@ class TestWithReadOnlyAccessAPI(TestCase, query_helper.WithQueryApi):
     self.assertEqual(obj.readonly, result)
 
   @ddt.data(
-      ('System', False, False, 200),
-      ('System', False, True, 200),
-      ('System', False, None, 200),
-      ('System', False, _NOT_SPECIFIED, 200),
-      ('System', False, "qwerty", 200),
-      ('System', True, False, 405),
-      ('System', True, True, 405),
-      ('System', True, None, 405),
-      ('System', True, _NOT_SPECIFIED, 405),
-      ('System', True, "qwerty", 405),
+      ('System', False, False, 403),
+      ('System', False, True, 403),
+      ('System', False, None, 403),
+      ('System', False, _NOT_SPECIFIED, 403),
+      ('System', False, "qwerty", 403),
+      ('System', True, False, 403),
+      ('System', True, True, 403),
+      ('System', True, None, 403),
+      ('System', True, _NOT_SPECIFIED, 403),
+      ('System', True, "qwerty", 403),
   )
   @ddt.unpack
   def test_put(self, obj_type, current, new, exp_code):

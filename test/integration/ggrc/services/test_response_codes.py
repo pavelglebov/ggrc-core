@@ -99,20 +99,20 @@ class TestMapDeletedObject(TestCase):
   def setUp(self):
     self.api = api_helper.Api()
     with factories.single_commit():
-      source_id = factories.ProjectFactory().id
-      destination_id = factories.ProjectFactory().id
-      del_source_id = factories.ProjectFactory().id
-      del_destination_id = factories.ProjectFactory().id
+      source_id = factories.RegulationFactory().id
+      destination_id = factories.RegulationFactory().id
+      del_source_id = factories.RegulationFactory().id
+      del_dest_id = factories.RegulationFactory().id
 
     self.objects = {
-        "source": {"type": "Project", "id": source_id},
-        "destination": {"type": "Project", "id": destination_id},
-        "deleted_source": {"type": "Project", "id": del_source_id},
-        "deleted_destination": {"type": "Project", "id": del_destination_id},
+        "source": {"type": "Regulation", "id": source_id},
+        "destination": {"type": "Regulation", "id": destination_id},
+        "deleted_source": {"type": "Regulation", "id": del_source_id},
+        "deleted_destination": {"type": "Regulation", "id": del_dest_id},
     }
 
-    self.api.delete(all_models.Project, id_=del_source_id)
-    self.api.delete(all_models.Project, id_=del_destination_id)
+    self.api.delete(all_models.Regulation, id_=del_source_id)
+    self.api.delete(all_models.Regulation, id_=del_dest_id)
 
   @ddt.data(
       ("source", "destination", 201),

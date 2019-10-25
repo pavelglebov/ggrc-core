@@ -49,14 +49,9 @@ class TestReader(TestCase):
     """ Test Basic create/read,update/delete operations """
     self.api.set_user(self.users["reader"])
     all_errors = []
-    base_models = set([
-        "DataAsset", "Contract",
-        "Policy", "Regulation", "Standard", "Document", "Facility",
-        "Market", "Objective", "OrgGroup", "Vendor", "Product",
-        "System", "Process", "Project", "AccessGroup",
-        "Metric", "TechnologyEnvironment", "ProductGroup", "KeyReport",
-        "AccountBalance",
-    ])
+    base_models = set(["Contract", "Policy", "Regulation",
+                       "Standard", "Document", "Objective"])
+
     for model_singular in base_models:
       try:
         model = get_model(model_singular)

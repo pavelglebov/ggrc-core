@@ -5,7 +5,6 @@
 
 from ggrc.services import common
 from ggrc.services.registry import service
-from ggrc.services.resources import external_internal
 
 
 def contributed_services():
@@ -27,7 +26,7 @@ def contributed_services():
 
   return [
       service('background_tasks', models.BackgroundTask),
-      service('access_groups', models.AccessGroup),
+      service('access_groups', models.AccessGroup, external.ExternalResource),
       service('audits', models.Audit, audit.AuditResource),
       service('calendar_events', models.CalendarEvent),
       service('contexts', models.Context),
@@ -41,7 +40,7 @@ def contributed_services():
       service('external_custom_attribute_definitions',
               models.ExternalCustomAttributeDefinition,
               external.ExternalCADResource),
-      service('data_assets', models.DataAsset),
+      service('data_assets', models.DataAsset, external.ExternalResource),
       service('directives', models.Directive, common.ReadOnlyResource),
       service('contracts', models.Contract),
       service('evidence', models.Evidence),
@@ -50,17 +49,17 @@ def contributed_services():
       service('standards', models.Standard),
       service('documents', models.Document),
       service('events', models.Event, common.ReadOnlyResource),
-      service('facilities', models.Facility),
-      service('markets', models.Market),
+      service('facilities', models.Facility, external.ExternalResource),
+      service('markets', models.Market, external.ExternalResource),
       service('object_people', models.ObjectPerson),
       service('objectives', models.Objective),
       service('options', models.Option),
-      service('org_groups', models.OrgGroup),
-      service('vendors', models.Vendor),
+      service('org_groups', models.OrgGroup, external.ExternalResource),
+      service('vendors', models.Vendor, external.ExternalResource),
       service('people', models.Person, person.PersonResource),
       service('people_profiles', models.PersonProfile),
-      service('products', models.Product),
-      service('projects', models.Project),
+      service('products', models.Product, external.ExternalResource),
+      service('projects', models.Project, external.ExternalResource),
       service('programs', models.Program),
       service('relationships',
               models.Relationship,
@@ -74,9 +73,9 @@ def contributed_services():
               common.ReadOnlyResource),
       service('systems',
               models.System,
-              external_internal.ExternalInternalResource),
-      service('processes', models.Process),
-      service('metrics', models.Metric),
+              external.ExternalResource),
+      service('processes', models.Process, external.ExternalResource),
+      service('metrics', models.Metric, external.ExternalResource),
       service('notification_configs', models.NotificationConfig),
       service('issues', models.Issue, issue.IssueResource),
       service('snapshots', models.Snapshot, snapshot.SnapshotResource),
@@ -86,11 +85,14 @@ def contributed_services():
       service('proposals', models.Proposal),
       service('related_assessments', None,
               related_assessments.RelatedAssessmentsResource),
-      service('technology_environments', models.TechnologyEnvironment),
-      service('product_groups', models.ProductGroup),
+      service('technology_environments', models.TechnologyEnvironment,
+              external.ExternalResource),
+      service('product_groups', models.ProductGroup,
+              external.ExternalResource),
       service('reviews', review.Review),
-      service('key_reports', models.KeyReport),
-      service('account_balances', models.AccountBalance),
+      service('key_reports', models.KeyReport, external.ExternalResource),
+      service('account_balances', models.AccountBalance,
+              external.ExternalResource),
   ]
 
 

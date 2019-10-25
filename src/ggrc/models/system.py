@@ -104,7 +104,6 @@ class System(WithExtCustomAttrsSetter,
 
 
 class Process(mixins.CustomAttributable,
-              # synchronizable.Synchronizable,
               Personable,
               Roleable,
               Relatable,

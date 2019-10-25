@@ -337,8 +337,6 @@ class ObjectGenerator(Generator):
     classes = [
         models.Objective,
         models.Standard,
-        models.System,
-        models.OrgGroup,
     ]
     for _ in range(count):
       obj_class = random.choice(classes)

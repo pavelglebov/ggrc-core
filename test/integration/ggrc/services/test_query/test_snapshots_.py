@@ -75,26 +75,27 @@ class TestAuditSnapshotQueries(TestCase, WithQueryApi):
     """Create original objects that will be snapshotted."""
     text_cad = factories.CustomAttributeDefinitionFactory(
         title="text cad",
-        definition_type="market",
+        definition_type="regulation",
     )
     date_cad = factories.CustomAttributeDefinitionFactory(
         title="date cad",
-        definition_type="market",
+        definition_type="regulation",
         attribute_type="Date",
     )
 
     for i in range(5):
       factories.ControlFactory(title="Control {}".format(i + 1))
       factories.OrgGroupFactory()
-      market = factories.MarketFactory(title="Market {}".format(i + 1))
+      regulation = factories.RegulationFactory(
+          title="Regulation {}".format(i + 1))
       factories.CustomAttributeValueFactory(
           custom_attribute=date_cad,
-          attributable=market,
+          attributable=regulation,
           attribute_value="2016-11-0{}".format(i + 3),
       )
       factories.CustomAttributeValueFactory(
           custom_attribute=text_cad,
-          attributable=market,
+          attributable=regulation,
           attribute_value="2016-11-0{}".format(i + 1),
       )
 
@@ -104,7 +105,8 @@ class TestAuditSnapshotQueries(TestCase, WithQueryApi):
     cls._create_snapshotable_objects()
 
     revisions = models.Revision.query.filter(
-        models.Revision.resource_type.in_(["OrgGroup", "Market", "Control"]),
+        models.Revision.resource_type.in_(["OrgGroup", "Regulation",
+                                           "Control"]),
         models.Revision.id.in_(
             db.session.query(func.max(models.Revision.id)).group_by(
                 models.Revision.resource_type,
@@ -153,10 +155,10 @@ class TestAuditSnapshotQueries(TestCase, WithQueryApi):
             destination=audit if i % 2 == 1 else obj,
         )
 
-        market = snapshot_map["Market {}".format(i + 1)]
+        regulation = snapshot_map["Regulation {}".format(i + 1)]
         factories.RelationshipFactory(
-            source=market if i % 2 == 0 else obj,
-            destination=market if i % 2 == 1 else obj,
+            source=regulation if i % 2 == 0 else obj,
+            destination=regulation if i % 2 == 1 else obj,
         )
         for j in range(i):
           control = snapshot_map["Control {}".format(j + 1)]
@@ -180,7 +182,7 @@ class TestAuditSnapshotQueries(TestCase, WithQueryApi):
             }
         }
     ])
-    self.assertEqual(len(result.json[0]["Snapshot"]["values"]), 5)
+    self.assertEqual(len(result.json[0]["Snapshot"]["values"]), 10)
 
     result = self._post([
         {
@@ -196,7 +198,7 @@ class TestAuditSnapshotQueries(TestCase, WithQueryApi):
 
   def test_snapshot_attribute_filter(self):
     """Test filtering snapshots on object attributes."""
-    market_title = models.Market.query.first().title
+    regulation_title = models.Regulation.query.first().title
     result = self._post([
         {
             "object_name": "Snapshot",
@@ -207,7 +209,7 @@ class TestAuditSnapshotQueries(TestCase, WithQueryApi):
                     "right": {
                         "left": "title",
                         "op": {"name": "="},
-                        "right": market_title,
+                        "right": regulation_title,
                     },
                 },
                 "keys": [],
@@ -219,7 +221,7 @@ class TestAuditSnapshotQueries(TestCase, WithQueryApi):
     content = result.json[0]["Snapshot"]["values"][0]["revision"]["content"]
     self.assertEqual(
         content["title"],
-        market_title,
+        regulation_title,
     )
 
     result = self._post([
@@ -393,7 +395,7 @@ class TestAuditSnapshotQueries(TestCase, WithQueryApi):
                      "Expected {}, got {}".format(title, expected, count))
 
   @staticmethod
-  def _get_model_expression(model_name="Market"):
+  def _get_model_expression(model_name="Regulation"):
     return {
         "left": {
             "left": "child_type",

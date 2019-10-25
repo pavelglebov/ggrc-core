@@ -1,4 +1,4 @@
-# Copyright (C) 2019 Google Inc.
+# Copyright (C) 2020 Google Inc.
 # Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 
 """
@@ -17,7 +17,7 @@ from ggrc.models.all_models import get_scope_models
 
 # revision identifiers, used by Alembic.
 revision = '9a38b1d92f3e'
-down_revision = '394f80f98f02'
+down_revision = '3141784ef298'
 
 
 scope_tables_names = set([model.__tablename__ for model in get_scope_models()])

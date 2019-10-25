@@ -434,7 +434,7 @@ class ExternalCommentable(object):
 
 
 class CommentInitiator(object):  # pylint: disable=too-few-public-methods
-
+  """Mixin for comment initiating"""
   @sa.ext.declarative.declared_attr
   def initiator_comments(cls):  # pylint: disable=no-self-argument
     """Relationship.

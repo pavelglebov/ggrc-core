@@ -89,21 +89,21 @@ class TestExportEmptyTemplate(TestCase):
         "X-export-view": "blocks",
     }
 
-  @ddt.data(("AccessGroup", 6),
-            ("AccountBalance", 6),
-            ("DataAsset", 6),
-            ("Facility", 6),
-            ("KeyReport", 6),
-            ("Market", 6),
-            ("Metric", 6),
-            ("OrgGroup", 6),
-            ("Process", 6),
-            ("Product", 6),
-            ("ProductGroup", 6),
-            ("Project", 6),
-            ("System", 6),
-            ("TechnologyEnvironment", 6),
-            ("Vendor", 6),
+  @ddt.data(("AccessGroup", 4),
+            ("AccountBalance", 4),
+            ("DataAsset", 4),
+            ("Facility", 4),
+            ("KeyReport", 4),
+            ("Market", 4),
+            ("Metric", 4),
+            ("OrgGroup", 4),
+            ("Process", 4),
+            ("Product", 4),
+            ("ProductGroup", 4),
+            ("Project", 4),
+            ("System", 4),
+            ("TechnologyEnvironment", 4),
+            ("Vendor", 4),
             ("Threat", 6),
             ("Objective", 6),
             ("Issue", 6),
@@ -1062,6 +1062,28 @@ class TestExportMultipleObjects(TestCase):
     }]
     exported_data = self.export_parsed_csv(search_request)[model]
     self.assertEqual(exported_data, obj_dicts)
+
+  @ddt.data(*all_models.get_scope_models())
+  def test_export_for_scope(self, model):
+    """Test export {} with assessment procedure."""
+    with factories.single_commit():
+      model_ = factories.get_model_factory(model.__name__)()
+      model_.test_plan = "Procedure-{}".format(model.__name__)
+
+    obj_dict = [{
+        "Code*": model_.slug,
+        "Assessment Procedure": "Procedure-{}".format(model.__name__)
+    }]
+    search_request = [{
+        "object_name": model.__name__,
+        "filters": {
+            "expression": {},
+        },
+        "fields": ["slug", "test_plan"],
+    }]
+    model_key = model._inflector.title_singular
+    exported_data = self.export_parsed_csv(search_request)[model_key]
+    self.assertEqual(obj_dict, exported_data)
 
 
 @ddt.ddt

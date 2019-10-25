@@ -9,6 +9,7 @@ from ggrc import db
 from ggrc.models import all_models
 from integration.ggrc import TestCase, Api
 from integration.ggrc.models import factories
+from integration.external_app.external_api_helper import ExternalApiClient
 
 
 class TestAccessControlListValidation(TestCase):
@@ -90,8 +91,7 @@ class TestMaxACLValidation(TestCase):
 
   def setUp(self):
     super(TestMaxACLValidation, self).setUp()
-    self.api = Api()
-    self.client.get("/login")
+    self.api = ExternalApiClient()
 
   @ddt.data("Assignee", "Verifier")
   def test_max_roles_validation(self, role):
@@ -129,7 +129,7 @@ class TestMaxACLValidation(TestCase):
             "access_control_list": acl,
         }
     }
-    response = self.api.post(all_models.OrgGroup, data)
+    response = self.api.post(all_models.OrgGroup, data=data)
     self.assertEqual(response.status_code, 201)
     self.assertEqual(all_models.OrgGroup.query.count(), 1)
     data["org_group"]["title"] = "org_group title2"
@@ -142,6 +142,6 @@ class TestMaxACLValidation(TestCase):
             }
         }
     ]
-    response = self.api.post(all_models.OrgGroup, data)
+    response = self.api.post(all_models.OrgGroup, data=data)
     self.assertEqual(response.status_code, 400)
     self.assertEqual(all_models.OrgGroup.query.count(), 1)

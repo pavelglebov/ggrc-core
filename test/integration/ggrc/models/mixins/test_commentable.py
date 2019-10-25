@@ -42,10 +42,8 @@ class TestCommentableMixin(TestCase):
     self.assertEquals("test0", "".join(c.description for c in asmnt_comments))
 
   @ddt.data(factories.AssessmentFactory,
-            factories.ProcessFactory,
             factories.ProgramFactory,
             factories.DocumentFactory,
-            factories.SystemFactory,
             factories.IssueFactory)
   def test_comments_delete(self, object_factory):
     """Test if {} deleted along with comments."""

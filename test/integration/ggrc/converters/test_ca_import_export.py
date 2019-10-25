@@ -9,7 +9,6 @@ from flask.json import dumps
 
 from integration.ggrc import TestCase
 from integration.ggrc.generator import ObjectGenerator
-from ggrc.models import all_models
 from ggrc import db
 from ggrc.models import Standard
 from ggrc.models import Regulation

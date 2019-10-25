@@ -1,4 +1,4 @@
-# Copyright (C) 2019 Google Inc.
+# Copyright (C) 2020 Google Inc.
 # Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 
 """Module that helps to convert comments from HTML to Markdown"""
@@ -62,10 +62,10 @@ def update_comments(connection, model_name):
                     UPDATE comments SET
                     description= :description,
                     updated_at=NOW()
-                    WHERE id= :comment_id  
+                    WHERE id= :comment_id
               """),
-      description=parse_html(description),
-      comment_id=comment_id
+        description=parse_html(description),
+        comment_id=comment_id
     )
   utils.add_to_objects_without_revisions_bulk(
       connection, comments_ids, "Comment", "modified",

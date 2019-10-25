@@ -127,9 +127,6 @@ class TestSnapshotIndexing(SnapshotterBaseTestCase):
     self.assertEqual(_title.count(), 1)
 
   @ddt.data(
-      ("AccessGroup", "access_group",
-       "access_group text value 1", "access_group text value 1 - MODIFIED"),
-      ("Process", "process", "2016-12-07", "2018-09-05"),
       ("Objective", "objective", "objective value 1",
        "objective value 1 - MODIFIED")
   )

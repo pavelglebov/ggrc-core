@@ -293,6 +293,21 @@ class Relationship(base.ContextRBAC, Base, db.Model):
           u"and regulations in this application."
           u"Please contact your administrator if you have any questions.")
 
+    # Check Scope Objects
+    scope_external_only_mappings = set(scoping_models_names)
+    scope_external_only_mappings.update(("Regulation",
+                                         "Standard",
+                                         "Control",
+                                         "Risk"))
+    if cls._check_relation_types_group(source_type, destination_type,
+                                       scope_external_only_mappings,
+                                       set(scoping_models_names)):
+      raise ValidationError(
+          u"You do not have the necessary permissions to map and unmap "
+          u"scoping objects to scoping objects, risks, controls, standards "
+          u"and regulations in this application."
+          u"Please contact your administrator if you have any questions.")
+
 
 class Relatable(object):
   """Mixin adding Relationship functionality to an object"""

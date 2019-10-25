@@ -1,4 +1,4 @@
-# Copyright (C) 2019 Google Inc.
+# Copyright (C) 2020 Google Inc.
 # Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 
 """
@@ -9,8 +9,10 @@ Create Date: 2019-10-24 07:08:32.698042
 # disable Invalid constant name pylint warning for mandatory Alembic variables.
 # pylint: disable=invalid-name
 
+import logging
 
 from alembic import op
+
 
 from ggrc.migrations.utils import external_comments
 from ggrc.models import all_models
@@ -19,6 +21,9 @@ from ggrc.models import all_models
 revision = 'e91e309a7b27'
 down_revision = '42c06faa767e'
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
 
 def upgrade():
   """Upgrade database schema and/or data, creating a new revision."""
@@ -26,7 +31,7 @@ def upgrade():
   scope_models_names = all_models.get_scope_model_names()
   for model_name in scope_models_names:
     data = external_comments.move_to_external_comments(conn, model_name)
-    print ("Processing -> %s: %s comments migrated" % (model_name, data))
+    logger.info("Processing -> %s: %s comments migrated", model_name, data)
 
 
 def downgrade():
