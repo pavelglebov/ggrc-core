@@ -4,10 +4,6 @@
 */
 
 import Cacheable from '../cacheable';
-import UniqueTitle from '../mixins/unique-title';
-import CaUpdate from '../mixins/ca-update';
-import AccessControlList from '../mixins/access-control-list';
-import ScopeObjectNotifications from '../mixins/notifications/scope-object-notifications';
 import Questionnaire from '../mixins/questionnaire';
 import Stub from '../stub';
 import ChangeableExternally from '../mixins/changeable-externally';
@@ -22,10 +18,6 @@ export default Cacheable.extend({
   update: 'PUT /api/projects/{id}',
   destroy: 'DELETE /api/projects/{id}',
   mixins: [
-    UniqueTitle,
-    CaUpdate,
-    AccessControlList,
-    ScopeObjectNotifications,
     Questionnaire,
     ChangeableExternally,
   ],
@@ -68,20 +60,4 @@ export default Cacheable.extend({
       this._super(...arguments);
     }
   },
-}, {
-  define: {
-    title: {
-      value: '',
-      validate: {
-        required: true,
-        validateUniqueTitle: true,
-      },
-    },
-    _transient_title: {
-      value: '',
-      validate: {
-        validateUniqueTitle: true,
-      },
-    },
-  },
-});
+}, {});
