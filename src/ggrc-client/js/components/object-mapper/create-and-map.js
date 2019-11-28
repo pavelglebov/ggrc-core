@@ -98,7 +98,8 @@ export default canComponent.extend({
         .map((externalObjectName) =>
           businessModels[externalObjectName].title_plural.toLowerCase())
         .join(', ');
-      const listOfObjects = `scope, ${objects}, standards and regulations`;
+      const listOfObjects =
+        `scope objects, ${objects}, standards and regulations`;
 
       return `${destinationModel.title_singular} creation and mapping
         ${destinationModel.title_plural.toLowerCase()} to ${listOfObjects}
