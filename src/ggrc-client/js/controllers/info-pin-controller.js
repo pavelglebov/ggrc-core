@@ -31,7 +31,7 @@ import '../components/sort-component/sort-component';
 import '../components/object-review/object-review';
 import '../components/review-state/review-state';
 import '../components/redirects/proposable-control/proposable-control';
-import '../components/redirects/proposable-attribute/proposable-attribute';
+import '../components/redirects/external-attribute/external-attribute';
 import '../components/general-page-header/general-page-header';
 import * as TreeViewUtils from '../plugins/utils/tree-view-utils';
 import {confirm} from '../plugins/utils/modals';

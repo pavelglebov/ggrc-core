@@ -16,7 +16,7 @@
 
               <div class="row-fluid wrap-row">
                 <div class="span12">
-                  <proposable-attribute
+                  <external-attribute
                     instance:from="instance"
                     title:from="'Description'"
                     attrName:from="'description'"
@@ -27,13 +27,13 @@
                         handleMarkdown:from="instance.constructor.isChangeableExternally">
                       </read-more>
                     </div>
-                  </proposable-attribute>
+                  </external-attribute>
                 </div>
               </div>
 
               <div class="row-fluid wrap-row">
                 <div class="span12">
-                  <proposable-attribute
+                  <external-attribute
                     instance:from="instance"
                     title:from="'Assessment Procedure'"
                     attrName:from="'test_plan'"
@@ -44,13 +44,13 @@
                         handleMarkdown:from="instance.constructor.isChangeableExternally">
                       </read-more>
                     </div>
-                  </proposable-attribute>
+                  </external-attribute>
                 </div>
               </div>
 
               <div class="row-fluid wrap-row">
                 <div class="span12">
-                  <proposable-attribute
+                  <external-attribute
                     instance:from="instance"
                     title:from="'Notes'"
                     attrName:from="'notes'"
@@ -61,7 +61,7 @@
                         handleMarkdown:from="instance.constructor.isChangeableExternally">
                       </read-more>
                     </div>
-                  </proposable-attribute>
+                  </external-attribute>
                 </div>
               </div>
 
@@ -102,7 +102,7 @@
                       </div>
                     </div>
                     <div class="span4">
-                      <proposable-attribute
+                      <external-attribute
                         instance:from="instance"
                         title:from="'Kind/Nature'"
                         attrName:from="'kind'"
@@ -114,10 +114,10 @@
                         {{else}}
                           <span class="empty-message">None</span>
                         {{/if}}
-                      </proposable-attribute>
+                      </external-attribute>
                     </div>
                     <div class="span4">
-                      <proposable-attribute
+                      <external-attribute
                         instance:from="instance"
                         title:from="'Fraud Related'"
                         attrName:from="'is_fraud_related'"
@@ -133,12 +133,12 @@
                             {{/is}}
                           {{/if}}
                         </p>
-                      </proposable-attribute>
+                      </external-attribute>
                     </div>
                   </div>
                   <div class="row-fluid wrap-row">
                     <div class="span8">
-                      <proposable-attribute
+                      <external-attribute
                         instance:from="instance"
                         title:from="'Significance'"
                         attrName:from="'is_key_control'"
@@ -154,10 +154,10 @@
                             {{/is}}
                           {{/if}}
                         </p>
-                      </proposable-attribute>
+                      </external-attribute>
                     </div>
                     <div class="span4">
-                      <proposable-attribute
+                      <external-attribute
                         instance:from="instance"
                         title:from="'Type/Means'"
                         attrName:from="'means'"
@@ -169,12 +169,12 @@
                         {{else}}
                           <span class="empty-message">None</span>
                         {{/if}}
-                      </proposable-attribute>
+                      </external-attribute>
                     </div>
                   </div>
                   <div class="row-fluid wrap-row">
                     <div class="span4">
-                      <proposable-attribute
+                      <external-attribute
                         instance:from="instance"
                         title:from="'Effective Date'"
                         attrName:from="'start_date'"
@@ -186,7 +186,7 @@
                         {{else}}
                           <span class="empty-message">None</span>
                         {{/if}}
-                      </proposable-attribute>
+                      </external-attribute>
                     </div>
                     <div class="span4">
                       <div class="action-toolbar-container">
@@ -205,7 +205,7 @@
                       </div>
                     </div>
                     <div class="span4">
-                      <proposable-attribute
+                      <external-attribute
                         instance:from="instance"
                         title:from="'Frequency'"
                         attrName:from="'verify_frequency'"
@@ -217,12 +217,12 @@
                         {{else}}
                           <span class="empty-message">None</span>
                         {{/if}}
-                      </proposable-attribute>
+                      </external-attribute>
                     </div>
                   </div>
                   <div class="row-fluid wrap-row">
                     <div class="span8">
-                      <proposable-attribute
+                      <external-attribute
                         instance:from="instance"
                         title:from="'Assertions'"
                         attrName:from="'control_assertions'"
@@ -239,10 +239,10 @@
                         {{else}}
                           <span class="empty-message">None</span>
                         {{/if}}
-                      </proposable-attribute>
+                      </external-attribute>
                     </div>
                     <div class="span4">
-                      <proposable-attribute
+                      <external-attribute
                         instance:from="instance"
                         title:from="'Categories'"
                         attrName:from="'control_categories'"
@@ -258,7 +258,7 @@
                         {{else}}
                           <span class="empty-message">None</span>
                         {{/if}}
-                      </proposable-attribute>
+                      </external-attribute>
                     </div>
                   </div>
                 </div>

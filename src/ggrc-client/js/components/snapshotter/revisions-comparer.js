@@ -244,7 +244,7 @@ export default canComponent.extend({
       );
       const tabContent = '.info-pane__main-content';
       const attributesSelector = isProposableExternalAttr ?
-        '.review-status, proposable-attribute > .action-toolbar-container' :
+        '.review-status, external-attribute > .action-toolbar-container' :
         `object-review, ${tabContent} > .row-fluid:not(:has(custom-roles)),
          ${tabContent} > .custom-attr-wrap .row-fluid.wrap-row > *`;
 

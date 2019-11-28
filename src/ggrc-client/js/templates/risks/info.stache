@@ -16,7 +16,7 @@
 
               <div class="row-fluid wrap-row">
                 <div class="span12">
-                  <proposable-attribute
+                  <external-attribute
                     instance:from="instance"
                     title:from="'Description'"
                     attrName:from="'description'"
@@ -27,13 +27,13 @@
                         handleMarkdown:from="instance.constructor.isChangeableExternally">
                       </read-more>
                     </div>
-                  </proposable-attribute>
+                  </external-attribute>
                 </div>
               </div>
 
               <div class="row-fluid wrap-row">
                 <div class="span12">
-                  <proposable-attribute
+                  <external-attribute
                     instance:from="instance"
                     title:from="'Assessment Procedure'"
                     attrName:from="'test_plan'"
@@ -44,13 +44,13 @@
                         handleMarkdown:from="instance.constructor.isChangeableExternally">
                       </read-more>
                     </div>
-                  </proposable-attribute>
+                  </external-attribute>
                 </div>
               </div>
 
               <div class="row-fluid wrap-row">
                 <div class="span12">
-                  <proposable-attribute
+                  <external-attribute
                     instance:from="instance"
                     title:from="'Risk Type'"
                     attrName:from="'risk_type'"
@@ -59,13 +59,13 @@
                       text:from="risk_type"
                       handleMarkdown:from="instance.constructor.isChangeableExternally">
                     </read-more>
-                  </proposable-attribute>
+                  </external-attribute>
                 </div>
               </div>
 
               <div class="row-fluid wrap-row">
                 <div class="span12">
-                  <proposable-attribute
+                  <external-attribute
                     instance:from="instance"
                     title:from="'Threat Source'"
                     attrName:from="'threat_source'"
@@ -74,13 +74,13 @@
                       text:from="threat_source"
                       handleMarkdown:from="instance.constructor.isChangeableExternally">
                     </read-more>
-                  </proposable-attribute>
+                  </external-attribute>
                 </div>
               </div>
 
               <div class="row-fluid wrap-row">
                 <div class="span12">
-                  <proposable-attribute
+                  <external-attribute
                     instance:from="instance"
                     title:from="'Threat Event'"
                     attrName:from="'threat_event'"
@@ -89,13 +89,13 @@
                       text:from="threat_event"
                       handleMarkdown:from="instance.constructor.isChangeableExternally">
                     </read-more>
-                  </proposable-attribute>
+                  </external-attribute>
                 </div>
               </div>
 
               <div class="row-fluid wrap-row">
                 <div class="span12">
-                  <proposable-attribute
+                  <external-attribute
                     instance:from="instance"
                     title:from="'Vulnerability'"
                     attrName:from="'vulnerability'"
@@ -104,13 +104,13 @@
                       text:from="vulnerability"
                       handleMarkdown:from="instance.constructor.isChangeableExternally">
                     </read-more>
-                  </proposable-attribute>
+                  </external-attribute>
                 </div>
               </div>
 
               <div class="row-fluid wrap-row">
                 <div class="span12">
-                  <proposable-attribute
+                  <external-attribute
                     instance:from="instance"
                     title:from="'Notes'"
                     attrName:from="'notes'"
@@ -121,7 +121,7 @@
                         handleMarkdown:from="instance.constructor.isChangeableExternally">
                       </read-more>
                     </div>
-                  </proposable-attribute>
+                  </external-attribute>
                 </div>
               </div>
 
@@ -162,7 +162,7 @@
                       </div>
                     </div>
                     <div class="span4">
-                      <proposable-attribute
+                      <external-attribute
                         instance:from="instance"
                         title:from="'Effective Date'"
                         attrName:from="'start_date'"
@@ -174,7 +174,7 @@
                         {{else}}
                           <span class="empty-message">None</span>
                         {{/if}}
-                      </proposable-attribute>
+                      </external-attribute>
                     </div>
                     <div class="span4">
                       <div class="action-toolbar-container">
@@ -201,7 +201,7 @@
                   </div>
                   <div class="row-fluid wrap-row">
                     <div class="span4">
-                      <proposable-attribute
+                      <external-attribute
                         instance:from="instance"
                         title:from="'Due Date'"
                         attrName:from="'due_date'"
@@ -213,7 +213,7 @@
                         {{else}}
                           <span class="empty-message">None</span>
                         {{/if}}
-                      </proposable-attribute>
+                      </external-attribute>
                     </div>
                     <div class="span4">
                       <div class="action-toolbar-container">
