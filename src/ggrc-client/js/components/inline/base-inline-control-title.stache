@@ -19,7 +19,7 @@
         {{else}}
           <external-control
             instance:from="instance"
-            attrName:from="'redirectionAttrName'"
+            attrName:from="redirectionAttrName"
             isCustomAttribute:from="true"
           ></external-control>
         {{/if}}
