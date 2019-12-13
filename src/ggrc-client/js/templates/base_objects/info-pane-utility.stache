@@ -17,13 +17,15 @@
         Questionnaire
         <i class="fa fa-external-link"></i>
     </questions-link>
-    {{^if instance.snapshot}}
-        <questionnaire-link instance:from="instance"
-            linkType:from="'review'"
-            showIcon:from="true"
-            viewType:from="'button'">
-            {{instance.constructor.title_singular}} Review Details
-        </questionnaire-link>
+    {{#if instance.constructor.isReviewable}}
+      {{^if instance.snapshot}}
+          <questionnaire-link instance:from="instance"
+              linkType:from="'review'"
+              showIcon:from="true"
+              viewType:from="'button'">
+              {{instance.constructor.title_singular}} Review Details
+          </questionnaire-link>
+      {{/if}}
     {{/if}}
     <show-related-assessments-button instance:from="instance"
                                      extraBtnCss:from="'btn-small'">
