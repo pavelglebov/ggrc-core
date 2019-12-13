@@ -12,6 +12,7 @@ import ProgramNotifications from '../mixins/notifications/program-notifications'
 import Proposable from '../mixins/proposable';
 import MegaObject from '../mixins/mega-object';
 import Stub from '../stub';
+import Reviewable from '../mixins/reviewable';
 
 export default Cacheable.extend({
   root_object: 'program',
@@ -29,6 +30,7 @@ export default Cacheable.extend({
     ProgramNotifications,
     Proposable,
     MegaObject,
+    Reviewable,
   ],
   is_custom_attributable: true,
   isRoleable: true,

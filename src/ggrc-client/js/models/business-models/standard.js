@@ -5,6 +5,7 @@
 
 import Directive from './directive';
 import AccessControlList from '../mixins/access-control-list';
+import Reviewable from '../mixins/reviewable';
 
 export default Directive.extend({
   root_object: 'standard',
@@ -23,7 +24,10 @@ export default Directive.extend({
   is_custom_attributable: true,
   isRoleable: true,
   attributes: {},
-  mixins: [AccessControlList],
+  mixins: [
+    AccessControlList,
+    Reviewable,
+  ],
   sub_tree_view_options: {
     default_filter: ['Requirement'],
   },

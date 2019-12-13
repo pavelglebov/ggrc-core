@@ -5,6 +5,7 @@
 
 import Cacheable from '../cacheable';
 import Proposable from '../mixins/proposable';
+import Reviewable from '../mixins/reviewable';
 import ChangeableExternally from '../mixins/changeable-externally';
 import Stub from '../stub';
 
@@ -19,6 +20,7 @@ export default Cacheable.extend({
   destroy: 'DELETE /api/risks/{id}',
   mixins: [
     Proposable,
+    Reviewable,
     ChangeableExternally,
   ],
   migrationDate: '06/13/2019',
