@@ -59,7 +59,7 @@ describe('Mappings', () => {
   const snapshotableObjects = loDifference(modules.core, ['Project']);
 
   const mappingRules = {
-    AccessGroup: loDifference(coreObjectsRules, ['AccessGroup']),
+    AccessGroup: coreObjectsRules,
     AccountBalance: coreObjectsRules,
     Assessment: [...snapshotableObjects, 'Evidence', 'Audit', 'Person'],
     AssessmentTemplate: ['Audit'],

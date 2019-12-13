@@ -75,7 +75,7 @@ describe('Mappings', () => {
   const filtered = loDifference(allTypes, notMappableModels);
 
   const mappingRules = Object.freeze({
-    AccessGroup: loDifference(filtered, ['AccessGroup']),
+    AccessGroup: filtered,
     AccountBalance: filtered,
     Assessment: loDifference(filtered, ['Audit', 'Person', 'Program', 'Project',
       'Workflow', 'Assessment', 'Document']),
