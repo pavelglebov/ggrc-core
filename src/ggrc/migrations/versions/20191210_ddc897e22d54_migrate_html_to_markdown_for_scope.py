@@ -30,7 +30,7 @@ from ggrc.migrations.markdown import vendor
 
 # revision identifiers, used by Alembic.
 revision = 'ddc897e22d54'
-down_revision = '1290304b791b'
+down_revision = '2d0f232de783'
 
 
 def upgrade():
