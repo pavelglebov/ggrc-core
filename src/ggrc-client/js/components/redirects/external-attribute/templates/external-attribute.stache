@@ -19,7 +19,7 @@
         {{else}}
           <external-control
             instance:from="instance"
-            attrName:from="'attrName'"
+            attrName:from="attrName"
           ></external-control>
         {{/if}}
       </div>
