@@ -18,7 +18,7 @@ from ggrc.models.all_models import get_scope_model_names
 
 # revision identifiers, used by Alembic.
 revision = '2d0f232de783'
-down_revision = '007ee00ff963'
+down_revision = '3141784ef298'
 
 PRIMARY_CONTACTS = "Primary Contacts"
 SECONDARY_CONTACTS = "Secondary Contacts"
