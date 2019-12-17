@@ -7,13 +7,28 @@
 
   <div class="row-fluid wrap-row">
     <div class="span12">
-      <h6>Description</h6>
-      <div class="rtf-block">
-        <read-more
-          text:from="description"
-          handleMarkdown:from="instance.constructor.isChangeableExternally">
-        </read-more>
-      </div>
+      {{#if instance.constructor.isChangeableExternally}}
+        <external-attribute
+          instance:from="instance"
+          title:from="'Description'"
+          attrName:from="'description'"
+        >
+          <div class="rtf-block">
+            <read-more
+              text:from="description"
+              handleMarkdown:from="instance.constructor.isChangeableExternally">
+            </read-more>
+          </div>
+        </external-attribute>
+      {{else}}
+        <h6>Description</h6>
+        <div class="rtf-block">
+          <read-more
+            text:from="description"
+            handleMarkdown:from="instance.constructor.isChangeableExternally">
+          </read-more>
+        </div>
+      {{/if}}
     </div>
   </div>
 
