@@ -48,10 +48,7 @@ export default Cacheable.extend({
         attr_name: 'description',
       }, {
         attr_title: 'Notes',
-        attr_name: 'notes',\
-      }, {
-        attr_title: 'Assessment Procedure',
-        attr_name: 'test_plan',
+        attr_name: 'notes',
       }, {
         attr_title: 'Created By',
         attr_name: 'created_by',

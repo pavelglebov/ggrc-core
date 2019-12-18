@@ -4,17 +4,19 @@
 }}
 
 {{#instance}}
-  {{#if_helpers '\n #if' test_plan '\n or #if' isRevision}}
-    <div class="row-fluid wrap-row">
-      <div class="span12">
-        <h6>Assessment Procedure</h6>
-        <div class="rtf-block">
-          <read-more
-            text:from="test_plan"
-            handleMarkdown:from="instance.constructor.isChangeableExternally">
-          </read-more>
+  {{^isScopeModel instance}}
+    {{#if_helpers '\n #if' test_plan '\n or #if' isRevision}}
+      <div class="row-fluid wrap-row">
+        <div class="span12">
+          <h6>Assessment Procedure</h6>
+          <div class="rtf-block">
+            <read-more
+              text:from="test_plan"
+              handleMarkdown:from="instance.constructor.isChangeableExternally">
+            </read-more>
+          </div>
         </div>
       </div>
-    </div>
-  {{/if_helpers}}
+    {{/if_helpers}}
+  {{/isScopeModel}}
 {{/instance}}
