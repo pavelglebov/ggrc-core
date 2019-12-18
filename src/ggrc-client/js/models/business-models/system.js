@@ -58,7 +58,12 @@ export default Cacheable.extend({
       }, {
         attr_title: 'Assessment Procedure',
         attr_name: 'test_plan',
-      }]),
+      }, {
+        attr_title: 'Created By',
+        attr_name: 'created_by',
+        attr_sort_field: 'created_by',
+      },
+    ]),
   },
   sub_tree_view_options: {
     default_filter: ['Product'],
