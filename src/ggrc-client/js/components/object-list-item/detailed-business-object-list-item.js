@@ -15,10 +15,13 @@ import {
 import '../custom-attributes/custom-attributes-field-view';
 import '../related-objects/related-people-access-control';
 import template from './detailed-business-object-list-item.stache';
+import {scopingObjects} from '../../plugins/models-types-collections';
 
 const VISIBLE_ROLES = {
   Control: ['Admin', 'Control Operators', 'Control Owners', 'Other Contacts'],
   Risk: ['Admin', 'Risk Owners', 'Other Contacts'],
+  scope: ['Admin', 'Compliance Contacts', 'Other Contacts'],
+  defaults: ['Admin', 'Primary Contacts', 'Secondary Contacts'],
 };
 
 /**
@@ -61,10 +64,11 @@ export default canComponent.extend({
       },
       visibleRoles: {
         get: function () {
-          const defaultList = [
-            'Admin', 'Primary Contacts', 'Secondary Contacts',
-          ];
-          return VISIBLE_ROLES[this.attr('itemData.type')] || defaultList;
+          const objectType = scopingObjects.includes(
+            this.attr('itemData.type')
+          ) ? 'scope' : this.attr('itemData.type');
+
+          return VISIBLE_ROLES[objectType] || VISIBLE_ROLES['defaults'];
         },
       },
     },
