@@ -274,8 +274,11 @@ function getMapObjectToExternalObjectUrl(instance, destinationModel, statuses) {
     : ''
   );
 
+  const path = scopingObjects.includes(instance.constructor.model_singular) ?
+    'questionnaires' : instance.constructor.table_plural;
+
   return getUrl({
-    path: instance.constructor.table_plural,
+    path: path,
     model: instance.constructor.table_singular,
     slug: instance.slug,
     view,
