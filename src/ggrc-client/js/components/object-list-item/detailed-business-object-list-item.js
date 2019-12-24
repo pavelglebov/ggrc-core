@@ -9,9 +9,6 @@ import canComponent from 'can-component';
 import '../related-objects/related-people-access-control';
 import '../related-objects/related-people-access-control-group';
 import '../people/deletable-people-group';
-import {
-  getParentUrl,
-} from '../../plugins/utils/snapshot-utils';
 import '../custom-attributes/custom-attributes-field-view';
 import '../related-objects/related-people-access-control';
 import template from './detailed-business-object-list-item.stache';
@@ -46,13 +43,6 @@ export default canComponent.extend({
           return this.attr('isSnapshot') ?
             this.attr('instance.revision.content') :
             this.attr('instance');
-        },
-      },
-      objectLink: {
-        get: function () {
-          return this.attr('isSnapshot') ?
-            getParentUrl(this.attr('instance')) :
-            this.attr('itemData.viewLink');
         },
       },
       objectTitle: {

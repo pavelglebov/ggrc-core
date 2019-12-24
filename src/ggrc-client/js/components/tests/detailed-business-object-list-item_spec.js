@@ -10,9 +10,7 @@ describe('detailed-business-object-list-item component', function () {
   'use strict';
 
   const snapshotParentTitle = 'Control title #1';
-  const snapshotParentUrl = '/controls/55';
   const objectiveObjectTitle = 'Objective title 123';
-  const objectiveObjectLink = '/objectives/33';
   const controlVisibleRoles = [
     'Admin', 'Control Operators', 'Control Owners', 'Other Contacts',
   ];
@@ -35,7 +33,7 @@ describe('detailed-business-object-list-item component', function () {
 
   let objectiveObject = {
     selfLink: '/api/objectives/33',
-    viewLink: objectiveObjectLink,
+    viewLink: '/objectives/33',
     type: 'Objective',
     title: objectiveObjectTitle,
     id: 33,
@@ -48,24 +46,6 @@ describe('detailed-business-object-list-item component', function () {
     title: 'Control title12',
     id: 12,
   };
-
-  describe('objectLink property', function () {
-    let viewModel;
-
-    beforeEach(function () {
-      viewModel = getComponentVM(Component);
-    });
-
-    it('check objectLink of Objective object', function () {
-      viewModel.attr('instance', objectiveObject);
-      expect(viewModel.attr('objectLink')).toEqual(objectiveObjectLink);
-    });
-
-    it('check objectLink of Snapshot object', function () {
-      viewModel.attr('instance', snapshotObject);
-      expect(viewModel.attr('objectLink')).toEqual(snapshotParentUrl);
-    });
-  });
 
   describe('objectTitle property', function () {
     let viewModel;
