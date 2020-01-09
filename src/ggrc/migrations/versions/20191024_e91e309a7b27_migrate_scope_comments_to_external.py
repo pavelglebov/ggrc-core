@@ -19,7 +19,7 @@ from ggrc.models import all_models
 
 # revision identifiers, used by Alembic.
 revision = 'e91e309a7b27'
-down_revision = '42c06faa767e'
+down_revision = '9a38b1d92f3e'
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

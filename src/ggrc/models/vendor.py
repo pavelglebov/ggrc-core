@@ -1,6 +1,9 @@
 # Copyright (C) 2020 Google Inc.
 # Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 
+""" Module that contains Vendor model"""
+
+
 from ggrc import db
 from ggrc.access_control.roleable import Roleable
 from ggrc.fulltext.mixin import Indexed
@@ -26,6 +29,7 @@ class Vendor(Roleable,
              mixins.Folderable,
              Indexed,
              db.Model):
+  """Class for Vendor model"""
   __tablename__ = 'vendors'
 
   _aliases = {

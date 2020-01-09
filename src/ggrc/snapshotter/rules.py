@@ -75,7 +75,6 @@ class Types(object):
       "System",
       "Vendor",
       "TechnologyEnvironment",
-      "ProductGroup",
       "Control",
       "Risk",
   }
