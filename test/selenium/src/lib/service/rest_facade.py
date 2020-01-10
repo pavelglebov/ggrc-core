@@ -143,6 +143,11 @@ def create_risk(**attrs):
   return _create_obj_in_program_scope("Risks", None, **attrs)
 
 
+def create_project(**attrs):
+  """Create an project."""
+  return _create_obj_in_program_scope("Projects", None, **attrs)
+
+
 @decorator.check_that_obj_is_created
 def create_user():
   """Create a user"""

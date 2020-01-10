@@ -212,6 +212,23 @@ class ACLRolesIDsMetaClass(type):
     return cls.id_of_role(
         object_type=objects.get_obj_type(objects.EVIDENCE), name=ADMIN)
 
+  @property
+  def PROJECT_ADMINS(cls):
+    return cls.id_of_role(
+        object_type=objects.get_obj_type(objects.PROJECTS), name=ADMIN)
+
+  @property
+  def PROJECT_ASSIGNEES(cls):
+    return cls.id_of_role(
+        object_type=objects.get_obj_type(objects.PROJECTS),
+        name=objects.get_singular(ASSIGNEES, title=True))
+
+  @property
+  def PROJECT_VERIFIERS(cls):
+    return cls.id_of_role(
+        object_type=objects.get_obj_type(objects.PROJECTS),
+        name=objects.get_singular(VERIFIERS, title=True))
+
 
 class ACLRolesIDs(object):
   """Access Control List Roles IDs."""

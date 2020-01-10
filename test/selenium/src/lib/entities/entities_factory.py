@@ -394,10 +394,11 @@ class ProductsFactory(EntitiesFactory):
 
   def _create_random_obj(self, is_add_rest_attrs):
     """Create Product entity."""
-    product_object = self.obj_inst().update_attrs(
-        title=self.obj_title
+    return self.obj_inst().update_attrs(
+        title=self.obj_title,
+        external_id=self.generate_external_id(),
+        external_slug=self.generate_slug()
     )
-    return product_object
 
 
 class TechnologyEnvironmentsFactory(EntitiesFactory):
@@ -413,7 +414,11 @@ class TechnologyEnvironmentsFactory(EntitiesFactory):
 
   def _create_random_obj(self, is_add_rest_attrs):
     """Create TechnologyEnvironment entity."""
-    return self.obj_inst().update_attrs(title=self.obj_title)
+    return self.obj_inst().update_attrs(
+        title=self.obj_title,
+        external_id=self.generate_external_id(),
+        external_slug=self.generate_slug()
+    )
 
 
 class ControlsFactory(EntitiesFactory):
@@ -490,6 +495,27 @@ class RisksFactory(EntitiesFactory):
               unicode(roles.ADMIN), unicode(roles.PRIMARY_CONTACTS),
               unicode(roles.SECONDARY_CONTACTS))))
     return obj
+
+
+class ProjectsFactory(EntitiesFactory):
+  """Factory class for Projects entities."""
+  def __init__(self):
+    super(ProjectsFactory, self).__init__(objects.PROJECTS)
+    self._acl_roles = [
+        ("admins", roles.ACLRolesIDs.PROJECT_ADMINS, [users.current_user()]),
+        ("assignees", roles.ACLRolesIDs.PROJECT_ASSIGNEES,
+         [users.current_user()]),
+        ("verifiers", roles.ACLRolesIDs.PROJECT_VERIFIERS,
+         [users.current_user()])
+    ]
+
+  def _create_random_obj(self, is_add_rest_attrs):
+    """Creates Project entity with randomly and predictably filled fields, if
+    'is_add_rest_attrs' then add attributes for REST."""
+    return self.obj_inst().update_attrs(
+        title=self.obj_title,
+        external_slug=self.generate_slug(),
+        external_id=self.generate_external_id())
 
 
 class OrgGroupsFactory(EntitiesFactory):

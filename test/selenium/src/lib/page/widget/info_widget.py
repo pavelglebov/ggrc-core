@@ -827,6 +827,11 @@ class Controls(page_mixins.WithAssignFolder, page_mixins.WithDisabledProposals,
         roles.CONTROL_OPERATORS, self._root)
 
   @property
+  def role_to_edit(self):
+    """Returns a role for trying to edit."""
+    return self.control_owners
+
+  @property
   def control_owners(self):
     """Returns Control Owners page element."""
     return self._related_people_list(roles.CONTROL_OWNERS, self._root)
@@ -993,6 +998,11 @@ class Risks(page_mixins.WithDisabledProposals,
   def risk_type(self):
     """Returns the text of risk type."""
     return self._simple_field("Risk Type").text
+
+  @property
+  def role_to_edit(self):
+    """Returns a role for trying to edit."""
+    return self.risk_owners
 
   @property
   def risk_owners(self):

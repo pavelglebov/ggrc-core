@@ -24,7 +24,8 @@ from integration.ggrc import TestCase
 class TestBaseExternalScopeObjects(TestCase):
   """Base class for testing externalization for ScopeObjects"""
 
-  def _make_test_models_payload(self, model):
+  @staticmethod
+  def _make_test_models_payload(model):
     """
         Prepare payload for {0.__name__} model
     """

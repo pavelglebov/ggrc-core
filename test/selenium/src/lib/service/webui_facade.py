@@ -580,12 +580,12 @@ def soft_assert_bulk_verify_filter_functionality(page, modal, exp_asmt,
       *exp_asmt.bulk_update_modal_tree_view_attrs_to_exclude)
 
 
-def soft_assert_role_cannot_be_edited(soft_assert, obj, role):
+def soft_assert_role_cannot_be_edited(soft_assert, obj):
   """Performs soft assert that click on role's pencil icon doesn't open
   an input field."""
   info_widget = factory.get_cls_webui_service(
       objects.get_plural(obj.type))().open_info_page_of_obj(obj)
-  role_field_element = getattr(info_widget, role)
+  role_field_element = info_widget.role_to_edit
   role_field_element.inline_edit.open()
   # wait until new tab contains info page url
   _, new_tab = browsers.get_browser().windows()

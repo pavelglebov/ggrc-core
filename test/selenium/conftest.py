@@ -608,6 +608,12 @@ def risk():
 
 
 @pytest.fixture()
+def project():
+  """Creates a project."""
+  return rest_facade.create_project()
+
+
+@pytest.fixture()
 def mapped_programs(programs):
   """Creates 2 programs and maps the second program to the first
   one as a child"""

@@ -233,7 +233,7 @@ class TreeView(base.TreeView):
     Return: lib.element.tree_view."dropdown_obj"
     """
     # pylint: disable=invalid-name
-    obj = self.find_row(title)
+    obj = self.find_row("title = \"" + title + "\"")
     item_dropdown_button = obj.item_btn
     selenium_utils.hover_over_element(
         self._driver, obj.element)
