@@ -154,7 +154,7 @@ describe('GGRCQ utils', () => {
       let result = getMappingUrl(instance, model);
       let expected = GGRC.GGRC_Q_INTEGRATION_URL +
         'controls/control=control-1/directives' +
-        '?mappingStatus=in_progress,not_in_scope,reviewed&types=standard';
+        '?mappingStatus=in_progress,not_in_scope,reviewed&type=standard';
       expect(result).toBe(expected);
     });
 
@@ -209,7 +209,7 @@ describe('GGRCQ utils', () => {
       let expected = GGRC.GGRC_Q_INTEGRATION_URL +
         'questionnaires/technology_environment=technologyenvironment-1' +
         '/map-objects?mappingStatus=in_progress,not_in_scope,reviewed' +
-        '&types=standard';
+        '&type=standard';
       expect(getMappingUrl(instance, Standard)).toBe(expected);
     });
 
@@ -272,7 +272,7 @@ describe('GGRCQ utils', () => {
       let result = getUnmappingUrl(instance, model);
       let expected = GGRC.GGRC_Q_INTEGRATION_URL +
         'controls/control=control-1/directives' +
-        '?mappingStatus=in_progress,reviewed&types=standard';
+        '?mappingStatus=in_progress,reviewed&type=standard';
       expect(result).toBe(expected);
     });
 
@@ -325,7 +325,7 @@ describe('GGRCQ utils', () => {
 
       let expected = GGRC.GGRC_Q_INTEGRATION_URL +
         'questionnaires/technology_environment=technologyenvironment-1' +
-        '/map-objects?mappingStatus=in_progress,reviewed&types=standard';
+        '/map-objects?mappingStatus=in_progress,reviewed&type=standard';
       expect(getUnmappingUrl(instance, Standard)).toBe(expected);
     });
 
