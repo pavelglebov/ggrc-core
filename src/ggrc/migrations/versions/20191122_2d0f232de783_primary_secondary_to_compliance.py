@@ -13,6 +13,7 @@ from sqlalchemy.sql import text
 
 from alembic import op
 
+from ggrc.migrations import utils
 from ggrc.models.all_models import get_scope_model_names
 
 
@@ -193,6 +194,14 @@ def _add_compliance_contact(connection, acl_id, compliance_contacts):
   for person_id in person_ids:
     _add_people(connection, person_id, acl_id)
 
+  if person_ids:
+    utils.add_to_objects_without_revisions_bulk(
+        connection,
+        person_ids,
+        'AccessControlPerson',
+        'created'
+    )
+
 
 def upgrade():
   """Upgrade database schema and/or data, creating a new revision."""
@@ -230,6 +239,14 @@ def upgrade():
 
       _add_compliance_contact(connection, acl_id,
                               compliance_contacts)
+
+    if object_ids:
+      utils.add_to_objects_without_revisions_bulk(
+          connection,
+          object_ids,
+          object_type,
+          "modified"
+      )
 
 
 def downgrade():
