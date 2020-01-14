@@ -9,6 +9,7 @@ import {
   getMappingUrl,
   getUnmappingUrl,
   isMappableExternally,
+  getCreateObjectUrl,
 } from '../utils/ggrcq-utils';
 import {
   businessObjects,
@@ -368,6 +369,18 @@ describe('GGRCQ utils', () => {
         'questionnaires/access_group=accessgroup-1/scope' +
         '?mappingStatus=in_progress,reviewed&types=technology_environment';
       expect(getUnmappingUrl(instance, TechnologyEnvironment)).toBe(expected);
+    });
+  });
+
+  describe('getCreateObjectUrl util', () => {
+    it('should return proper url for scope object', () => {
+      const url = `${GGRC.GGRC_Q_INTEGRATION_URL}scope?create=access_group`;
+      expect(getCreateObjectUrl(AccessGroup)).toBe(url);
+    });
+
+    it('should return proper url for non-scope object', () => {
+      const url = `${GGRC.GGRC_Q_INTEGRATION_URL}controls?action=create`;
+      expect(getCreateObjectUrl(Control)).toBe(url);
     });
   });
 });
