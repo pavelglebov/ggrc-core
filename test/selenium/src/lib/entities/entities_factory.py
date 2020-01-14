@@ -331,7 +331,8 @@ class CustomAttributeDefinitionsFactory(EntitiesFactory):
                        StringMethods.random_list_strings())
     else:
       attrs["multi_choice_options"] = None
-    attrs.setdefault("mandatory", False)
+    if attrs["definition_type"] != objects.ASSESSMENTS.title():
+      attrs.setdefault("mandatory", False)
     if attrs["definition_type"] in objects.EXTERNAL_END_POINTS:
       attrs["id"] = self.generate_external_id()
     obj = self.obj_inst()

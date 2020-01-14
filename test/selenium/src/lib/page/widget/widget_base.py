@@ -6,7 +6,7 @@
 # pylint: disable=too-few-public-methods
 
 from lib import base
-from lib.constants import locator
+from lib.constants import locator, objects
 from lib.element import info_widget_three_bbs
 from lib.entities import entities_factory
 from lib.utils import selenium_utils
@@ -39,7 +39,9 @@ class CustomAttributesItemContent(base.Component):
       self.custom_attributes_list.append(
           entities_factory.CustomAttributeDefinitionsFactory().create(
               title=attrs[0], attribute_type=attrs[1],
-              mandatory=StringMethods.get_bool_value_from_arg(attrs[2]),
+              mandatory=(StringMethods.get_bool_value_from_arg(attrs[2])
+                         if self._item_name != objects.ASSESSMENTS.title()
+                         else None),
               definition_type=self._item_name, multi_choice_options=None))
 
   def get_ca_list_from_group(self):
