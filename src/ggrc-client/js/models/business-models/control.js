@@ -9,6 +9,7 @@ import Proposable from '../mixins/proposable';
 import Reviewable from '../mixins/reviewable';
 import RelatedAssessmentsLoader from '../mixins/related-assessments-loader';
 import ChangeableExternally from '../mixins/changeable-externally';
+import {getMigrationDate} from '../../migration/dates';
 
 export default Cacheable.extend({
   root_object: 'control',
@@ -26,7 +27,7 @@ export default Cacheable.extend({
     RelatedAssessmentsLoader,
     ChangeableExternally,
   ],
-  migrationDate: '03/26/2019',
+  migrationDate: getMigrationDate('control'),
   is_custom_attributable: true,
   isRoleable: true,
   tree_view_options: {

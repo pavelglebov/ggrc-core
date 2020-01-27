@@ -8,6 +8,7 @@ import Questionnaire from '../mixins/questionnaire';
 import Stub from '../stub';
 import ChangeableExternally from '../mixins/changeable-externally';
 import DisableAddComments from '../mixins/disable-add-comments';
+import {getMigrationDate} from '../../migration/dates';
 
 export default Cacheable.extend({
   root_object: 'vendor',
@@ -23,7 +24,7 @@ export default Cacheable.extend({
     ChangeableExternally,
     DisableAddComments,
   ],
-  migrationDate: '02/24/2020',
+  migrationDate: getMigrationDate('scope'),
   is_custom_attributable: true,
   isRoleable: true,
   attributes: {

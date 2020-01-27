@@ -8,6 +8,7 @@ import Proposable from '../mixins/proposable';
 import Reviewable from '../mixins/reviewable';
 import ChangeableExternally from '../mixins/changeable-externally';
 import Stub from '../stub';
+import {getMigrationDate} from '../../migration/dates';
 
 export default Cacheable.extend({
   root_object: 'risk',
@@ -23,7 +24,7 @@ export default Cacheable.extend({
     Reviewable,
     ChangeableExternally,
   ],
-  migrationDate: '06/13/2019',
+  migrationDate: getMigrationDate('risk'),
   is_custom_attributable: true,
   isRoleable: true,
   attributes: {
