@@ -235,10 +235,12 @@
       {{#if new_object_form}}
         <div class="row-fluid">
           <div class="span4 hidable" data-hide-title="Snapshots">
-            <label class="heavy-label">
-              Snapshots
-            </label>
-            <a href="javascript://" class="field-hide" tabindex="-1">hide</a>
+            <div>
+              <label class="heavy-label">
+                Snapshots
+              </label>
+              <a href="javascript://" class="field-hide" tabindex="-1">hide</a>
+            </div>
             <label class="input-label">
               <input type="checkbox" el:checked:bind="instance.manual_snapshots"/>
               <span>Manually map snapshots</span>
